@@ -1,0 +1,15 @@
+@use '@/shared/styles/variables' as *;
+
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: $white;
+  border-radius: 100%;
+}
+
+.userAvatar {
+  
+}

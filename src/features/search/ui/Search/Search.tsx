@@ -23,11 +23,13 @@ export const Search = ({}: SearchProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type={'search'}
+        inputClass={'search'}
         placeholder={
           'Search by key word or by lesson number'
         }
         register={register('input')}
         error={errors.input?.message}
+        size={50}
       />
     </form>
   )

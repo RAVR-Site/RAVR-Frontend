@@ -1,5 +1,21 @@
+.header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   font-size: 4rem;
   font-weight: 400;
   font-family: 'Anton', sans-serif;
+
+  padding-bottom: 0.75rem;
 }

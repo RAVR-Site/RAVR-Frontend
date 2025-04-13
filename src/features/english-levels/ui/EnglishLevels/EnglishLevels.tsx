@@ -1,10 +1,21 @@
+import { useState } from 'react'
+
+import { P } from '@/shared/ui'
+import cn from 'classnames'
+
 import { levelList } from '../../model/levelList'
 
 import s from './EnglishLevels.module.scss'
 
-export const EnglishLevels = ({}: EnglishLevelsProps) => {
+export const EnglishLevels = ({
+  initialActiveLevel,
+}: EnglishLevelsProps) => {
+  const [activeLevel, setActiveLevel] = useState<string>(
+    initialActiveLevel
+  )
+
   const handleChangeLevel = (level: string) => {
-    console.log(level)
+    setActiveLevel(level)
   }
 
   return (
@@ -12,13 +23,28 @@ export const EnglishLevels = ({}: EnglishLevelsProps) => {
       {levelList.map((level: string) => (
         <li
           onClick={() => handleChangeLevel(level)}
-          className={s.level}
+          className={cn(
+            s.level,
+            activeLevel === level && s.levelActive
+          )}
         >
-          {level}
+          <P
+            fontFamily={'DaysOne'}
+            fontSize={24}
+            color={
+              activeLevel === level && s.levelActive
+                ? 'white'
+                : 'black'
+            }
+          >
+            {level}
+          </P>
         </li>
       ))}
     </ul>
   )
 }
 
-interface EnglishLevelsProps {}
+interface EnglishLevelsProps {
+  initialActiveLevel: string
+}

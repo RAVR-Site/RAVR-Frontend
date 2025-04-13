@@ -1,7 +1,9 @@
 import { InputHTMLAttributes, useState } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 
-import { EyeIcon } from '../icons/EyeIcon'
+import cn from 'classnames'
+
+import { EyeIcon } from '../icons/EyeIcon/EyeIcon'
 import { P } from '../P/P'
 
 import s from './Input.module.scss'
@@ -11,6 +13,7 @@ export const Input = ({
   error,
   register,
   labelClass = '',
+  inputClass,
   withEyeIcon = false,
   type,
   ...props
@@ -26,12 +29,22 @@ export const Input = ({
           </P>
         </label>
       )}
-      <div className={s.inputBlock}>
+      <div
+        className={cn(
+          s.inputBlock,
+          s[`${inputClass}Block`]
+        )}
+      >
+        {inputClass === 'search' && (
+          <EyeIcon
+            onClick={() => setShowPassword(prev => !prev)}
+          />
+        )}
         <input
           {...(withEyeIcon && {
             type: showPassword ? 'text' : 'password',
           })}
-          className={s.input}
+          className={cn(s.input, s[`${inputClass}`])}
           {...register}
           {...props}
         />
@@ -50,6 +63,7 @@ interface InputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   labelClass?: string
+  inputClass?: 'search'
   error?: string
   register?: UseFormRegisterReturn
   withEyeIcon?: boolean
