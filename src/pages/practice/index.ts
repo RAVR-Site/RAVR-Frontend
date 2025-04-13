@@ -1,3 +1,3 @@
-import Practice from "./ui/Practice";
+import Practice from './ui/Practice'
 
 export default Practice
