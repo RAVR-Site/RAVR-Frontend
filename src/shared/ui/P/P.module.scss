@@ -1,0 +1,87 @@
+@use '@/shared/styles/variables' as *;
+
+.base {
+  font-weight: 400;
+  font-size: 20px;
+  font-family: 'Assistant', sans-serif;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 40px;
+  font-family: 'Days One', sans-serif;
+}
+
+.bigTitle {
+  font-weight: 400;
+  font-size: 48px;
+  font-family: 'Days One', sans-serif;
+}
+
+.fontFamily-Anton {
+  font-family: 'Anton', sans-serif;
+}
+
+.fontFamily-DaysOne {
+  font-family: 'Days One', sans-serif;
+}
+
+.fontFamily-Assistant {
+  font-family: 'Assistant', sans-serif;
+}
+
+.fontWeight-400 {
+  font-weight: 400;
+}
+
+.fontWeight-700 {
+  font-weight: 700;
+}
+
+.fontSize-16 {
+  font-size: 16px;
+}
+
+.fontSize-20 {
+  font-size: 20px;
+}
+
+.fontSize-24 {
+  font-size: 24px;
+}
+
+.fontSize-32 {
+  font-size: 32px;
+}
+
+.fontSize-40 {
+  font-size: 40px;
+}
+
+.fontSize-48 {
+  font-size: 48px;
+}
+
+.purple {
+  color: $purple;
+}
+
+.pink {
+  color: $pink;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.white {
+  color: $white;
+}
+
+.black {
+  color: $black;
+}
+
+.blue {
+  color: $blue;
+}

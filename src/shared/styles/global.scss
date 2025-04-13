@@ -1,0 +1,16 @@
+@use 'normalize';
+@use 'variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Days+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
+
+body {
+  position: relative;
+
+  background: $main-bg-color;
+  color: white;
+
+  font-family: 'Days One', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
