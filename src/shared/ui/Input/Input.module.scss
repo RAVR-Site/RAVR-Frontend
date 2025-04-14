@@ -39,15 +39,18 @@
 
 .searchBlock {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  
+  gap: 1.5rem;
+
   background: $white;
   border-radius: 38px;
-  padding: 0.5rem 1.5rem 0.75rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.6rem 1.5rem;
 
   & svg {
     cursor: pointer;
+    width: 30px;
+    height: 30px;
   }
 }
 
