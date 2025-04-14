@@ -1,6 +1,12 @@
 import { CSSProperties } from 'react'
 
-export const Logo = ({ color, padding }: LogoProps) => {
+import { Size } from '@/shared/model/types'
+
+export const Logo = ({
+  color,
+  hasMargin = false,
+  size,
+}: LogoProps) => {
   const colors: Record<LogoProps['color'], string> = {
     yellow: '#FFDD45',
     purple: '#9A5FFF',
@@ -9,12 +15,16 @@ export const Logo = ({ color, padding }: LogoProps) => {
 
   return (
     <svg
-      width={'106'}
-      height={'108'}
+      width={size?.width || '106'}
+      height={size?.height || '108'}
       viewBox={'0 0 106 108'}
       fill={'none'}
       xmlns={'http://www.w3.org/2000/svg'}
-      style={{ marginLeft: '40px' } as CSSProperties}
+      style={
+        {
+          marginLeft: hasMargin ? '40px' : '',
+        } as CSSProperties
+      }
     >
       <g clip-path={'url(#clip0_39_4995)'}>
         <path
@@ -45,5 +55,6 @@ export const Logo = ({ color, padding }: LogoProps) => {
 
 interface LogoProps {
   color: 'purple' | 'blue' | 'yellow'
-  padding?: string
+  hasMargin?: boolean
+  size?: Size
 }

@@ -11,7 +11,7 @@ const Register = () => {
     <Layout height={'100vh'}>
       <section className={s.registerPage}>
         <div className={s.top}>
-          <Logo color={'purple'} />
+          <Logo color={'purple'} hasMargin />
           <div className={s.text}>
             <P className={'bigTitle'} color={'black'}>
               SIGN UP

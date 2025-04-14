@@ -11,7 +11,7 @@ const Login = () => {
     <Layout height={'100vh'}>
       <section className={s.loginPage}>
         <div className={s.top}>
-          <Logo color={'blue'} />
+          <Logo color={'blue'} hasMargin />
           <div className={s.text}>
             <P className={'bigTitle'} color={'black'}>
               LOG IN
