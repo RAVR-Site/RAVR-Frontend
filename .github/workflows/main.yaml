@@ -18,5 +18,8 @@ jobs:
     - name: View docker images
       run: docker images
 
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+
     - name: Push on DockerHub
       run: docker push anastasiadmw/ravr-frontend:v0.0.1
