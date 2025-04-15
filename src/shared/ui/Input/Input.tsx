@@ -3,8 +3,7 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 import cn from 'classnames'
 
-import { EyeIcon } from '../icons/EyeIcon/EyeIcon'
-import { Loupe } from '../icons/Loupe/Loupe'
+import { EyeIcon, LoupeIcon } from '../icons'
 import { P } from '../P/P'
 
 import s from './Input.module.scss'
@@ -36,7 +35,7 @@ export const Input = ({
           s[`${inputClass}Block`]
         )}
       >
-        {inputClass === 'search' && <Loupe />}
+        {inputClass === 'search' && <LoupeIcon />}
         <input
           {...(withEyeIcon && {
             type: showPassword ? 'text' : 'password',

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 import cn from 'classnames'
 
@@ -10,6 +10,7 @@ export const P = ({
   fontFamily,
   className = 'base',
   color = 'white',
+  textAlign = 'left',
   children,
 }: ParagraphProps) => {
   return (
@@ -21,6 +22,11 @@ export const P = ({
         s[`fontWeight-${fontWeight}`],
         s[`fontSize-${fontSize}`]
       )}
+      style={
+        {
+          textAlign,
+        } as CSSProperties
+      }
     >
       {children}
     </p>
@@ -39,5 +45,6 @@ interface ParagraphProps {
   fontSize?: 16 | 20 | 24 | 32 | 40 | 48
   fontWeight?: 400 | 700
   className?: 'base' | 'title' | 'bigTitle'
+  textAlign?: 'left' | 'center'
   children: ReactNode
 }

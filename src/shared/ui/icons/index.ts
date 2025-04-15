@@ -1,2 +1,4 @@
 export { EyeIcon } from './EyeIcon/EyeIcon'
-export { Loupe } from './Loupe/Loupe'
+export { LoupeIcon } from './LoupeIcon/LoupeIcon'
+export { CupIcon } from './CupIcon/CupIcon'
+export { ArrowIcon } from './ArrowIcon/ArrowIcon'
