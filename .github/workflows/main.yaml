@@ -1,0 +1,19 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "feature/CI" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Docker build
+      run: docker build -t test:v0.0.1 .
+
+    - name: View docker images
+      run: docker images
