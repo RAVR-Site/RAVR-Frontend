@@ -1,8 +1,6 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { Layout } from '@/widgets/layout'
-
 const Home = lazy(() => import('@/pages/home'))
 const Achievements = lazy(
   () => import('@/pages/achievements')
