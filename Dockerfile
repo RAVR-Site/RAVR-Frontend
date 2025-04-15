@@ -7,4 +7,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 
+EXPOSE 5173
+
 ENTRYPOINT [ "npm", "run", "dev" ]
