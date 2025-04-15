@@ -4,7 +4,6 @@ import { Input } from '@/shared/ui'
 
 import { SearchFormInputs } from '../../model/types'
 
-import s from './Search.module.scss'
 
 export const Search = ({}: SearchProps) => {
   const {
