@@ -1,0 +1,25 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "feature/CI" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Docker build
+      run: docker build -t anastasiadmw/ravr-frontend:v0.0.1 .
+
+    - name: View docker images
+      run: docker images
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+
+    - name: Push on DockerHub
+      run: docker push anastasiadmw/ravr-frontend:v0.0.1
