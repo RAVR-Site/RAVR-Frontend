@@ -4,6 +4,7 @@ import { Input } from '@/shared/ui'
 
 import { SearchFormInputs } from '../../model/types'
 
+import s from './Search.module.scss';
 
 export const Search = ({}: SearchProps) => {
   const {
@@ -19,7 +20,10 @@ export const Search = ({}: SearchProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={s.form}
+    >
       <Input
         type={'search'}
         inputClass={'search'}

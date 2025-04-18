@@ -1,4 +1,4 @@
-export const Loupe = () => {
+export const LoupeIcon = () => {
   return (
     <svg
       width={'39'}
