@@ -13,7 +13,7 @@ const Login = () => {
         <div className={s.top}>
           <Logo color={'blue'} hasMargin />
           <div className={s.text}>
-            <P className={'bigTitle'} color={'black'}>
+            <P type={'bigTitle'} color={'black'}>
               LOG IN
             </P>
             <div className={s.smallText}>

@@ -1,9 +1,18 @@
 @use '@/shared/styles/variables' as *;
+@use '@/shared/styles/breakpoints' as *;
 
 .base {
   font-weight: 400;
   font-size: 20px;
   font-family: 'Assistant', sans-serif;
+
+  @include width-1248 {
+    font-size: 19px;
+  }
+
+  @include width-1100 {
+    font-size: 18px;
+  }
 }
 
 .title {

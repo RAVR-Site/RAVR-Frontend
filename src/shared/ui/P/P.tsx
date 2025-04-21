@@ -8,19 +8,21 @@ export const P = ({
   fontSize,
   fontWeight,
   fontFamily,
-  className = 'base',
+  type = 'base',
   color = 'white',
   textAlign = 'left',
   children,
+  className
 }: ParagraphProps) => {
   return (
     <p
       className={cn(
-        s[className],
+        s[type],
         s[`fontFamily-${fontFamily}`],
         s[color],
         s[`fontWeight-${fontWeight}`],
-        s[`fontSize-${fontSize}`]
+        s[`fontSize-${fontSize}`],
+        className
       )}
       style={
         {
@@ -44,7 +46,8 @@ interface ParagraphProps {
   fontFamily?: 'Anton' | 'DaysOne' | 'Assistant'
   fontSize?: 16 | 20 | 24 | 32 | 40 | 48
   fontWeight?: 400 | 700
-  className?: 'base' | 'title' | 'bigTitle'
+  type?: 'base' | 'title' | 'bigTitle'
   textAlign?: 'left' | 'center'
   children: ReactNode
+  className?: string
 }

@@ -1,3 +1,5 @@
+@use '@/shared/styles/breakpoints' as *;
+
 .header {
   width: 100%;
 
@@ -10,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .title {
@@ -18,4 +21,12 @@
   font-family: 'Anton', sans-serif;
 
   padding-bottom: 0.75rem;
+
+  @include width-1248 {
+    font-size: 3.5rem;
+  }
+
+  @include width-1100 {
+    font-size: 3.25rem;
+  }
 }
