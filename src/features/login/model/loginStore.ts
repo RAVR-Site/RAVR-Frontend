@@ -1,7 +1,7 @@
 import { UseFormReset } from 'react-hook-form'
 import { NavigateFunction } from 'react-router-dom'
 
-import { saveTokenToStorage } from '@/shared/lib/token-utils'
+import { saveTokenToStorage } from '@/shared/lib/utils/token-utils'
 import {
   LoginRequestData,
   LoginResponse,

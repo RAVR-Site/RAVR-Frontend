@@ -5,7 +5,7 @@ import {
   getAccessToken,
   removeAccessToken,
   saveTokenToStorage,
-} from '../lib/token-utils'
+} from '../lib/utils/token-utils'
 import { RefreshResponse } from '../model/types'
 
 export const createInstance = () => {
@@ -22,8 +22,6 @@ export const createInstance = () => {
     response => response,
     async error => {
       const originalRequest = error.config
-
-      console.log(originalRequest._isRetry)
 
       if (
         error.response?.status === 401 &&
