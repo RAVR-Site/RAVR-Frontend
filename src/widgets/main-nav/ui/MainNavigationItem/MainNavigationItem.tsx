@@ -28,6 +28,7 @@ export const MainNavigationItem = ({
           fontFamily={'DaysOne'}
           fontSize={32}
           color={color}
+          textAlign={'center'}
         >
           {item.title}
         </P>

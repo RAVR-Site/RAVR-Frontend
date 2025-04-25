@@ -28,8 +28,8 @@ export const UserAvatar = ({
       className={s.avatar}
       style={
         {
-          width: blockSize?.width,
-          height: blockSize?.height,
+          maxWidth: blockSize?.width,
+          maxHeight: blockSize?.height,
           border: hasBorder ? '6px solid black' : '',
         } as CSSProperties
       }

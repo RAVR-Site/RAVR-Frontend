@@ -1,32 +1,32 @@
+import { observer } from 'mobx-react-lite'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
+import { LoginRequestData } from '@/shared/model/types'
 import { Button, Input } from '@/shared/ui'
 
-import { loginApi } from '../api/loginApi'
+import { login } from '../api/loginApi'
+import { loginStore } from '../model/loginStore'
 import { loginValidation } from '../model/loginValidation'
-import { LoginRequest } from '../model/types'
 
 import s from './LoginForm.module.scss'
 
-export const LoginForm = ({}: LoginFormProps) => {
+export const LoginForm = observer(() => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<LoginRequest>()
+  } = useForm<LoginRequestData>()
+
+  const { loginRequest } = loginStore
 
   const handleSubmitLoginForm: SubmitHandler<
-    LoginRequest
-  > = async data => {
-    try {
-      const response = await loginApi.login(data)
-
-      reset()
-      console.log(response)
-    } catch (error) {
-      console.error(error)
-    }
+    LoginRequestData
+  > = data => {
+    loginRequest(data, reset, navigate)
   }
 
   return (
@@ -36,17 +36,23 @@ export const LoginForm = ({}: LoginFormProps) => {
     >
       <div className={s.inputs}>
         <Input
-          key={'email'}
-          label={'Email'}
-          placeholder={'Enter your email'}
-          register={register('email', loginValidation.email)}
-          error={errors.email?.message}
+          key={'name'}
+          label={'Name'}
+          placeholder={'Enter your name'}
+          register={register(
+            'username',
+            loginValidation.username
+          )}
+          error={errors.username?.message}
           size={40}
         />
         <Input
           label={'Password'}
           placeholder={'Enter password'}
-          register={register('password', loginValidation.password,)}
+          register={register(
+            'password',
+            loginValidation.password
+          )}
           error={errors.password?.message}
           size={40}
           withEyeIcon
@@ -63,6 +69,4 @@ export const LoginForm = ({}: LoginFormProps) => {
       </Button>
     </form>
   )
-}
-
-interface LoginFormProps {}
+})

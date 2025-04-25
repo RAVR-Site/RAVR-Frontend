@@ -1,7 +1,6 @@
 @use '@/shared/styles/variables' as *;
 @use '@/shared/styles/breakpoints' as *;
 
-
 .item {
   cursor: pointer;
   position: relative;
@@ -36,9 +35,21 @@
   @include laptop-height-800 {
     & svg {
       width: 55px;
+      height: 55px;
+      aspect-ratio: 1/1;
     }
 
     margin-bottom: -5px;
+  }
+
+  @include width-1100 {
+    & svg {
+      width: 44px;
+      height: 44px;
+      aspect-ratio: 1/1;
+    }
+
+    margin-bottom: 0;
   }
 }
 

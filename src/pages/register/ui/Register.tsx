@@ -13,7 +13,7 @@ const Register = () => {
         <div className={s.top}>
           <Logo color={'purple'} hasMargin />
           <div className={s.text}>
-            <P className={'bigTitle'} color={'black'}>
+            <P type={'bigTitle'} color={'black'}>
               SIGN UP
             </P>
             <div className={s.smallText}>

@@ -1,11 +1,8 @@
-import { axiosBase } from '@/shared/api/axios-instanse'
-
+import { api } from '@/shared/api/axios-instanse'
 import {
-  RegisterRequest,
+  RegisterRequestData,
   RegisterResponse,
-} from '../model/types'
+} from '@/shared/model/types'
 
-export const registerApi = {
-  register: async (data: RegisterRequest) =>
-    axiosBase.post<RegisterResponse>('/register', data),
-}
+export const registerApi = async (data: RegisterRequestData) =>
+  (await api.post<RegisterResponse>('/auth/register', data)).data

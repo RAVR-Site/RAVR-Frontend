@@ -771,6 +771,11 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.7.tgz"
   integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
 
+"@types/js-cookie@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-3.0.6.tgz#a04ca19e877687bd449f5ad37d33b104b71fdf95"
+  integrity sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==
+
 "@types/json-schema@^7.0.15":
   version "7.0.15"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
@@ -2214,6 +2219,11 @@ jju@~1.4.0:
   resolved "https://registry.yarnpkg.com/jju/-/jju-1.4.0.tgz#a3abe2718af241a2b2904f84a625970f389ae32a"
   integrity sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==
 
+js-cookie@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.5.tgz#0b7e2fd0c01552c58ba86e0841f94dc2557dcdbc"
+  integrity sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -2417,10 +2427,10 @@ mobx-react-lite@^4.1.0:
   dependencies:
     use-sync-external-store "^1.4.0"
 
-mobx-toolbox@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/mobx-toolbox/-/mobx-toolbox-1.4.5.tgz#927024d32289afe4db3be36af99e81d79740eaab"
-  integrity sha512-yCe9pvlo0SWe6f61WlEQSOcZrb7Mn5nhulxKYKfta1x6iQpIpY2KGJYOn6aV5kr3MFHtLSiZpRHyq2nwJRyuoQ==
+mobx-toolbox@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/mobx-toolbox/-/mobx-toolbox-1.4.6.tgz#c2496368c88b86b5ca1d57bf72e8c988b0452a57"
+  integrity sha512-OAtEhMMvNeIdwkIwW0gCwnupH3o96UbdSvcg54enuxejeiQS5dyPONJ6NYYl6Y8vb4nf/bnt3qrv8PX/bfR0mQ==
   dependencies:
     mobx "^6.13.3"
 

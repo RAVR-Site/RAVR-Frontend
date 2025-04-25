@@ -1,11 +1,11 @@
 import { RegisterOptions } from 'react-hook-form'
 
-import { RegisterRequest } from './types'
+import { RegisterRequestData } from '@/shared/model/types'
 
 export const registerValidation: Partial<
   Record<
-    keyof RegisterRequest,
-    RegisterOptions<RegisterRequest>
+    keyof RegisterRequestData,
+    RegisterOptions<RegisterRequestData>
   >
 > = {
   email: {
@@ -23,7 +23,7 @@ export const registerValidation: Partial<
         'The minimum password length is 8 characters',
     },
   },
-  name: {
+  username: {
     required: 'Name is required',
   },
 }
