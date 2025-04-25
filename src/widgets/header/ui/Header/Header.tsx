@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { EnglishLevels } from '@/features/english-levels'
 import { Search } from '@/features/search'
 import { UserAvatar } from '@/features/user-avatar'
@@ -9,10 +11,12 @@ export const Header = ({}: HeaderProps) => {
   return (
     <header className={s.header}>
       <div className={s.top}>
-        <Logo
-          color={'yellow'}
-          size={{ width: 74, height: 76 }}
-        />
+        <Link to={'/'}>
+          <Logo
+            color={'yellow'}
+            size={{ width: 74, height: 76 }}
+          />
+        </Link>
         <h1 className={s.title}>
           FPS - Smart Studying at Lightning Speed
         </h1>

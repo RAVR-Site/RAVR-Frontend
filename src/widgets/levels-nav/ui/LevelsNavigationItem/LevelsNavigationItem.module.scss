@@ -1,0 +1,60 @@
+@use '@/shared/styles/variables' as *;
+
+.item {
+  position: relative;
+
+  width: 81px;
+  height: 81px;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 100%;
+  background-color: $white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.lastElement {
+    &:not(:last-child):before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 16px;
+      transform: rotate(90deg);
+      top: calc(100% + 23px);
+      left: calc(50% - 14px);
+      background-image: url(../../assets/arrow.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+}
+
+.reverseElement {
+  &:not(:last-child):before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 16px;
+    transform: rotate(180deg);
+    top: calc(50% - 8px);
+    left: calc(-50% - 5px);
+    background-image: url(../../assets/arrow.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.notReverseElement {
+  &:not(:last-child):before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 16px;
+    top: calc(50% - 8px);
+    right: calc(-50% - 5px);
+    background-image: url(../../assets/arrow.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

@@ -1,0 +1,41 @@
+@use '@/shared/styles/variables' as *;
+
+.levelList {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+
+  border: 2px solid $black;
+  border-radius: 1.75rem;
+
+  padding: 2.5rem 6rem 4.5rem 6rem;
+}
+
+.grammar {
+  @extend .levelList;
+
+  background-color: $pink;
+}
+
+.vocabulary {
+  @extend .levelList;
+
+  background-color: $purple;
+}
+
+.practice {
+  @extend .levelList;
+  
+  background-color: $yellow;
+}
+
+.list {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(81px, 1fr));
+  column-gap: 51px;
+  row-gap: 65px;
+}
