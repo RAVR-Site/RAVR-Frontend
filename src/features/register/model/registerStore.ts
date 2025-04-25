@@ -1,7 +1,7 @@
 import { UseFormReset } from 'react-hook-form'
 import { NavigateFunction } from 'react-router-dom'
 
-import { saveTokenToStorage } from '@/shared/lib/token-utils'
+import { saveTokenToStorage } from '@/shared/lib/utils/token-utils'
 import {
   LoginRequestData,
   LoginResponse,
@@ -26,7 +26,7 @@ class RegisterStore {
   registerResponse: MobxQueryInstance<RegisterResponse> = {}
 
   registerRequest = async (
-    body: RegisterRequestData ,
+    body: RegisterRequestData,
     reset: UseFormReset<RegisterRequestData>,
     navigate: NavigateFunction
   ) => {
@@ -36,7 +36,9 @@ class RegisterStore {
       email: body.email,
     }
 
-    this.registerResponse = mobxQuery(registerApi(newBody))
+    this.registerResponse = mobxQuery(registerApi(newBody), {
+      id: 'register'
+    })
 
     mobxQueryHandler(
       this.registerResponse,
