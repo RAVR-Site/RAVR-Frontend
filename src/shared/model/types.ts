@@ -40,7 +40,7 @@ interface RegisterResponseData {
 }
 
 export type RegisterResponse = ApiResponseData<RegisterResponseData>
-
+ 
 export interface RegisterRequestData {
   username: string
   surname?: string
