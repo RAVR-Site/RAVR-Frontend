@@ -8,4 +8,8 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-ENTRYPOINT [ "yarn", "run", "dev" ]
+RUN yarn build
+
+EXPOSE 5173
+
+ENTRYPOINT [ "yarn", "run", "dev", "--host", "0.0.0.0"]
