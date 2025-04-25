@@ -1,10 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import {
-  RouterProvider,
-} from 'react-router-dom'
-
-import { navigationStore } from '@/shared/model/navigationStore'
+import { RouterProvider } from 'react-router-dom'
 
 import '@/shared/styles/global.scss'
 
