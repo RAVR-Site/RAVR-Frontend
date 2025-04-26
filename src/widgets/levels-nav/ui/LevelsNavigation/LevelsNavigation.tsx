@@ -8,9 +8,17 @@ import { LevelsNavigationItem } from '../LevelsNavigationItem/LevelsNavigationIt
 
 import s from './LevelsNavigation.module.scss'
 
-const levels = Array.from(
+export type LevelData = {
+  levelNumber: string
+  hardIsDone: boolean
+}
+
+const levels: LevelData[] = Array.from(
   { length: 36 },
-  (_, i) => `${i + 1}`
+  (_, i) => ({
+    levelNumber: `${i + 1}`,
+    hardIsDone: Math.random() < 0.5,
+  })
 )
 
 export const LevelsNavigation = ({
@@ -42,30 +50,18 @@ export const LevelsNavigation = ({
               {isReversed
                 ? [...rowLevels]
                     .reverse()
-                    .map(levelNumber => (
+                    .map(level => (
                       <LevelsNavigationItem
-                        key={levelNumber}
-                        level={levelNumber}
-                        lastElement={
-                          Number(levelNumber) %
-                            columnsCount ===
-                          0
-                        }
-                        rowIndex={rowIndex + 1}
+                        key={level.levelNumber}
+                        level={level}
                         columnsCount={columnsCount}
                         isReversed
                       />
                     ))
-                : rowLevels.map(levelNumber => (
+                : rowLevels.map(level => (
                     <LevelsNavigationItem
-                      key={levelNumber}
-                      level={levelNumber}
-                      lastElement={
-                        Number(levelNumber) %
-                          columnsCount ===
-                        0
-                      }
-                      rowIndex={rowIndex + 1}
+                      key={level.levelNumber}
+                      level={level}
                       columnsCount={columnsCount}
                     />
                   ))}

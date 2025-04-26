@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { TUser } from '@/entities/user'
 import { Size } from '@/shared/model/types'

@@ -1,19 +1,25 @@
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
+import { StarIcon } from '../../assets/StarIcon'
+import { LevelData } from '../LevelsNavigation/LevelsNavigation'
+
 import s from './LevelsNavigationItem.module.scss'
 
 export const LevelsNavigationItem = ({
   level,
-  lastElement,
   isReversed = false,
-  rowIndex,
   columnsCount,
 }: LevelsNavigationItemProps) => {
-  const positionInRow = (Number(level) - 1) % columnsCount
+  const positionInRow =
+    (Number(level.levelNumber) - 1) % columnsCount
+
   const gridPosition = isReversed
     ? columnsCount - positionInRow
     : positionInRow + 1
+
+  const lastElement =
+    Number(level.levelNumber) % columnsCount === 0
 
   return (
     <li
@@ -31,16 +37,20 @@ export const LevelsNavigationItem = ({
         fontSize={32}
         color={'black'}
       >
-        {level}
+        {level.levelNumber}
       </P>
+
+      {level.hardIsDone && (
+        <div className={s.hardIsDone}>
+          <StarIcon />
+        </div>
+      )}
     </li>
   )
 }
 
 interface LevelsNavigationItemProps {
-  level: string
-  lastElement: boolean
+  level: LevelData
   isReversed?: boolean
-  rowIndex: number
   columnsCount: number
 }
