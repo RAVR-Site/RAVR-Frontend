@@ -14,6 +14,8 @@
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
+
   &.lastElement {
     &:not(:last-child):before {
       content: '';
@@ -26,6 +28,8 @@
       background-image: url(../../assets/arrow.svg);
       background-repeat: no-repeat;
       background-size: cover;
+
+      cursor: default;
     }
   }
 }
@@ -42,6 +46,8 @@
     background-image: url(../../assets/arrow.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    
+    cursor: default;
   }
 }
 
@@ -56,5 +62,24 @@
     background-image: url(../../assets/arrow.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    
+    cursor: default;
   }
+}
+
+.hardIsDone {
+  position: absolute;
+  top: 68%;
+  left: 68%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 27px;
+  height: 27px;
+
+  background: $white;
+  border: 1px solid $pink;
+  border-radius: 100%;
 }
