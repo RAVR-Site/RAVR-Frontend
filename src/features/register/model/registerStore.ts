@@ -1,21 +1,15 @@
-import { UseFormReset } from 'react-hook-form'
-import { NavigateFunction } from 'react-router-dom'
+import { UseFormReset } from 'react-hook-form';
+import { NavigateFunction } from 'react-router-dom';
 
-import { saveTokenToStorage } from '@/shared/lib/utils/token-utils'
-import {
-  LoginRequestData,
-  LoginResponse,
-  RegisterRequestData,
-  RegisterResponse,
-} from '@/shared/model/types'
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx';
 import {
   mobxSaiFetch as mobxQuery,
   mobxSaiHandler as mobxQueryHandler,
   MobxSaiInstance as MobxQueryInstance,
-} from 'mobx-toolbox'
+} from 'mobx-toolbox';
 
-import { registerApi } from '../api/registerApi'
+import { registerApi } from '../api/registerApi';
+import { RegisterRequestData, RegisterResponse } from '../model/types';
 
 class RegisterStore {
   constructor() {

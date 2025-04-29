@@ -6,6 +6,8 @@
   font-size: 20px;
   font-family: 'Assistant', sans-serif;
 
+  transition: color 0.2s ease-in-out;
+  
   @include width-1248 {
     font-size: 19px;
   }
@@ -14,7 +16,6 @@
     font-size: 18px;
   }
 
-  transition: color 0.2s ease-in-out;
 }
 
 .title {
