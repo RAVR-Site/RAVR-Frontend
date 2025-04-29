@@ -2,12 +2,11 @@ import { observer } from 'mobx-react-lite'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { LoginRequestData } from '@/shared/model/types'
 import { Button, Input } from '@/shared/ui'
 
-import { login } from '../api/loginApi'
 import { loginStore } from '../model/loginStore'
 import { loginValidation } from '../model/loginValidation'
+import { LoginRequestData } from '../model/types'
 
 import s from './LoginForm.module.scss'
 

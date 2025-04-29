@@ -1,12 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { RegisterRequestData } from '@/shared/model/types'
 import { Button, Input } from '@/shared/ui'
 
-import { registerApi } from '../api/registerApi'
 import { registerStore } from '../model/registerStore'
 import { registerValidation } from '../model/registerValidation'
+import { RegisterRequestData } from '../model/types'
 
 import s from './RegisterForm.module.scss'
 
