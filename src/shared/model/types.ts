@@ -30,6 +30,3 @@ export interface RefreshRequestData {
   refreshToken: string
 }
 
-
-// LESSON TYPES
-export type LessonType = 'grammar' | 'vocabulary' | 'practice'

@@ -1,30 +1,34 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
+import { LessonType } from '@/entities/lesson'
+import { levelsNavStore } from '@/features/levels-nav'
 import { useElementSize } from '@/shared/lib/hooks/useElementSize'
 import { calculateColumns } from '@/shared/lib/utils/calculateColumns'
-import { LessonType } from '@/shared/model/types'
 import { P } from '@/shared/ui'
 
+import { LevelData } from '../../../../features/levels-nav/model/types'
 import { LevelsNavigationItem } from '../LevelsNavigationItem/LevelsNavigationItem'
 
 import s from './LevelsNavigation.module.scss'
-
-export type LevelData = {
-  levelNumber: string
-  hardIsDone: boolean
-}
 
 const levels: LevelData[] = Array.from(
   { length: 36 },
   (_, i) => ({
     levelNumber: `${i + 1}`,
-    hardIsDone: Math.random() < 0.5,
+    hardIsDone: Math.random() < 0.4,
   })
 )
 
 export const LevelsNavigation = ({
   lessonType,
 }: LevelsNavigationProps) => {
+  const {
+    getLevelsNavResponse: { data: levelsData, isPending },
+    getLevelsNavRequest,
+  } = levelsNavStore
+
+  const data = levelsData?.data.levels || levels
+
   const levelsNavRef = useRef<HTMLUListElement>(null)
   const { width } = useElementSize(levelsNavRef)
 
@@ -32,7 +36,7 @@ export const LevelsNavigation = ({
     lessonType.charAt(0).toUpperCase() + lessonType.slice(1)
 
   const columnsCount = calculateColumns(width)
-  const rows = Math.ceil(levels.length / columnsCount)
+  const rows = Math.ceil(data.length / columnsCount)
 
   const renderLevels = (
     isReversed: boolean,
@@ -44,6 +48,7 @@ export const LevelsNavigation = ({
         .map(level => (
           <LevelsNavigationItem
             key={level.levelNumber}
+            lessonType={lessonType}
             level={level}
             columnsCount={columnsCount}
             isReversed
@@ -53,11 +58,21 @@ export const LevelsNavigation = ({
       return rowLevels.map(level => (
         <LevelsNavigationItem
           key={level.levelNumber}
+          lessonType={lessonType}
           level={level}
           columnsCount={columnsCount}
         />
       ))
     }
+  }
+
+  useLayoutEffect(() => {
+    getLevelsNavRequest({ lessonType: lessonType })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lessonType])
+
+  if (isPending) {
+    return <div>Loading...</div>
   }
 
   return (

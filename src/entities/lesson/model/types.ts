@@ -1,4 +1,4 @@
-type LessonInfo = {
+export type LessonInfo = {
   lessonNumber: number
   easy: LessonСomplexity
   hard: LessonСomplexity
@@ -10,3 +10,5 @@ type LessonСomplexity = {
   fpsRecord: number
   xp: number
 }
+
+export type LessonType = 'grammar' | 'vocabulary' | 'practice'
