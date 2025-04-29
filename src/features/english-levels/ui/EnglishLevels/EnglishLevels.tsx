@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { P } from '@/shared/ui'
 import cn from 'classnames'
@@ -12,14 +12,23 @@ import s from './EnglishLevels.module.scss'
 export const EnglishLevels = ({
   initialActiveLevel,
 }: EnglishLevelsProps) => {
-  const { currentEnglishLevel, switchEnglishLevelRequest } =
-    englishLevelStore
+  const {
+    currentEnglishLevel: {
+      setCurrentEnglishLevel,
+      currentEnglishLevel,
+    },
+    switchEnglishLevelRequest,
+  } = englishLevelStore
 
   const handleChangeLevel = (
     level: EnglishLevelVariant
   ) => {
     switchEnglishLevelRequest(level)
   }
+
+  useEffect(() => {
+    setCurrentEnglishLevel(initialActiveLevel)
+  }, [])
 
   return (
     <ul className={s.levelList}>

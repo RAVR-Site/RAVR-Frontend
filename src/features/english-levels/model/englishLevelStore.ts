@@ -16,7 +16,7 @@ class EnglishLevelStore {
   }
 
   // STATE
-  currentEnglishLevel: EnglishLevelVariant = 'A1'
+  currentEnglishLevel = mobxState<EnglishLevelVariant>('A1')('currentEnglishLevel', { reset: true })
 
   // API
   switchEnglishLevelResponse: MobxQueryInstance<EnglishLevelApiResponse> = {}
@@ -29,10 +29,9 @@ class EnglishLevelStore {
     mobxQueryHandler(
       this.switchEnglishLevelResponse,
       response => {
-        this.currentEnglishLevel = response.data.changeLevel
+        this.currentEnglishLevel.setCurrentEnglishLevel(response.data.changeLevel)
       },
       error => {
-        this.currentEnglishLevel = body
         console.log(error)
       }
     )
