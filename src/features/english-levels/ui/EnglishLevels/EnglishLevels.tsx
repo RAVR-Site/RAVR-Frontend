@@ -1,50 +1,67 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
-import { levelList } from '../../model/levelList'
+import { englishLevelList } from '../../model/englishLevelList'
+import { englishLevelStore } from '../../model/englishLevelStore'
+import { EnglishLevelVariant } from '../../model/types'
 
 import s from './EnglishLevels.module.scss'
 
 export const EnglishLevels = ({
   initialActiveLevel,
 }: EnglishLevelsProps) => {
-  const [activeLevel, setActiveLevel] = useState<string>(
-    initialActiveLevel
-  )
+  const {
+    currentEnglishLevel: {
+      setCurrentEnglishLevel,
+      currentEnglishLevel,
+    },
+    switchEnglishLevelRequest,
+  } = englishLevelStore
 
-  const handleChangeLevel = (level: string) => {
-    setActiveLevel(level)
+  const handleChangeLevel = (
+    level: EnglishLevelVariant
+  ) => {
+    switchEnglishLevelRequest(level)
   }
+
+  useEffect(() => {
+    setCurrentEnglishLevel(initialActiveLevel)
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialActiveLevel])
 
   return (
     <ul className={s.levelList}>
-      {levelList.map((level: string) => (
-        <li
-          onClick={() => handleChangeLevel(level)}
-          className={cn(
-            s.level,
-            activeLevel === level && s.levelActive
-          )}
-        >
-          <P
-            fontFamily={'DaysOne'}
-            fontSize={24}
-            color={
-              activeLevel === level && s.levelActive
-                ? 'white'
-                : 'black'
-            }
+      {englishLevelList.map(
+        (level: EnglishLevelVariant) => (
+          <li
+            onClick={() => handleChangeLevel(level)}
+            className={cn(
+              s.level,
+              currentEnglishLevel === level && s.levelActive
+            )}
           >
-            {level}
-          </P>
-        </li>
-      ))}
+            <P
+              fontFamily={'DaysOne'}
+              fontSize={24}
+              color={
+                currentEnglishLevel === level &&
+                s.levelActive
+                  ? 'white'
+                  : 'black'
+              }
+            >
+              {level}
+            </P>
+          </li>
+        )
+      )}
     </ul>
   )
 }
 
 interface EnglishLevelsProps {
-  initialActiveLevel: string
+  initialActiveLevel: EnglishLevelVariant
 }

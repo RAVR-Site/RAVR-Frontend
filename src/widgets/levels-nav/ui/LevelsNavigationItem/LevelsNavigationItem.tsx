@@ -1,7 +1,7 @@
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
-import { StarIcon } from '../../assets/StarIcon'
+import { StarIcon } from '../../assets/icon-components/StarIcon'
 import { LevelData } from '../LevelsNavigation/LevelsNavigation'
 
 import s from './LevelsNavigationItem.module.scss'
@@ -28,9 +28,7 @@ export const LevelsNavigationItem = ({
         isReversed ? s.reverseElement : s.notReverseElement,
         lastElement && s.lastElement
       )}
-      style={{
-        gridColumn: gridPosition,
-      }}
+      style={{ gridColumn: gridPosition }}
     >
       <P
         fontFamily={'DaysOne'}

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 
-import { EnglishLevels } from '@/features/english-levels'
+import {
+  EnglishLevelVariant,
+  EnglishLevels,
+} from '@/features/english-levels'
 import { Search } from '@/features/search'
 import { UserAvatar } from '@/features/user-avatar'
 import { Logo } from '@/shared/ui'
@@ -25,7 +28,9 @@ export const Header = ({}: HeaderProps) => {
           blockSize={{ width: 84, height: 84 }}
         />
       </div>
-      <EnglishLevels initialActiveLevel={'A1'} />
+      <EnglishLevels
+        initialActiveLevel={'A1' as EnglishLevelVariant}
+      />
       <Search />
     </header>
   )

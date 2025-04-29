@@ -1,6 +1,6 @@
 import { RegisterOptions } from 'react-hook-form'
 
-import { RegisterRequestData } from '@/shared/model/types'
+import { RegisterRequestData } from '../model/types'
 
 export const registerValidation: Partial<
   Record<

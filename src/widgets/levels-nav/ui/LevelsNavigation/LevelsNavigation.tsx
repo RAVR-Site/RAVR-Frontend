@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 
 import { useElementSize } from '@/shared/lib/hooks/useElementSize'
 import { calculateColumns } from '@/shared/lib/utils/calculateColumns'
+import { LessonType } from '@/shared/model/types'
 import { P } from '@/shared/ui'
 
 import { LevelsNavigationItem } from '../LevelsNavigationItem/LevelsNavigationItem'
@@ -33,6 +34,32 @@ export const LevelsNavigation = ({
   const columnsCount = calculateColumns(width)
   const rows = Math.ceil(levels.length / columnsCount)
 
+  const renderLevels = (
+    isReversed: boolean,
+    rowLevels: LevelData[]
+  ) => {
+    if (isReversed) {
+      return [...rowLevels]
+        .reverse()
+        .map(level => (
+          <LevelsNavigationItem
+            key={level.levelNumber}
+            level={level}
+            columnsCount={columnsCount}
+            isReversed
+          />
+        ))
+    } else {
+      return rowLevels.map(level => (
+        <LevelsNavigationItem
+          key={level.levelNumber}
+          level={level}
+          columnsCount={columnsCount}
+        />
+      ))
+    }
+  }
+
   return (
     <div className={s[lessonType]}>
       <P fontFamily={'DaysOne'} fontSize={32}>
@@ -45,28 +72,7 @@ export const LevelsNavigation = ({
           const rowLevels = levels.slice(start, end)
           const isReversed = rowIndex % 2 !== 0
 
-          return (
-            <>
-              {isReversed
-                ? [...rowLevels]
-                    .reverse()
-                    .map(level => (
-                      <LevelsNavigationItem
-                        key={level.levelNumber}
-                        level={level}
-                        columnsCount={columnsCount}
-                        isReversed
-                      />
-                    ))
-                : rowLevels.map(level => (
-                    <LevelsNavigationItem
-                      key={level.levelNumber}
-                      level={level}
-                      columnsCount={columnsCount}
-                    />
-                  ))}
-            </>
-          )
+          return renderLevels(isReversed, rowLevels)
         })}
       </ul>
     </div>
@@ -74,5 +80,5 @@ export const LevelsNavigation = ({
 }
 
 interface LevelsNavigationProps {
-  lessonType: 'grammar' | 'vocabulary' | 'practice'
+  lessonType: LessonType
 }
