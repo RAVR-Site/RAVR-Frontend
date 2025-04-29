@@ -28,7 +28,9 @@ export const EnglishLevels = ({
 
   useEffect(() => {
     setCurrentEnglishLevel(initialActiveLevel)
-  }, [])
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialActiveLevel])
 
   return (
     <ul className={s.levelList}>
