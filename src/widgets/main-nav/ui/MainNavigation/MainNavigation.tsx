@@ -1,9 +1,3 @@
-import { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
-
-import { P } from '@/shared/ui'
-import { ArrowIcon, CupIcon } from '@/shared/ui/icons'
-
 import { navList } from '../../model/navList'
 import { MainNavigationItem } from '../MainNavigationItem/MainNavigationItem'
 
@@ -16,7 +10,9 @@ export const MainNavigation = ({}: MainNavigationProps) => {
         const color =
           item.color === '#FFFFFF' ? 'black' : 'white'
 
-        return <MainNavigationItem item={item} color={color}/>
+        return (
+          <MainNavigationItem item={item} color={color} />
+        )
       })}
     </ul>
   )

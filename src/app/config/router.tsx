@@ -1,6 +1,9 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
+import { LevelInfo } from '@/widgets/lesson-info'
+import { LevelsNavigation } from '@/widgets/levels-nav'
+
 const Home = lazy(() => import('@/pages/home'))
 const Achievements = lazy(
   () => import('@/pages/achievements')
@@ -21,6 +24,18 @@ const routes = [
   {
     path: '/grammar',
     element: <Grammar />,
+    children: [
+      {
+        path: '',
+        element: (
+          <LevelsNavigation lessonType={'grammar'} />
+        ),
+      },
+      {
+        path: '/grammar/lesson/:lessonNumber',
+        element: <LevelInfo lessonType={'grammar'} />,
+      },
+    ],
   },
   {
     path: '/vocabulary',

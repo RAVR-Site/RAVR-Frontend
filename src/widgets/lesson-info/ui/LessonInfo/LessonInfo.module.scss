@@ -1,0 +1,54 @@
+@use '@/shared/styles/variables' as *;
+
+.lessonInfo {
+  display: flex;
+  gap: 2.5rem;
+
+  width: 100%;
+  height: 100%;
+
+  outline: 2px solid $black-border;
+  border-radius: 1.75rem;
+
+  padding: calc(2.5rem + 3px);
+}
+
+.grammar {
+  @extend .lessonInfo;
+
+  background-color: $pink;
+}
+
+.vocabulary {
+  @extend .lessonInfo;
+
+  background-color: $purple;
+}
+
+.practice {
+  @extend .lessonInfo;
+
+  background-color: $yellow;
+}
+
+
+.leftBlock {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.rightBlock {
+  height: 100%;
+  width: 100%;
+}
+
+.image {
+  height: 66%;
+  width: 627px;
+}
