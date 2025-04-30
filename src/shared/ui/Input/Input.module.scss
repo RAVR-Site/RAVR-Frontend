@@ -1,11 +1,11 @@
-@use '@/shared/styles/variables' as *;
+@use 'variables' as *;
 
 .allInput {
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;  
+  gap: 0.25rem;
 }
 
 .label {
@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   border: 2px solid $black;
   border-radius: 15px;
   padding: 0.75rem 1.5rem;

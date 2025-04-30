@@ -40,10 +40,34 @@ const routes = [
   {
     path: '/vocabulary',
     element: <Vocabulary />,
+    children: [
+      {
+        path: '',
+        element: (
+          <LevelsNavigation lessonType={'vocabulary'} />
+        ),
+      },
+      {
+        path: '/vocabulary/lesson/:lessonNumber',
+        element: <LevelInfo lessonType={'vocabulary'} />,
+      },
+    ],
   },
   {
     path: '/practice',
     element: <Practice />,
+    children: [
+      {
+        path: '',
+        element: (
+          <LevelsNavigation lessonType={'practice'} />
+        ),
+      },
+      {
+        path: '/practice/lesson/:lessonNumber',
+        element: <LevelInfo lessonType={'practice'} />,
+      },
+    ],
   },
   {
     path: '/rating',

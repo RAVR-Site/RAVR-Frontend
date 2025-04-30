@@ -44,9 +44,9 @@ interface ParagraphProps {
     | 'yellow'
     | 'blue'
   fontFamily?: 'Anton' | 'DaysOne' | 'Assistant'
-  fontSize?: 16 | 20 | 24 | 32 | 40 | 48
-  fontWeight?: 400 | 700
-  type?: 'base' | 'title' | 'bigTitle'
+  fontSize?: 10 | 12 | 14 | 15 | 16 | 20 | 24 | 32 | 40 | 48
+  fontWeight?: 300 | 400 | 500 | 600 | 700 | 800
+  type?: 'base' | 'title' | 'bigTitle' | 'practice'
   textAlign?: 'left' | 'center'
   children: ReactNode
   className?: string

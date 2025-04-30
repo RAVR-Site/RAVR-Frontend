@@ -1,5 +1,5 @@
-@use '@/shared/styles/variables' as *;
-@use '@/shared/styles/breakpoints' as *;
+@use 'variables' as *;
+@use 'breakpoints' as *;
 
 .avatar {
   cursor: pointer;
@@ -10,20 +10,20 @@
 
   background: $white;
   border-radius: 100%;
-  
+
   width: 100%;
   height: 100%;
   aspect-ratio: 1 / 1;
 
   @include width-1248 {
     width: 64px;
-    height: 64px;  
+    height: 64px;
   }
 }
 
 .avatarImage {
   @include width-1248 {
     width: 34px;
-    height: 34px;  
+    height: 34px;
   }
 }

@@ -1,6 +1,18 @@
+@use 'mixins' as *;
+
 .button {
   display: flex;
   justify-content: center;
-  
+
   border-radius: 24px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.backgroundColor {
+  @include generate-background-styles;
+}
+
+.borderColor {
+  @include generate-border-styles;
 }

@@ -1,5 +1,4 @@
-@use '@/shared/styles/variables' as *;
-
+@use 'variables' as *;
 
 .registerPage {
   display: flex;
@@ -10,7 +9,6 @@
 
   width: 100%;
   height: 90%;
-
 
   border: 6px solid $yellow;
   background: $white;

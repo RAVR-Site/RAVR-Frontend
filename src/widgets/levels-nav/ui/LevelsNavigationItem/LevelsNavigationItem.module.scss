@@ -1,4 +1,4 @@
-@use '@/shared/styles/variables' as *;
+@use 'variables' as *;
 
 .item {
   position: relative;
@@ -46,7 +46,7 @@
     background-image: url(../../assets/arrow.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    
+
     cursor: default;
   }
 }
@@ -62,7 +62,7 @@
     background-image: url(../../assets/arrow.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    
+
     cursor: default;
   }
 }

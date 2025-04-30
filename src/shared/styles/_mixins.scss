@@ -1,0 +1,56 @@
+@use './variables' as *;
+
+$color-map: (
+  'yellow': $yellow,
+  'purple': $purple,
+  'pink': $pink,
+  'blue': $blue,
+  'white': $white,
+  'black': $black,
+);
+
+$hover-color-map: (
+  'blue': $blue-hover,
+  'purple': $purple-hover,
+  'pink': $pink-hover,
+  'yellow': $yellow-hover,
+  'white': $white-hover,
+  'black': $black-hover,
+);
+
+@mixin generate-background-styles {
+  @each $name, $color in $color-map {
+    &-#{$name} {
+      background: $color;
+
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: map-get($hover-color-map, $name);
+      }
+    }
+  }
+
+  &-none {
+    background: none;
+  }
+}
+
+// Миксин для генерации стилей границы
+@mixin generate-border-styles {
+  @each $name, $color in $color-map {
+    &-#{$name} {
+      border-color: $color;
+
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-color: map-get($hover-color-map, $name);
+      }
+    }
+  }
+
+  &-none {
+    border: none;
+  }
+}

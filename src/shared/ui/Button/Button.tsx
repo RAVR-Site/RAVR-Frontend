@@ -4,6 +4,8 @@ import {
   ReactNode,
 } from 'react'
 
+import cn from 'classnames'
+
 import { P } from '../P/P'
 
 import s from './Button.module.scss'
@@ -12,45 +14,34 @@ export const Button = ({
   onClick,
   borderColor = 'none',
   backgroundColor,
+  textColor = 'white',
   children,
   fontSize = 24,
   width,
   padding,
   ...props
 }: ButtonProps) => {
-  const colors: Record<
-    ButtonProps['backgroundColor'],
-    string
-  > = {
-    yellow: '#FFDD45',
-    purple: '#9A5FFF',
-    pink: '#FF5F92',
-    blue: '#577CFF',
-    white: '#FFFFFF',
-    black: '#000000',
-    none: 'none',
-  }
-
   return (
     <button
-      className={s.button}
+      className={cn(
+        s.button,
+        s[`backgroundColor-${backgroundColor}`],
+        s[`borderColor-${borderColor}`]
+      )}
       onClick={onClick}
       style={
         {
-          background: colors[backgroundColor]
-            ? colors[backgroundColor]
-            : 'none',
-          border:
-            borderColor !== 'none'
-              ? `2px solid ${colors[borderColor]}`
-              : 'none',
           width,
           padding,
         } as CSSProperties
       }
       {...props}
     >
-      <P fontFamily={'DaysOne'} fontSize={fontSize}>
+      <P
+        fontFamily={'DaysOne'}
+        fontSize={fontSize}
+        color={textColor}
+      >
         {children}
       </P>
     </button>
@@ -77,6 +68,13 @@ interface ButtonProps
     | 'pink'
     | 'yellow'
     | 'none'
+  textColor?:
+    | 'black'
+    | 'white'
+    | 'purple'
+    | 'pink'
+    | 'blue'
+    | 'yellow'
   width?: string
   padding?: string
   fontSize?: 20 | 24

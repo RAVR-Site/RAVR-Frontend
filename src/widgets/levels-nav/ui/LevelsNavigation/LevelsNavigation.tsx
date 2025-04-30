@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
 import { LessonType } from '@/entities/lesson'
 import { levelsNavStore } from '@/features/levels-nav'
@@ -23,7 +23,12 @@ export const LevelsNavigation = ({
   lessonType,
 }: LevelsNavigationProps) => {
   const {
-    getLevelsNavResponse: { data: levelsData, isPending },
+    getLevelsNavResponse: {
+      data: levelsData,
+      isPending,
+      isFulfilled,
+      isRejected,
+    },
     getLevelsNavRequest,
   } = levelsNavStore
 
@@ -71,7 +76,7 @@ export const LevelsNavigation = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonType])
 
-  if (isPending) {
+  if (isPending && !isFulfilled && !isRejected) {
     return <div>Loading...</div>
   }
 
