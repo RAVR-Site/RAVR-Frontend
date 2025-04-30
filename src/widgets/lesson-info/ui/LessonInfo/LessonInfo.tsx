@@ -40,6 +40,7 @@ export const LevelInfo = ({
 }: LevelInfoProps) => {
   const { lessonNumber } = useParams()
 
+  // STORES
   const {
     currentEnglishLevel: { currentEnglishLevel },
   } = englishLevelStore
@@ -49,12 +50,21 @@ export const LevelInfo = ({
     getLessonInfoResponse: { data: getLessonInfoData },
   } = levelsNavStore
 
+  // FORMATTING VARIABLES
   const lessonTypeWithFirstLetterUppercase =
     lessonType.charAt(0).toUpperCase() + lessonType.slice(1)
 
   const lessonTypeFirstLetterUppercase = lessonType
     .charAt(0)
     .toUpperCase()
+
+  const textType =
+    lessonType === 'practice' ? 'practice' : 'base'
+
+  // DATA FORMATTING
+  const data = formatLessonInfo(
+    getLessonInfoData?.data || mockLessonInfo.data
+  )
 
   useLayoutEffect(() => {
     getLessonInfoRequest({
@@ -63,13 +73,6 @@ export const LevelInfo = ({
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonType, lessonNumber])
-
-  const data = formatLessonInfo(
-    getLessonInfoData?.data || mockLessonInfo.data
-  )
-
-  const textType =
-    lessonType === 'practice' ? 'practice' : 'base'
 
   return (
     <div className={s[lessonType]}>
@@ -105,7 +108,9 @@ export const LevelInfo = ({
                   Your record -{' '}
                   {data.easy.userRecord || ' --:-- sec'}
                 </P>
-                <P type={textType}>FPS Record - {data.easy.fpsRecord}</P>
+                <P type={textType}>
+                  FPS Record - {data.easy.fpsRecord}
+                </P>
               </div>
               <P type={textType}>
                 You will gain {data.easy.xp} Xp for
@@ -124,7 +129,9 @@ export const LevelInfo = ({
                     Your record -{' '}
                     {data.hard.userRecord || ' --:-- sec'}
                   </P>
-                  <P type={textType}>FPS Record - {data.hard.fpsRecord}</P>
+                  <P type={textType}>
+                    FPS Record - {data.hard.fpsRecord}
+                  </P>
                 </div>
                 <P type={textType}>
                   You will gain {data.hard.xp} Xp for
