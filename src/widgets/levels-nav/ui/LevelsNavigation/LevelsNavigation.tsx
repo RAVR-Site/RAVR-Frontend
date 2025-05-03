@@ -76,9 +76,7 @@ export const LevelsNavigation = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonType])
 
-  if (isPending && !isFulfilled && !isRejected) {
-    return <div>Loading...</div>
-  }
+  
 
   return (
     <div className={s[lessonType]}>

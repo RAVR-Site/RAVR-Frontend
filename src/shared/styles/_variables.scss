@@ -5,21 +5,22 @@ $main-bg-color: #1e1e1e;
 $black-border: rgba(0, 0, 0, 0.75);
 $base-border-radius: 6px;
 
-
 // BASE COLORS
-$blue: #577cff;
+$light-blue: #577cff;
+$blue: rgb(87, 90, 255, 0.9);
 $purple: #9a5fff;
 $pink: #ff5f92;
 $yellow: #ffdd45;
 $white: #ffffff;
 $black: #000000;
 
-
 // HOVER COLORS
-$blue-hover: color.adjust($blue, $lightness: -20%);
+$light-blue-hover: color.adjust(
+  $light-blue,
+  $lightness: -20%
+);
 $purple-hover: color.adjust($purple, $lightness: -5%);
 $pink-hover: color.adjust($pink, $lightness: -20%);
-$yellow-hover: color.adjust($yellow, $lightness: -20%);
+$blue-hover: color.adjust($blue, $lightness: -20%);
 $white-hover: color.adjust($white, $lightness: -20%);
 $black-hover: color.adjust($black, $lightness: -20%);
-

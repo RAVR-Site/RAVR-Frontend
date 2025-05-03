@@ -17,7 +17,7 @@
   cursor: pointer;
 
   &.lastElement {
-    &:not(:last-child):before {
+    &:not(:first-child):before {
       content: '';
       position: absolute;
       width: 30px;
@@ -25,7 +25,7 @@
       transform: rotate(90deg);
       top: calc(100% + 23px);
       left: calc(50% - 14px);
-      background-image: url(../../assets/arrow.svg);
+      background-image: url('/public/assets/icons/arrow.svg');
       background-repeat: no-repeat;
       background-size: cover;
 
@@ -35,7 +35,7 @@
 }
 
 .reverseElement {
-  &:not(:last-child):before {
+  &:not(:first-child):before {
     content: '';
     position: absolute;
     width: 30px;
@@ -43,7 +43,7 @@
     transform: rotate(180deg);
     top: calc(50% - 8px);
     left: calc(-50% - 5px);
-    background-image: url(../../assets/arrow.svg);
+    background-image: url('/public/assets/icons/arrow.svg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -59,7 +59,7 @@
     height: 16px;
     top: calc(50% - 8px);
     right: calc(-50% - 5px);
-    background-image: url(../../assets/arrow.svg);
+    background-image: url('/public/assets/icons/arrow.svg');
     background-repeat: no-repeat;
     background-size: cover;
 

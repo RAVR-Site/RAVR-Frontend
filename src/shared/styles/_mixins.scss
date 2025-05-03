@@ -1,19 +1,19 @@
 @use './variables' as *;
 
 $color-map: (
-  'yellow': $yellow,
+  'yellow': $blue,
   'purple': $purple,
   'pink': $pink,
-  'blue': $blue,
+  'blue': $light-blue,
   'white': $white,
   'black': $black,
 );
 
 $hover-color-map: (
-  'blue': $blue-hover,
+  'blue': $light-blue-hover,
   'purple': $purple-hover,
   'pink': $pink-hover,
-  'yellow': $yellow-hover,
+  'yellow': $blue-hover,
   'white': $white-hover,
   'black': $black-hover,
 );
