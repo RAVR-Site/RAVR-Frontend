@@ -20,12 +20,18 @@
 
   border-radius: 28px;
 
+  transition: scale 0.2s ease-in-out;
+
   @include laptop-height-900 {
     height: 250px;
   }
 
   @include laptop-height-800 {
     height: 230px;
+  }
+
+  &:hover {
+    scale: 1.03;
   }
 }
 
