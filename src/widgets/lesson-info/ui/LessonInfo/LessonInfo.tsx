@@ -77,10 +77,13 @@ export const LevelInfo = ({
   return (
     <div className={s[lessonType]}>
       <div className={s.leftBlock}>
-        <img
-          src={`/public/assets/img/${lessonType}.png`}
-          className={s.image}
-        />
+        <div className={s.imageContainer}>
+          <img
+            src={`/public/assets/img/${lessonType}.png`}
+            className={s.image}
+          />
+        </div>
+
         <P fontSize={16} type={textType}>
           {lessonDescription[lessonType].description}
         </P>
@@ -146,6 +149,7 @@ export const LevelInfo = ({
             backgroundColor={'white'}
             textColor={'black'}
             padding={'0.375rem 2rem'}
+            width={'100%'}
           >
             Start Easy
           </Button>
@@ -153,6 +157,7 @@ export const LevelInfo = ({
             backgroundColor={'white'}
             textColor={'black'}
             padding={'0.375rem 2rem'}
+            width={'100%'}
           >
             Start Hard
           </Button>
