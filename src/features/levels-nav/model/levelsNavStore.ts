@@ -32,12 +32,16 @@ class LevelsNavStore {
   }
 
   // LESSON INFO API
-  
+
   getLessonInfoResponse: MobxQueryInstance<LessonInfoApiResponse> = {}
 
   getLessonInfoRequest = async (body: LessonInfoApiRequestData) => {
     this.getLessonInfoResponse = mobxQuery(levelsNavApi.getLessonInfo(body),
-      { id: `${body.lessonType}-${body.levelNumber}` }
+      {
+        id: `${body.lessonType}-${body.levelNumber}`,
+        fetchIfHaveData: false, 
+        fetchIfPending: false
+      }
     )
 
     mobxQueryHandler(

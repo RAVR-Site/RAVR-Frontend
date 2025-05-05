@@ -1,5 +1,4 @@
-@use '@/shared/styles/variables' as *;
-
+@use 'variables' as *;
 
 .levelList {
   display: flex;
@@ -20,7 +19,15 @@
 
   transition: background 0.2s ease-in-out;
 
+  &:hover {
+    background: $white-hover;
+  }
+
   &Active {
     background: $purple;
+
+    &:hover {
+      background: $purple-hover;
+    }
   }
 }
