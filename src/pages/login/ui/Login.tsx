@@ -18,7 +18,7 @@ const Login = () => {
             </P>
             <div className={s.smallText}>
               <P color={'black'}>New User?</P>
-              <Link to={'/login'}>
+              <Link to={'/register  '}>
                 <P color={'blue'}>Create an Account</P>
               </Link>
             </div>

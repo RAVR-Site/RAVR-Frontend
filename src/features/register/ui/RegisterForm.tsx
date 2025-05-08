@@ -17,7 +17,7 @@ export const RegisterForm = ({}: RegisterFormProps) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterRequestData>()
+  } = useForm<RegisterRequestData>({ mode: 'onChange' })
 
   const { registerRequest } = registerStore
 
