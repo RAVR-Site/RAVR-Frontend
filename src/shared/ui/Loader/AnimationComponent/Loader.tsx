@@ -26,8 +26,8 @@ export const Loader = ({
     <div
       className={cn(s.loaderContainer, className)}
       style={{
-        width: loaderSize?.width || '100%',
-        height: loaderSize?.height || '100%',
+        width: loaderSize?.width ?? '100%',
+        height: loaderSize?.height ?? '100%',
       }}
     >
       <div className={s.loader}>

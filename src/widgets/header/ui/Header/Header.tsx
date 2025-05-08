@@ -10,7 +10,7 @@ import { Logo } from '@/shared/ui'
 
 import s from './Header.module.scss'
 
-export const Header = ({}: HeaderProps) => {
+export const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.top}>
@@ -36,4 +36,3 @@ export const Header = ({}: HeaderProps) => {
   )
 }
 
-interface HeaderProps {}

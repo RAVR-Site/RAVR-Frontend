@@ -3,7 +3,7 @@ import { MainNavigationItem } from '../MainNavigationItem/MainNavigationItem'
 
 import s from './MainNavigation.module.scss'
 
-export const MainNavigation = ({}: MainNavigationProps) => {
+export const MainNavigation = () => {
   return (
     <ul className={s.list}>
       {navList.map(item => {
@@ -11,11 +11,13 @@ export const MainNavigation = ({}: MainNavigationProps) => {
           item.color === '#FFFFFF' ? 'black' : 'white'
 
         return (
-          <MainNavigationItem item={item} color={color} />
+          <MainNavigationItem
+            key={item.lessonType}
+            item={item}
+            color={color}
+          />
         )
       })}
     </ul>
   )
 }
-
-interface MainNavigationProps {}

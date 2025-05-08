@@ -39,6 +39,7 @@ export const UserAvatar = ({
           border: hasBorder ? '6px solid black' : '',
         } as CSSProperties
       }
+      role={'button'}
     >
       <img
         src={userAvatar}

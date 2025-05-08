@@ -6,7 +6,7 @@ import { SearchFormInputs } from '../../model/types'
 
 import s from './Search.module.scss';
 
-export const Search = ({}: SearchProps) => {
+export const Search = () => {
   const {
     register,
     handleSubmit,
@@ -37,5 +37,3 @@ export const Search = ({}: SearchProps) => {
     </form>
   )
 }
-
-interface SearchProps {}
