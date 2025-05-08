@@ -39,8 +39,7 @@ export const UserAvatar = ({
           border: hasBorder ? '6px solid black' : '',
         } as CSSProperties
       }
-      role={'button'}
-      tabIndex={5}
+      tabIndex={-1}
     >
       <img
         src={userAvatar}
