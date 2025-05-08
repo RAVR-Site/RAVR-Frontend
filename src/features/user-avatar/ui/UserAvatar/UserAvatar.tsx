@@ -29,7 +29,7 @@ export const UserAvatar = ({
   }
 
   return (
-    <div
+    <button
       onClick={handleAvatarClick}
       className={s.avatar}
       style={
@@ -53,7 +53,7 @@ export const UserAvatar = ({
         }
         alt={'Your avatar'}
       />
-    </div>
+    </button>
   )
 }
 
