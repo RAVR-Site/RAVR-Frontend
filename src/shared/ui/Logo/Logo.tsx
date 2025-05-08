@@ -1,16 +1,21 @@
 import { CSSProperties } from 'react'
 
-import { Size } from '@/shared/model/types'
+import { MainColors, Size } from '@/shared/model/types'
+
+import s from './Logo.module.scss'
 
 export const Logo = ({
-  color,
+  color = 'blue',
   hasMargin = false,
   size,
+  isInLoader = false,
 }: LogoProps) => {
-  const colors: Record<LogoProps['color'], string> = {
+  const colors: Record<MainColors, string> = {
     yellow: '#FFDD45',
     purple: '#9A5FFF',
     blue: '#577CFF',
+    white: '#FFFFFF',
+    black: '#000000',
   }
 
   return (
@@ -20,6 +25,7 @@ export const Logo = ({
       viewBox={'0 0 106 108'}
       fill={'none'}
       xmlns={'http://www.w3.org/2000/svg'}
+      className={isInLoader ? s.inLoader : ''}
       style={
         {
           marginLeft: hasMargin ? '40px' : '',
@@ -53,8 +59,9 @@ export const Logo = ({
   )
 }
 
-interface LogoProps {
-  color: 'purple' | 'blue' | 'yellow'
+export interface LogoProps {
+  color: MainColors
   hasMargin?: boolean
   size?: Size
+  isInLoader?: boolean
 }

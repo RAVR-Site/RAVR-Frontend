@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-left: calc(50% - 55px);
+  transform: translate(-50%);
+}
+
+.success {
+  border: 2px solid $green;
+}
+
+.error {
+  border: 2px solid $red;
+}
+
+.warning {
+  border: 2px solid $yellow;
+}
+
+.loading {
+  border: 2px solid $black;
+}
+

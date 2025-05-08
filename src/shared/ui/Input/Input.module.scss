@@ -13,6 +13,8 @@
 }
 
 .inputBlock {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,6 +36,10 @@
 }
 
 .error {
+  // position: absolute;
+  // left: 0.75rem;
+  // bottom: -1.5rem;
+
   color: $pink;
 }
 

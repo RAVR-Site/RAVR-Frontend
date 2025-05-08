@@ -1,6 +1,8 @@
 import { UseFormReset } from 'react-hook-form'
 import { NavigateFunction } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
+import { showNotification } from '@/features/notifications'
 import { saveTokenToStorage } from '@/shared/lib/utils/token-utils'
 import { makeAutoObservable } from 'mobx'
 import {
@@ -30,16 +32,23 @@ class LoginStore {
   ) => {
     this.loginResponse = mobxQuery(login(body))
 
+    const toastLoadingId = showNotification('loading', 'Logging in...')
+
     mobxQueryHandler(
       this.loginResponse,
       response => {
         saveTokenToStorage(response.data.accessToken)
 
         navigate('/')
+
+        toast.dismiss(toastLoadingId)
       },
       error => {
         console.log(error)
         reset()
+
+        toast.dismiss(toastLoadingId)
+        showNotification('error', 'Login failed: ' + error.response.data.message)
       }
     )
   }
