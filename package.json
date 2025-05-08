@@ -22,6 +22,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.55.0",
     "react-router-dom": "^7.5.0",
+    "react-toastify": "^11.0.5",
     "sass": "^1.86.3",
     "vite-plugin-dts": "^4.5.3"
   },

@@ -43,6 +43,8 @@ interface ParagraphProps {
     | 'pink'
     | 'yellow'
     | 'blue'
+    | 'green'
+    | 'red'
   fontFamily?: 'Anton' | 'DaysOne' | 'Assistant'
   fontSize?: 10 | 12 | 14 | 15 | 16 | 20 | 24 | 32 | 40 | 48
   fontWeight?: 300 | 400 | 500 | 600 | 700 | 800

@@ -1,6 +1,8 @@
 import { UseFormReset } from 'react-hook-form';
 import { NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import { showNotification } from '@/features/notifications';
 import { makeAutoObservable } from 'mobx';
 import {
   mobxSaiFetch as mobxQuery,
@@ -19,7 +21,7 @@ class RegisterStore {
   // API
   registerResponse: MobxQueryInstance<RegisterResponse> = {}
 
-  registerRequest = async (
+  registerRequest = (
     body: RegisterRequestData,
     reset: UseFormReset<RegisterRequestData>,
     navigate: NavigateFunction
@@ -30,18 +32,24 @@ class RegisterStore {
       email: body.email,
     }
 
-    this.registerResponse = mobxQuery(registerApi(newBody), {
-      id: 'register'
-    })
+    this.registerResponse = mobxQuery(registerApi(newBody))
+
+    const toastLoadingId = showNotification('loading', 'Registering...')
 
     mobxQueryHandler(
       this.registerResponse,
       () => {
         navigate('/login')
+
+        toast.dismiss(toastLoadingId)
+        showNotification('success', 'Registration successful')
       },
       error => {
         console.log(error)
         reset()
+
+        toast.dismiss(toastLoadingId)
+        showNotification('error', 'Registration failed: ' + error.response.data.message)
       }
     )
   }

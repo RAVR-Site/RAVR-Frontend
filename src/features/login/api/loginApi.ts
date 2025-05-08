@@ -1,4 +1,4 @@
-import { api } from '@/shared/api/axios-instanse'
+import { authApi } from '@/shared/api/axios-instanse'
 
 import {
   LoginRequestData,
@@ -6,4 +6,4 @@ import {
 } from '../model/types'
 
 export const login = async (data: LoginRequestData) =>
-  (await api.post<LoginResponse>('/auth/login', data)).data
+  (await authApi.post<LoginResponse>('/auth/login', data)).data

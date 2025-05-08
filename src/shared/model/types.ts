@@ -3,6 +3,17 @@ export interface Size {
   height: number
 }
 
+export type MainColors = 'blue' | 'purple' | 'yellow' | 'white' | 'black'
+
+export type NotificationType = 'success' | 'error' | 'warning' | 'loading'
+
+export interface NotificationColors {
+  success: 'green'
+  error: 'red'
+  warning: 'yellow'
+  loading: 'black'
+}
+
 
 // API RESPONSE BASE 
 export interface ApiResponseData<T = any> {

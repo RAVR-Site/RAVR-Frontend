@@ -8,14 +8,14 @@ import {
 } from '../lib/utils/token-utils'
 import { RefreshResponse } from '../model/types'
 
-export const createInstance = () => {
-  const options: CreateAxiosDefaults = {
-    baseURL: 'http://localhost:8080/api',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
+const options: CreateAxiosDefaults = {
+  baseURL: 'http://localhost:8080/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
 
+export const createInstance = () => {
   const instance = axios.create(options)
 
   instance.interceptors.response.use(
@@ -72,3 +72,4 @@ export const createInstance = () => {
 }
 
 export const api = createInstance()
+export const authApi = axios.create(options)
