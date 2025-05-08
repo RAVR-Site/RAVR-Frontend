@@ -37,6 +37,7 @@ export const EnglishLevels = ({
       {englishLevelList.map(
         (level: EnglishLevelVariant) => (
           <li
+            key={level}
             onClick={() => handleChangeLevel(level)}
             className={cn(
               s.level,

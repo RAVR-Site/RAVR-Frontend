@@ -9,7 +9,7 @@ import { RegisterRequestData } from '../model/types'
 
 import s from './RegisterForm.module.scss'
 
-export const RegisterForm = ({}: RegisterFormProps) => {
+export const RegisterForm = () => {
   const navigate = useNavigate()
 
   const {
@@ -86,5 +86,3 @@ export const RegisterForm = ({}: RegisterFormProps) => {
     </form>
   )
 }
-
-interface RegisterFormProps {}

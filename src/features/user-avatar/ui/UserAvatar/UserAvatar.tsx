@@ -29,7 +29,7 @@ export const UserAvatar = ({
   }
 
   return (
-    <div
+    <button
       onClick={handleAvatarClick}
       className={s.avatar}
       style={
@@ -39,6 +39,7 @@ export const UserAvatar = ({
           border: hasBorder ? '6px solid black' : '',
         } as CSSProperties
       }
+      tabIndex={-1}
     >
       <img
         src={userAvatar}
@@ -51,7 +52,7 @@ export const UserAvatar = ({
         }
         alt={'Your avatar'}
       />
-    </div>
+    </button>
   )
 }
 
