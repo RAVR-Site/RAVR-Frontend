@@ -40,6 +40,7 @@ export const UserAvatar = ({
         } as CSSProperties
       }
       role={'button'}
+      tabIndex={5}
     >
       <img
         src={userAvatar}
