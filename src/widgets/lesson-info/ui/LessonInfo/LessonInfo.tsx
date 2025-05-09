@@ -120,7 +120,7 @@ export const LevelInfo = ({
                     </P>
                     <P type={textType}>
                       Your record -{' '}
-                      {data.easy.userRecord || ' --:-- sec'}
+                      {data.easy.userRecord ?? ' --:-- sec'}
                     </P>
                     <P type={textType}>
                       FPS Record - {data.easy.fpsRecord}
@@ -141,7 +141,7 @@ export const LevelInfo = ({
                       </P>
                       <P type={textType}>
                         Your record -{' '}
-                        {data.hard.userRecord ||
+                        {data.hard.userRecord ??
                           ' --:-- sec'}
                       </P>
                       <P type={textType}>
