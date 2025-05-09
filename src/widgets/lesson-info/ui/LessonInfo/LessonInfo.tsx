@@ -7,7 +7,7 @@ import {
   LessonInfoApiResponse,
   levelsNavStore,
 } from '@/features/levels-nav'
-import { Button, P } from '@/shared/ui'
+import { Button, LoaderPage, P } from '@/shared/ui'
 
 import { formatLessonInfo } from '../../lib/formatLessonInfo'
 import { lessonDescription } from '../../model/lessonDescription'
@@ -47,7 +47,10 @@ export const LevelInfo = ({
 
   const {
     getLessonInfoRequest,
-    getLessonInfoResponse: { data: getLessonInfoData },
+    getLessonInfoResponse: {
+      data: getLessonInfoData,
+      isPending,
+    },
   } = levelsNavStore
 
   // FORMATTING VARIABLES
@@ -76,93 +79,104 @@ export const LevelInfo = ({
 
   return (
     <div className={s[lessonType]}>
-      <div className={s.leftBlock}>
-        <div className={s.imageContainer}>
-          <img
-            src={`/public/assets/img/${lessonType}.png`}
-            className={s.image}
-          />
-        </div>
+      {isPending ? (
+        <LoaderPage
+          colorLoader={'white'}
+          loaderSize={{ width: 340, height: 340 }}
+        />
+      ) : (
+        <>
+          <div className={s.leftBlock}>
+            <div className={s.imageContainer}>
+              <img
+                src={`/public/assets/img/${lessonType}.png`}
+                className={s.image}
+              />
+            </div>
 
-        <P fontSize={16} type={textType}>
-          {lessonDescription[lessonType].description}
-        </P>
-      </div>
-      <div className={s.rightBlock}>
-        <div className={s.info}>
-          <div className={s.title}>
-            <P fontFamily={'DaysOne'} fontSize={40}>
-              Lesson #{lessonNumber}.
-              {lessonTypeFirstLetterUppercase}
-            </P>
-            <P fontFamily={'DaysOne'} fontSize={24}>
-              {lessonTypeWithFirstLetterUppercase},{' '}
-              {currentEnglishLevel}
+            <P fontSize={16} type={textType}>
+              {lessonDescription[lessonType].description}
             </P>
           </div>
-          <div className={s.levelInfo}>
-            <div className={s.levelInfoType}>
-              <div className={s.levelInfoTypeTimers}>
-                <P type={textType}>Easy:</P>
-                <P type={textType}>
-                  Time to finish - {data.easy.timeToFinish}
+          <div className={s.rightBlock}>
+            <div className={s.info}>
+              <div className={s.title}>
+                <P fontFamily={'DaysOne'} fontSize={40}>
+                  Lesson #{lessonNumber}.
+                  {lessonTypeFirstLetterUppercase}
                 </P>
-                <P type={textType}>
-                  Your record -{' '}
-                  {data.easy.userRecord || ' --:-- sec'}
-                </P>
-                <P type={textType}>
-                  FPS Record - {data.easy.fpsRecord}
+                <P fontFamily={'DaysOne'} fontSize={24}>
+                  {lessonTypeWithFirstLetterUppercase},{' '}
+                  {currentEnglishLevel}
                 </P>
               </div>
-              <P type={textType}>
-                You will gain {data.easy.xp} Xp for
-                completing this lesson
-              </P>
-            </div>
-            {data.hard && (
-              <div className={s.levelInfoType}>
-                <div className={s.levelInfoTypeTimers}>
-                  <P type={textType}>Hard:</P>
+              <div className={s.levelInfo}>
+                <div className={s.levelInfoType}>
+                  <div className={s.levelInfoTypeTimers}>
+                    <P type={textType}>Easy:</P>
+                    <P type={textType}>
+                      Time to finish -{' '}
+                      {data.easy.timeToFinish}
+                    </P>
+                    <P type={textType}>
+                      Your record -{' '}
+                      {data.easy.userRecord ?? ' --:-- sec'}
+                    </P>
+                    <P type={textType}>
+                      FPS Record - {data.easy.fpsRecord}
+                    </P>
+                  </div>
                   <P type={textType}>
-                    Time to finish -{' '}
-                    {data.hard.timeToFinish}
-                  </P>
-                  <P type={textType}>
-                    Your record -{' '}
-                    {data.hard.userRecord || ' --:-- sec'}
-                  </P>
-                  <P type={textType}>
-                    FPS Record - {data.hard.fpsRecord}
+                    You will gain {data.easy.xp} Xp for
+                    completing this lesson
                   </P>
                 </div>
-                <P type={textType}>
-                  You will gain {data.hard.xp} Xp for
-                  completing this lesson
-                </P>
+                {data.hard && (
+                  <div className={s.levelInfoType}>
+                    <div className={s.levelInfoTypeTimers}>
+                      <P type={textType}>Hard:</P>
+                      <P type={textType}>
+                        Time to finish -{' '}
+                        {data.hard.timeToFinish}
+                      </P>
+                      <P type={textType}>
+                        Your record -{' '}
+                        {data.hard.userRecord ??
+                          ' --:-- sec'}
+                      </P>
+                      <P type={textType}>
+                        FPS Record - {data.hard.fpsRecord}
+                      </P>
+                    </div>
+                    <P type={textType}>
+                      You will gain {data.hard.xp} Xp for
+                      completing this lesson
+                    </P>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+            <div className={s.buttons}>
+              <Button
+                backgroundColor={'white'}
+                textColor={'black'}
+                padding={'0.375rem 2rem'}
+                width={'100%'}
+              >
+                Start Easy
+              </Button>
+              <Button
+                backgroundColor={'white'}
+                textColor={'black'}
+                padding={'0.375rem 2rem'}
+                width={'100%'}
+              >
+                Start Hard
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className={s.buttons}>
-          <Button
-            backgroundColor={'white'}
-            textColor={'black'}
-            padding={'0.375rem 2rem'}
-            width={'100%'}
-          >
-            Start Easy
-          </Button>
-          <Button
-            backgroundColor={'white'}
-            textColor={'black'}
-            padding={'0.375rem 2rem'}
-            width={'100%'}
-          >
-            Start Hard
-          </Button>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }
