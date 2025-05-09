@@ -1,6 +1,8 @@
 @use 'variables' as *;
 
 .levelList {
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
