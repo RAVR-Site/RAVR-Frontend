@@ -7,7 +7,7 @@ import s from './Grammar.module.scss'
 
 const Grammar = () => {
   return (
-    <Layout padding={'1rem 1rem 3rem 1rem'} hasHeader>
+    <Layout padding={'1rem 1rem 2.5rem 1rem'} hasHeader>
       <section className={s.grammar}>
         <Outlet />
       </section>

@@ -4,7 +4,7 @@ import { LessonType } from '@/entities/lesson'
 import { levelsNavStore } from '@/features/levels-nav'
 import { useElementSize } from '@/shared/lib/hooks/useElementSize'
 import { calculateColumns } from '@/shared/lib/utils/calculateColumns'
-import { P } from '@/shared/ui'
+import { LoaderPage, P } from '@/shared/ui'
 
 import { LevelData } from '../../../../features/levels-nav/model/types'
 import { LevelsNavigationItem } from '../LevelsNavigationItem/LevelsNavigationItem'
@@ -76,23 +76,30 @@ export const LevelsNavigation = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonType])
 
-  
-
   return (
     <div className={s[lessonType]}>
       <P fontFamily={'DaysOne'} fontSize={32}>
         {title}
       </P>
-      <ul className={s.list} ref={levelsNavRef}>
-        {Array.from({ length: rows }).map((_, rowIndex) => {
-          const start = rowIndex * columnsCount
-          const end = start + columnsCount
-          const rowLevels = levels.slice(start, end)
-          const isReversed = rowIndex % 2 !== 0
+      {isPending ? (
+        <LoaderPage
+          colorLoader={'white'}
+          loaderSize={{ width: 200, height: 200 }}
+        />
+      ) : (
+        <ul className={s.list} ref={levelsNavRef}>
+          {Array.from({ length: rows }).map(
+            (_, rowIndex) => {
+              const start = rowIndex * columnsCount
+              const end = start + columnsCount
+              const rowLevels = levels.slice(start, end)
+              const isReversed = rowIndex % 2 !== 0
 
-          return renderLevels(isReversed, rowLevels)
-        })}
-      </ul>
+              return renderLevels(isReversed, rowLevels)
+            }
+          )}
+        </ul>
+      )}
     </div>
   )
 }
