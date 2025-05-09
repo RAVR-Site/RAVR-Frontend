@@ -30,7 +30,7 @@ export const navList: NavItem[] = [
     title: 'Practice',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
-    color: '#FFDD45',
+    color: 'rgba(87, 90, 255, 0.9)',
     link: '/practice',
     lessonType: 'practice',
   },

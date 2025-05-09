@@ -81,10 +81,10 @@ export const LevelsNavigation = ({
       <P fontFamily={'DaysOne'} fontSize={32}>
         {title}
       </P>
-      {isPending ? (
+      {false ? (
         <LoaderPage
           colorLoader={'white'}
-          loaderSize={{ width: 200, height: 200 }}
+          loaderSize={{ width: 220, height: 220 }}
         />
       ) : (
         <ul className={s.list} ref={levelsNavRef}>

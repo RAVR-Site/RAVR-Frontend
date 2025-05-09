@@ -79,7 +79,7 @@ export const LevelInfo = ({
 
   return (
     <div className={s[lessonType]}>
-      {isPending ? (
+      {false ? (
         <LoaderPage
           colorLoader={'white'}
           loaderSize={{ width: 340, height: 340 }}
