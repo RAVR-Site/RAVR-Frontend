@@ -14,7 +14,7 @@ export const navList: NavItem[] = [
     title: 'Grammar',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
-    color: '#FF5F92',
+    color: 'pink',
     link: '/grammar',
     lessonType: 'grammar',
   },
@@ -22,7 +22,7 @@ export const navList: NavItem[] = [
     title: 'Vocabulary',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
-    color: '#9A5FFF',
+    color: 'purple',
     link: '/vocabulary',
     lessonType: 'vocabulary',
   },
@@ -30,7 +30,7 @@ export const navList: NavItem[] = [
     title: 'Practice',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
-    color: 'rgba(87, 90, 255, 0.9)',
+    color: 'blue',
     link: '/practice',
     lessonType: 'practice',
   },
@@ -38,7 +38,7 @@ export const navList: NavItem[] = [
     title: 'FPS RATING',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
-    color: '#FFFFFF',
+    color: 'white',
     link: '/rating',
     image: true,
   },
