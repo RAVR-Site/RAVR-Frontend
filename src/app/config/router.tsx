@@ -32,8 +32,12 @@ const routes = [
         ),
       },
       {
-        path: '/grammar/lesson/:lessonNumber',
+        path: '/grammar/lesson/:lessonNumber/info',
         element: <LevelInfo lessonType={'grammar'} />,
+      },
+      {
+        path: '/grammar/lesson/:lessonNumber',
+        element: <></>,
       },
     ],
   },
@@ -48,8 +52,12 @@ const routes = [
         ),
       },
       {
-        path: '/vocabulary/lesson/:lessonNumber',
+        path: '/vocabulary/lesson/:lessonNumber/info',
         element: <LevelInfo lessonType={'vocabulary'} />,
+      },
+      {
+        path: '/vocabulary/lesson/:lessonNumber',
+        element: <></>,
       },
     ],
   },
@@ -64,8 +72,12 @@ const routes = [
         ),
       },
       {
-        path: '/practice/lesson/:lessonNumber',
+        path: '/practice/lesson/:lessonNumber/info',
         element: <LevelInfo lessonType={'practice'} />,
+      },
+      {
+        path: '/practice/lesson/:lessonNumber',
+        element: <></>,
       },
     ],
   },

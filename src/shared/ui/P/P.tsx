@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from 'react'
 
+import { TextParagraphColors } from '@/shared/model/types'
 import cn from 'classnames'
 
 import s from './P.module.scss'
@@ -12,7 +13,7 @@ export const P = ({
   color = 'white',
   textAlign = 'left',
   children,
-  className
+  className,
 }: ParagraphProps) => {
   return (
     <p
@@ -36,15 +37,7 @@ export const P = ({
 }
 
 interface ParagraphProps {
-  color?:
-    | 'black'
-    | 'white'
-    | 'purple'
-    | 'pink'
-    | 'yellow'
-    | 'blue'
-    | 'green'
-    | 'red'
+  color?: TextParagraphColors
   fontFamily?: 'Anton' | 'DaysOne' | 'Assistant'
   fontSize?: 10 | 12 | 14 | 15 | 16 | 20 | 24 | 32 | 40 | 48
   fontWeight?: 300 | 400 | 500 | 600 | 700 | 800

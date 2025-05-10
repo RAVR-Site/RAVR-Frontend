@@ -1,3 +1,3 @@
-import Grammar from './ui/Grammar';
+import Grammar from './ui/Main/Grammar';
 
 export default Grammar

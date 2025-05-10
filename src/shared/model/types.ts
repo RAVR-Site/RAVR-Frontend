@@ -3,8 +3,6 @@ export interface Size {
   height: number
 }
 
-export type MainColors = 'blue' | 'purple' | 'yellow' | 'white' | 'black'
-
 export type NotificationType = 'success' | 'error' | 'warning' | 'loading'
 
 export interface NotificationColors {
@@ -41,3 +39,17 @@ export interface RefreshRequestData {
   refreshToken: string
 }
 
+
+// COLORS
+export type MainColors = 'blue' | 'purple' | 'yellow' | 'white' | 'black'
+
+export type LessonColors = 'blue' | 'purple' | 'pink'
+
+export type TextParagraphColors = 'black'
+  | 'white'
+  | 'purple'
+  | 'pink'
+  | 'yellow'
+  | 'blue'
+  | 'green'
+  | 'red'
