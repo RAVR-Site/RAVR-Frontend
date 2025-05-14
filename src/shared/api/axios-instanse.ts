@@ -8,8 +8,10 @@ import {
 } from '../lib/utils/token-utils'
 import { RefreshResponse } from '../model/types'
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const options: CreateAxiosDefaults = {
-  baseURL: 'http://localhost:8080/api',
+  baseURL: `${BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },

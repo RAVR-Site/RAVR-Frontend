@@ -45,7 +45,7 @@ class RegisterStore {
           toast.dismiss(toastLoadingId)
         }, 750)
 
-        showNotification('success', 'Registration successful')
+        showNotification('success', 'Registration successful', 2000)
       },
       error => {
         console.log(error)
