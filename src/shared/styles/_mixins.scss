@@ -40,17 +40,17 @@ $hover-color-map: (
 @mixin generate-border-styles {
   @each $name, $color in $color-map {
     &-#{$name} {
-      border-color: $color;
+      outline-color: $color;
 
-      transition: border-color 0.2s ease;
+      transition: outline-color 0.2s ease;
 
       &:hover {
-        border-color: map-get($hover-color-map, $name);
+        outline-color: map-get($hover-color-map, $name);
       }
     }
   }
 
   &-none {
-    border: none;
+    outline: none;
   }
 }

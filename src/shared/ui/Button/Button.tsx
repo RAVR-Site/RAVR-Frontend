@@ -24,6 +24,7 @@ export const Button = ({
   textAlign,
   ...props
 }: ButtonProps) => {
+
   return (
     <button
       className={cn(

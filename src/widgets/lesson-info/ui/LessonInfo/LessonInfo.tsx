@@ -34,7 +34,7 @@ export const LevelInfo = ({
   } = lessonApiStore
 
   const {
-    selectedLesson: { setSelectedLesson },
+    selectedLessonStore: { setSelectedLesson },
   } = selectedLessonStore
 
   // FORMATTING VARIABLES
