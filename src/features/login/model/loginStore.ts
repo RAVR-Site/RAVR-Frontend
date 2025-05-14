@@ -42,6 +42,7 @@ class LoginStore {
         navigate('/')
 
         toast.dismiss(toastLoadingId)
+        showNotification('success', 'Login success', 3000)
       },
       error => {
         console.log(error)

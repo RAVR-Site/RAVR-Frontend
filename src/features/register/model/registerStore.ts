@@ -41,14 +41,21 @@ class RegisterStore {
       () => {
         navigate('/login')
 
-        toast.dismiss(toastLoadingId)
+        setTimeout(() => {
+          toast.dismiss(toastLoadingId)
+        }, 750)
+
         showNotification('success', 'Registration successful')
       },
       error => {
         console.log(error)
         reset()
 
-        toast.dismiss(toastLoadingId)
+        
+        setTimeout(() => {
+          toast.dismiss(toastLoadingId)
+        }, 750)
+
         showNotification('error', 'Registration failed: ' + error.response.data.message)
       }
     )

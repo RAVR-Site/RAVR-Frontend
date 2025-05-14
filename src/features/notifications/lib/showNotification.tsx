@@ -10,7 +10,8 @@ import s from './showNotification.module.scss'
 
 export const showNotification = (
   type: NotificationType,
-  text: string
+  text: string,
+  autoClose?: number
 ) => {
   const toastOptions = {
     style: {
@@ -18,6 +19,7 @@ export const showNotification = (
     },
     className: s.toastContainer,
     icon: getNotificationIcon(type),
+    autoClose: autoClose || 5000,
   }
 
   switch (type) {

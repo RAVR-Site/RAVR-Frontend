@@ -1,4 +1,5 @@
 @use './variables' as *;
+@use "sass:map";
 
 $color-map: (
   'yellow': $blue,
@@ -26,7 +27,7 @@ $hover-color-map: (
       transition: background 0.2s ease;
 
       &:hover {
-        background: map-get($hover-color-map, $name);
+        background: map.get($hover-color-map, $name);
       }
     }
   }
@@ -45,7 +46,7 @@ $hover-color-map: (
       transition: outline-color 0.2s ease;
 
       &:hover {
-        outline-color: map-get($hover-color-map, $name);
+        outline-color: map.get($hover-color-map, $name);
       }
     }
   }
