@@ -1,12 +1,12 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx';
 import {
   mobxSaiFetch as mobxQuery,
   mobxSaiHandler as mobxQueryHandler,
   MobxSaiInstance as MobxQueryInstance,
-} from 'mobx-toolbox'
+} from 'mobx-toolbox';
 
-import { levelsNavApi } from '../api/levelsNavApi'
-import { LessonInfoApiRequestData, LessonInfoApiResponse, LevelsNavApiRequestData, LevelsNavApiResponse } from './types'
+import { levelsNavApi } from '../api/levelsNavApi';
+import { LevelsNavApiRequestData, LevelsNavApiResponse } from './types';
 
 class LevelsNavStore {
   constructor() {
@@ -24,28 +24,6 @@ class LevelsNavStore {
 
     mobxQueryHandler(
       this.getLevelsNavResponse,
-      (data) => {
-        console.log(data)
-      }, (error) => {
-        console.log(error)
-      })
-  }
-
-  // LESSON INFO API
-
-  getLessonInfoResponse: MobxQueryInstance<LessonInfoApiResponse> = {}
-
-  getLessonInfoRequest = async (body: LessonInfoApiRequestData) => {
-    this.getLessonInfoResponse = mobxQuery(levelsNavApi.getLessonInfo(body),
-      {
-        id: `${body.lessonType}-${body.levelNumber}`,
-        fetchIfHaveData: false, 
-        fetchIfPending: false
-      }
-    )
-
-    mobxQueryHandler(
-      this.getLessonInfoResponse,
       (data) => {
         console.log(data)
       }, (error) => {

@@ -1,3 +1,6 @@
+import { FormattedTime } from '@/shared/lib/utils/formatTime'
+import { ApiResponseData } from '@/shared/model/types'
+
 export type LessonInfo = {
   lessonNumber: number
   easy: LessonСomplexity
@@ -13,19 +16,36 @@ type LessonСomplexity = {
 
 export type LessonType = 'grammar' | 'vocabulary' | 'practice'
 
-
-// ФОРМАТИРОВАНЫЕ ДАННЫЕ
-export type FormattedLessonInfo = Omit<LessonInfo, 'easy' | 'hard'> & {
+// FORMATTED DATA
+export type FormattedLessonInfo = {
+  lessonNumber: number
   easy: FormattedLessonComplexity;
   hard?: FormattedLessonComplexity;
 };
 
-export type FormattedLessonComplexity = Omit<LessonСomplexity, 'timeToFinish' | 'fpsRecord' | 'userRecord'> & {
+export type FormattedLessonComplexity = {
   timeToFinish: FormattedTime;
   fpsRecord: FormattedTime;
   userRecord?: FormattedTime;
+  xp: number
 };
 
-export type FormattedTime = `${string}:${string} sec`;
 
+//  LESSON INFO API
+type LessonInfoApiResponseData = LessonInfo & {
+  id: number
+}
 
+export type LessonInfoApiResponse = ApiResponseData<LessonInfoApiResponseData>
+
+export type LessonInfoApiRequestData = {
+  lessonType: LessonType
+  levelNumber: number
+}
+
+// SELECTED LESSON
+export type SelectedLesson = {
+  lessonMode: 'easy' | 'hard'
+  lessonNumber: number
+  modeData: LessonСomplexity
+}

@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
-import { LessonType } from '@/entities/lesson'
+import {
+  lessonApiStore,
+  LessonType,
+} from '@/entities/lesson'
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
@@ -18,7 +21,7 @@ export const LevelsNavigationItem = ({
 }: LevelsNavigationItemProps) => {
   const navigate = useNavigate()
 
-  const { getLessonInfoRequest } = levelsNavStore
+  const { getLessonInfoRequest } = lessonApiStore
 
   const positionInRow =
     (Number(level.levelNumber) - 1) % columnsCount
@@ -31,7 +34,9 @@ export const LevelsNavigationItem = ({
     Number(level.levelNumber) % columnsCount === 0
 
   const handleLessonClick = () => {
-    navigate(`/${lessonType}/lesson/${level.levelNumber}`)
+    navigate(
+      `/${lessonType}/lesson/${level.levelNumber}/info`
+    )
 
     getLessonInfoRequest({
       lessonType,

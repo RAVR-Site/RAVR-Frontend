@@ -9,18 +9,35 @@ export const Layout = ({
   height,
   padding,
   hasHeader = false,
+  type,
 }: LayoutProps) => {
+  const calcHasHeader = () => {
+    if (type === 'lesson') {
+      return false
+    } else {
+      return hasHeader
+    }
+  }
+
+  const calcPadding = () => {
+    if (type === 'lesson') {
+      return '3rem 5rem'
+    } else {
+      return padding
+    }
+  }
+
   return (
     <div
       className={s.layout}
       style={
         {
           height,
-          padding,
+          padding: calcPadding(),
         } as CSSProperties
       }
     >
-      {hasHeader && <Header />}
+      {calcHasHeader() && <Header />}
       {children}
     </div>
   )
@@ -31,4 +48,5 @@ interface LayoutProps {
   height?: string
   padding?: string
   hasHeader?: boolean
+  type?: 'lesson'
 }

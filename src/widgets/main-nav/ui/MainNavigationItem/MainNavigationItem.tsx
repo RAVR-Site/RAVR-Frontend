@@ -1,7 +1,5 @@
-import { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 
-import { levelsNavStore } from '@/features/levels-nav/model/levelsNavStore'
 import { P } from '@/shared/ui'
 import { ArrowIcon, CupIcon } from '@/shared/ui/icons'
 import cn from 'classnames'

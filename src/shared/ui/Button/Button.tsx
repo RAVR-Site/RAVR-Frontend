@@ -4,6 +4,8 @@ import {
   ReactNode,
 } from 'react'
 
+import { LessonType } from '@/entities/lesson'
+import { TextParagraphColors } from '@/shared/model/types'
 import cn from 'classnames'
 
 import { P } from '../P/P'
@@ -19,8 +21,10 @@ export const Button = ({
   fontSize = 24,
   width,
   padding,
+  textAlign,
   ...props
 }: ButtonProps) => {
+
   return (
     <button
       className={cn(
@@ -41,6 +45,7 @@ export const Button = ({
         fontFamily={'DaysOne'}
         fontSize={fontSize}
         color={textColor}
+        textAlign={textAlign}
       >
         {children}
       </P>
@@ -68,13 +73,8 @@ interface ButtonProps
     | 'pink'
     | 'yellow'
     | 'none'
-  textColor?:
-    | 'black'
-    | 'white'
-    | 'purple'
-    | 'pink'
-    | 'blue'
-    | 'yellow'
+  textColor?: TextParagraphColors
+  textAlign?: 'left' | 'center'
   width?: string
   padding?: string
   fontSize?: 20 | 24

@@ -1,44 +1,24 @@
 import { useLayoutEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { LessonType } from '@/entities/lesson'
+import { lessonApiStore } from '@/entities/lesson'
+import { selectedLessonStore } from '@/entities/lesson/model/store/selectedLessonStore'
 import { englishLevelStore } from '@/features/english-levels'
-import {
-  LessonInfoApiResponse,
-  levelsNavStore,
-} from '@/features/levels-nav'
 import { Button, LoaderPage, P } from '@/shared/ui'
 
 import { formatLessonInfo } from '../../lib/formatLessonInfo'
 import { lessonDescription } from '../../model/lessonDescription'
+import { mockLessonInfo } from '../../model/mockLessonInfoData'
 
 import s from './LessonInfo.module.scss'
-
-const mockLessonInfo: LessonInfoApiResponse = {
-  success: true,
-  message: 'success',
-  timestamp: '2021-01-01T00:00:00.000Z',
-  data: {
-    id: 1,
-    lessonNumber: 1,
-    easy: {
-      timeToFinish: 100,
-      fpsRecord: 100,
-      xp: 100,
-      userRecord: 100,
-    },
-    hard: {
-      timeToFinish: 150,
-      fpsRecord: 150,
-      xp: 150,
-    },
-  },
-}
 
 export const LevelInfo = ({
   lessonType,
 }: LevelInfoProps) => {
+  // HOOKS
   const { lessonNumber } = useParams()
+  const navigate = useNavigate()
 
   // STORES
   const {
@@ -51,7 +31,11 @@ export const LevelInfo = ({
       data: getLessonInfoData,
       isPending,
     },
-  } = levelsNavStore
+  } = lessonApiStore
+
+  const {
+    selectedLessonStore: { setSelectedLesson },
+  } = selectedLessonStore
 
   // FORMATTING VARIABLES
   const lessonTypeWithFirstLetterUppercase =
@@ -65,10 +49,31 @@ export const LevelInfo = ({
     lessonType === 'practice' ? 'practice' : 'base'
 
   // DATA FORMATTING
-  const data = formatLessonInfo(
+  const data =
     getLessonInfoData?.data || mockLessonInfo.data
-  )
 
+  const formattedData = formatLessonInfo(data)
+
+  // HANDLERS
+  const handleEasyClick = () => {
+    setSelectedLesson({
+      lessonNumber: Number(lessonNumber),
+      lessonMode: 'easy',
+      modeData: data.easy,
+    })
+    navigate(`/${lessonType}/lesson/${lessonNumber}`)
+  }
+
+  const handleHardClick = () => {
+    setSelectedLesson({
+      lessonNumber: Number(lessonNumber),
+      lessonMode: 'hard',
+      modeData: data.easy,
+    })
+    navigate(`/${lessonType}/lesson/${lessonNumber}`)
+  }
+
+  // EFFECTS
   useLayoutEffect(() => {
     getLessonInfoRequest({
       lessonType: lessonType,
@@ -116,41 +121,44 @@ export const LevelInfo = ({
                     <P type={textType}>Easy:</P>
                     <P type={textType}>
                       Time to finish -{' '}
-                      {data.easy.timeToFinish}
+                      {formattedData.easy.timeToFinish}
                     </P>
                     <P type={textType}>
                       Your record -{' '}
-                      {data.easy.userRecord ?? ' --:-- sec'}
+                      {formattedData.easy.userRecord ??
+                        ' --:-- sec'}
                     </P>
                     <P type={textType}>
-                      FPS Record - {data.easy.fpsRecord}
+                      FPS Record -{' '}
+                      {formattedData.easy.fpsRecord}
                     </P>
                   </div>
                   <P type={textType}>
-                    You will gain {data.easy.xp} Xp for
-                    completing this lesson
+                    You will gain {formattedData.easy.xp} Xp
+                    for completing this lesson
                   </P>
                 </div>
-                {data.hard && (
+                {formattedData.hard && (
                   <div className={s.levelInfoType}>
                     <div className={s.levelInfoTypeTimers}>
                       <P type={textType}>Hard:</P>
                       <P type={textType}>
                         Time to finish -{' '}
-                        {data.hard.timeToFinish}
+                        {formattedData.hard.timeToFinish}
                       </P>
                       <P type={textType}>
                         Your record -{' '}
-                        {data.hard.userRecord ??
+                        {formattedData.hard.userRecord ??
                           ' --:-- sec'}
                       </P>
                       <P type={textType}>
-                        FPS Record - {data.hard.fpsRecord}
+                        FPS Record -{' '}
+                        {formattedData.hard.fpsRecord}
                       </P>
                     </div>
                     <P type={textType}>
-                      You will gain {data.hard.xp} Xp for
-                      completing this lesson
+                      You will gain {formattedData.hard.xp}{' '}
+                      Xp for completing this lesson
                     </P>
                   </div>
                 )}
@@ -158,18 +166,22 @@ export const LevelInfo = ({
             </div>
             <div className={s.buttons}>
               <Button
+                width={'100%'}
+                padding={'0.375rem 2rem'}
                 backgroundColor={'white'}
                 textColor={'black'}
-                padding={'0.375rem 2rem'}
-                width={'100%'}
+                textAlign={'center'}
+                onClick={handleEasyClick}
               >
                 Start Easy
               </Button>
               <Button
+                width={'100%'}
+                padding={'0.375rem 2rem'}
                 backgroundColor={'white'}
                 textColor={'black'}
-                padding={'0.375rem 2rem'}
-                width={'100%'}
+                textAlign={'center'}
+                onClick={handleHardClick}
               >
                 Start Hard
               </Button>

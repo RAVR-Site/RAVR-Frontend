@@ -1,4 +1,5 @@
-import { FormattedLessonInfo, FormattedTime, LessonInfo } from '@/entities/lesson';
+import { FormattedLessonInfo, LessonInfo } from '@/entities/lesson';
+import { formatTime } from '@/shared/lib/utils/formatTime';
 
 export const formatLessonInfo = (data: LessonInfo): FormattedLessonInfo => {
   return {
@@ -16,11 +17,4 @@ export const formatLessonInfo = (data: LessonInfo): FormattedLessonInfo => {
       userRecord: data.hard.userRecord ? formatTime(data.hard.userRecord) : undefined,
     } : undefined,
   };
-}
-
-const formatTime = (seconds: number): FormattedTime => {
-  const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-  const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-
-  return `${mins}:${secs} sec` as FormattedTime;
 }
