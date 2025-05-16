@@ -20,6 +20,8 @@
 
   border-radius: 24px;
   border: 2px solid $black;
+
+  overflow: hidden;
 }
 
 .word {
@@ -27,14 +29,100 @@
   justify-content: center;
   align-items: center;
 
-  width: 100px;
+  width: auto;
+  min-width: 100px;
   height: 100%;
+
+  padding: 0 0.5rem;
 
   &:not(:last-child) {
     border-right: 1px solid $black;
   }
 }
 
-
 .lever {
+  width: 18px;
+  height: 100%;
+
+  border-radius: 14px;
+  border: 2px solid $black;
+  
+  cursor: pointer;
+}
+
+.stickBase {
+  position: relative;
+
+  top: 4px;
+  left: 52%;
+  transform: translateX(-50%);
+
+  height: 22px;
+  width: 1px;
+
+  background-color: $black;
+
+  transition: all 0.2s ease-in-out;
+  transform-origin: bottom center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-70%);
+
+    border-radius: 100%;
+    background-color: $pink;
+
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.stick {
+  @extend .stickBase;
+}
+
+.stickActive {
+  @extend .stickBase;
+
+  // Анимация нажатия - палка наклоняется на 30 градусов и немного сжимается
+  transform: translateX(-50%) translate3d(0, 30px, 0);
+
+  &:before {
+    // Кружок перемещается вниз и немного вправо (по направлению наклона)
+    transform: translateX(-50%) translateY(-70%) translate3d(0px, 30px, 0);
+  }
+}
+
+
+.wordText {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  
+  &.wordAnimation {
+    animation: wordFall 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+}
+
+@keyframes wordFall {
+  0% {
+    transform: translateY(-100px) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(6px) rotate(5deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
 }

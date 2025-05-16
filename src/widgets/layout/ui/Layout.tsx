@@ -21,7 +21,7 @@ export const Layout = ({
 
   const calcPadding = () => {
     if (type === 'lesson') {
-      return '3rem 5rem'
+      return '3rem 4rem'
     } else {
       return padding
     }

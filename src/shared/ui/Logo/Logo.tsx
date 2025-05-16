@@ -32,18 +32,18 @@ export const Logo = ({
         } as CSSProperties
       }
     >
-      <g clip-path={'url(#clip0_39_4995)'}>
+      <g clipPath={'url(#clip0_39_4995)'}>
         <path
           d={
             'M106 0.0178223H21.9699L0 108L9.6985 107.872L17.6032 69.0217L74.8256 43.5702H22.7809L106 0.0178223Z'
           }
           fill={colors[color]}
-          fill-opacity={'0.9'}
+          fillOpacity={'0.9'}
         />
         <path
           d={'M26.2854 0.0178223L4.09766 107.945'}
           stroke={'white'}
-          stroke-miterlimit={'10'}
+          strokeMiterlimit={'10'}
         />
       </g>
       <defs>

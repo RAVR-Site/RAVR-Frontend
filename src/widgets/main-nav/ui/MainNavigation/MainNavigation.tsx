@@ -8,7 +8,7 @@ export const MainNavigation = () => {
     <ul className={s.list}>
       {navList.map(item => (
         <MainNavigationItem
-          key={item.lessonType}
+          key={item.id}
           item={item}
           color={item.color === 'white' ? 'black' : 'white'}
         />

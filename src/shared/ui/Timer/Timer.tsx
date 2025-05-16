@@ -21,11 +21,12 @@ export const Timer = ({
     return () => clearInterval(interval)
   }, [])
 
-  const time = formatTime(seconds, 'withoutSeconds')
+  const isTimeEnd = seconds > 0
+  const time = isTimeEnd ? formatTime(seconds, 'withoutSeconds') : 'Time is up!'
 
   return (
     <div className={s.timer}>
-      <P color={textColor}>
+      <P color={isTimeEnd ? textColor : 'red'}>
         {time}
       </P>
     </div>

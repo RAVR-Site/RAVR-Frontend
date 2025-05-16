@@ -6,6 +6,7 @@ import {
   selectedLessonStore,
 } from '@/entities/lesson'
 import { Button, P } from '@/shared/ui'
+import { TipsIcon } from '@/shared/ui/icons'
 import { Timer } from '@/shared/ui/Timer/Timer'
 
 import { useGetLessonColor } from '../lib/useGetLessonColor'
@@ -78,7 +79,9 @@ export const WrapperLesson = ({
           Submit
         </Button>
       </div>
-      <div className={s.tips}></div>
+      <div className={s.tips}>
+        <TipsIcon size={{ width: 40, height: 40 }} />
+      </div>
     </div>
   )
 }
