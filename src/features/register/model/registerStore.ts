@@ -42,12 +42,14 @@ class RegisterStore {
         navigate('/login')
 
         toast.dismiss(toastLoadingId)
-        showNotification('success', 'Registration successful')
+
+        showNotification('success', 'Registration successful', 2000)
       },
       error => {
         console.log(error)
         reset()
 
+        
         toast.dismiss(toastLoadingId)
         showNotification('error', 'Registration failed: ' + error.response.data.message)
       }
