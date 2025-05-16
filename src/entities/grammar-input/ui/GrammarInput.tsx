@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import { delayExecution } from '@/shared/lib/utils/delayExecution'
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
