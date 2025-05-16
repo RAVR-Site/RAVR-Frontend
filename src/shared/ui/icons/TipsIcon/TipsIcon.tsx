@@ -3,8 +3,8 @@ import { Size } from '@/shared/model/types'
 export const TipsIcon = ({ size }: { size?: Size }) => {
   return (
     <svg
-      width={size?.width || '56'}
-      height={size?.height || '56'}
+      width={size?.width ?? '56'}
+      height={size?.height ?? '56'}
       viewBox={'0 0 56 56'}
       fill={'none'}
       xmlns={'http://www.w3.org/2000/svg'}

@@ -38,7 +38,7 @@ export const GrammarInput = ({
       <div className={s.bottom}>
         <div className={s.words}>
           {words.map((word, index) => (
-            <div key={index} className={s.word}>
+            <div key={index + word} className={s.word}>
               <P
                 fontSize={24}
                 fontFamily={'DaysOne'}
