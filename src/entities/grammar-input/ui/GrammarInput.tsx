@@ -1,11 +1,29 @@
+import { useState } from 'react'
+
+import { delayExecution } from '@/shared/lib/utils/delayExecution'
 import { P } from '@/shared/ui'
+import cn from 'classnames'
 
 import s from './GrammarInput.module.scss'
 
 export const GrammarInput = ({
   words,
 }: GrammarInputProps) => {
-  console.log(words)
+  const [activeLever, setActiveLever] =
+    useState<boolean>(false)
+
+  const [animationWord, setAnimationWord] =
+    useState<boolean>(false)
+
+  const handleLeverClick = () => {
+    if (activeLever || animationWord) return
+
+    setActiveLever(true)
+    setAnimationWord(true)
+
+    setTimeout(() => setActiveLever(false), 300)
+    setTimeout(() => setAnimationWord(false), 2000)
+  }
 
   return (
     <div className={s.grammarInput}>
@@ -20,19 +38,33 @@ export const GrammarInput = ({
       </div>
       <div className={s.bottom}>
         <div className={s.words}>
-          {words.map(word => (
-            <div key={word} className={s.word}>
+          {words.map((word, index) => (
+            <div key={index} className={s.word}>
               <P
                 fontSize={24}
                 fontFamily={'DaysOne'}
                 color={'black'}
+                className={cn(
+                  s.wordText,
+                  animationWord && s.wordAnimation
+                )}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                }}
               >
                 {word}
               </P>
             </div>
           ))}
         </div>
-        <div className={s.lever}></div>
+        <div className={s.lever} onClick={handleLeverClick}>
+          <div
+            className={cn(
+              s.stick,
+              activeLever && s.stickActive
+            )}
+          />
+        </div>
       </div>
     </div>
   )

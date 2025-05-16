@@ -14,6 +14,7 @@ export const P = ({
   textAlign = 'left',
   children,
   className,
+  style
 }: ParagraphProps) => {
   return (
     <p
@@ -28,6 +29,7 @@ export const P = ({
       style={
         {
           textAlign,
+          ...style
         } as CSSProperties
       }
     >
@@ -45,4 +47,5 @@ interface ParagraphProps {
   textAlign?: 'left' | 'center'
   children: ReactNode
   className?: string
+  style?: CSSProperties
 }

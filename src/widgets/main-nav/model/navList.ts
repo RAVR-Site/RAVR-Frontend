@@ -1,6 +1,7 @@
 import { LessonType } from '@/entities/lesson'
 
 export interface NavItem {
+  id: number
   title: string
   description: string
   color: string
@@ -11,6 +12,7 @@ export interface NavItem {
 
 export const navList: NavItem[] = [
   {
+    id: 1,
     title: 'Grammar',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
@@ -19,6 +21,7 @@ export const navList: NavItem[] = [
     lessonType: 'grammar',
   },
   {
+    id: 2,
     title: 'Vocabulary',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
@@ -27,6 +30,7 @@ export const navList: NavItem[] = [
     lessonType: 'vocabulary',
   },
   {
+    id: 3,
     title: 'Practice',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
@@ -35,6 +39,7 @@ export const navList: NavItem[] = [
     lessonType: 'practice',
   },
   {
+    id: 4,
     title: 'FPS RATING',
     description:
       'Et et nisi ipsum dui leo, libero, sapien accumsan et. Vulputate ornare arcu efficitur adipiscing fau',
