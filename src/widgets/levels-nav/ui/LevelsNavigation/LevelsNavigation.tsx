@@ -32,7 +32,7 @@ export const LevelsNavigation = ({
     getLevelsNavRequest,
   } = levelsNavStore
 
-  const data = levelsData?.data.levels || levels
+  const data = levels
 
   const levelsNavRef = useRef<HTMLUListElement>(null)
   const { width } = useElementSize(levelsNavRef)
