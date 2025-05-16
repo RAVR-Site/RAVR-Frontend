@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { P } from '@/shared/ui'
+import { Button, P } from '@/shared/ui'
 import cn from 'classnames'
 
 import s from './GrammarInput.module.scss'
@@ -15,8 +15,6 @@ export const GrammarInput = ({
     useState<boolean>(false)
 
   const handleLeverClick = () => {
-    if (activeLever || animationWord) return
-
     setActiveLever(true)
     setAnimationWord(true)
 
@@ -56,14 +54,16 @@ export const GrammarInput = ({
             </div>
           ))}
         </div>
-        <div className={s.lever} onClick={handleLeverClick}>
-          <div
-            className={cn(
-              s.stick,
-              activeLever && s.stickActive
-            )}
-          />
-        </div>
+        <Button onClick={handleLeverClick} disabled={activeLever || animationWord}>
+          <div className={s.lever}>
+            <div
+              className={cn(
+                s.stick,
+                activeLever && s.stickActive
+              )}
+            />
+          </div>
+        </Button>
       </div>
     </div>
   )

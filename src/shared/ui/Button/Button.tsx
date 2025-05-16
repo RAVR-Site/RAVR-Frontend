@@ -15,7 +15,7 @@ import s from './Button.module.scss'
 export const Button = ({
   onClick,
   borderColor = 'none',
-  backgroundColor,
+  backgroundColor = 'none',
   textColor = 'white',
   children,
   fontSize = 24,
@@ -24,7 +24,6 @@ export const Button = ({
   textAlign,
   ...props
 }: ButtonProps) => {
-
   return (
     <button
       className={cn(
@@ -57,7 +56,7 @@ interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void
   children: ReactNode
-  backgroundColor:
+  backgroundColor?:
     | 'black'
     | 'white'
     | 'purple'
