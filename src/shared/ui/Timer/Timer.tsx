@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { formatTime } from '@/shared/lib/utils/formatTime'
+import { formatTime } from '@/shared/lib/utils/format-time/formatTime'
 import { TextParagraphColors } from '@/shared/model/types'
 
 import { P } from '..'
@@ -22,13 +22,13 @@ export const Timer = ({
   }, [])
 
   const isTimeEnd = seconds > 0
-  const time = isTimeEnd ? formatTime(seconds, 'withoutSeconds') : 'Time is up!'
+  const time = isTimeEnd
+    ? formatTime(seconds, 'withSecondsText')
+    : 'Time is up!'
 
   return (
     <div className={s.timer}>
-      <P color={isTimeEnd ? textColor : 'red'}>
-        {time}
-      </P>
+      <P color={isTimeEnd ? textColor : 'red'}>{time}</P>
     </div>
   )
 }

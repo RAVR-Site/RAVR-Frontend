@@ -1,11 +1,11 @@
 export const formatTime = (
   seconds: number,
-  format: 'withSeconds' | 'withoutSeconds' = 'withSeconds'
+  format: 'withSecondsText' | 'withoutSecondsText' = 'withSecondsText'
 ): FormattedTime => {
   const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
   const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
 
-  if (format === 'withSeconds') {
+  if (format === 'withSecondsText') {
     return `${mins}:${secs} sec` as FormattedTime;
   }
 
