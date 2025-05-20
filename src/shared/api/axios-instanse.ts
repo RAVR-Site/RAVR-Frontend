@@ -1,12 +1,8 @@
-import axios, { CreateAxiosDefaults } from 'axios'
-import Cookies from 'js-cookie'
+import axios, { CreateAxiosDefaults } from 'axios';
+import Cookies from 'js-cookie';
 
-import {
-  getAccessToken,
-  removeAccessToken,
-  saveAccessToken,
-} from '../lib/utils/token-utils/tokenUtils'
-import { RefreshResponse } from '../model/types'
+import { getAccessToken, saveAccessToken } from '../lib/utils/token-utils/tokenUtils';
+import { RefreshResponse } from '../model/types';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 

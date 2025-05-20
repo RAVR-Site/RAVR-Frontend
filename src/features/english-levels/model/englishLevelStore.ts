@@ -7,7 +7,7 @@ import {
 } from 'mobx-toolbox'
 
 import { englishLevelsApi } from '../api/englishLevelsApi'
-import { EnglishLevelApiRequestData, EnglishLevelApiResponse, EnglishLevelVariant } from './types'
+import { EnglishLevelApiResponse, EnglishLevelVariant } from './types'
 
 class EnglishLevelStore {
 
@@ -21,7 +21,7 @@ class EnglishLevelStore {
   // API
   switchEnglishLevelResponse: MobxQueryInstance<EnglishLevelApiResponse> = {}
 
-  switchEnglishLevelRequest = async (body: EnglishLevelApiRequestData) => {
+  switchEnglishLevelRequest = async (body: EnglishLevelVariant) => {
     this.switchEnglishLevelResponse = mobxQuery(englishLevelsApi.changeLevel(body), {
       id: 'switchEnglishLevel'
     })

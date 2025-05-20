@@ -4,7 +4,6 @@ import {
   ReactNode,
 } from 'react'
 
-import { LessonType } from '@/entities/lesson'
 import { TextParagraphColors } from '@/shared/model/types'
 import cn from 'classnames'
 

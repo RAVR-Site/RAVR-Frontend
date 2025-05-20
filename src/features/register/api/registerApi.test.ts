@@ -1,7 +1,7 @@
 import { api } from '@/shared/api/axios-instanse';
-import { describe, expect, it, Mock, Mocked, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import '@testing-library/jest-dom/vitest'
+import '@testing-library/jest-dom/vitest';
 
 import { registerApi } from './registerApi';
 
@@ -43,7 +43,7 @@ describe('test register api', () => {
     }
 
     try {
-      const result = await registerApi(regData)
+      await registerApi(regData)
     } catch (error: any) {
       expect(error.response.status).toBe(400);
       expect(error.response.data).toEqual(expect.objectContaining({
@@ -63,7 +63,7 @@ describe('test register api', () => {
     }
 
     try {
-      const result = await registerApi(regData)
+      await registerApi(regData)
     } catch (error: any) {
       expect(error.response.status).toBe(400);
       expect(error.response.data).toEqual(expect.objectContaining({

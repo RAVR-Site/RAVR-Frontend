@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 import { LessonType } from '@/entities/lesson'
 import { levelsNavStore } from '@/features/levels-nav'
