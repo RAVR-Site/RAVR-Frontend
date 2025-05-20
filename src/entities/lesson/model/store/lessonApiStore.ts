@@ -6,8 +6,7 @@ import {
 } from 'mobx-toolbox';
 
 import { lessonApi } from '../../api/lessonApi';
-import { LessonInfoApiResponse } from '../types';
-import { LessonInfoApiRequestData } from '../types';
+import { LessonInfoApiResponse, LessonInfoApiRequestData } from '../types';
 
 class LessonApiStore {
   constructor() {

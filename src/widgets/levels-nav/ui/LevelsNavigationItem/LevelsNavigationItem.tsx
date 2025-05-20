@@ -4,11 +4,10 @@ import {
   lessonApiStore,
   LessonType,
 } from '@/entities/lesson'
+import { LevelData } from '@/features/levels-nav'
 import { P } from '@/shared/ui'
 import cn from 'classnames'
 
-import { levelsNavStore } from '../../../../features/levels-nav/model/levelsNavStore'
-import { LevelData } from '../../../../features/levels-nav/model/types'
 import { StarIcon } from '../../assets/icon-components/StarIcon'
 
 import s from './LevelsNavigationItem.module.scss'

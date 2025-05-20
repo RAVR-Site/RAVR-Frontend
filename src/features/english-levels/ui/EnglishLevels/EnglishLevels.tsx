@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { P } from '@/shared/ui'
 import cn from 'classnames'

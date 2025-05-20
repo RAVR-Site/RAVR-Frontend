@@ -2,7 +2,7 @@ import { GrammarInput } from '@/entities/grammar-input'
 
 import s from './GrammarLesson.module.scss'
 
-export const GrammarLesson = ({}: GrammarLessonProps) => {
+export const GrammarLesson = () => {
   const wordsArr = [
     ['Is', 'is', 'is', 'is', 'is', 'is', 'is'],
     ['Is', 'is', 'is', 'is', 'is', 'is', 'is'],
@@ -17,5 +17,3 @@ export const GrammarLesson = ({}: GrammarLessonProps) => {
     </div>
   )
 }
-
-interface GrammarLessonProps {}

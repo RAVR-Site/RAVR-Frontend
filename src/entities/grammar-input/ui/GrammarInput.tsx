@@ -54,7 +54,7 @@ export const GrammarInput = ({
             </div>
           ))}
         </div>
-        <Button onClick={handleLeverClick} disabled={activeLever || animationWord}>
+        <Button onClick={handleLeverClick} disabled={activeLever ?? animationWord}>
           <div className={s.lever}>
             <div
               className={cn(

@@ -1,9 +1,11 @@
 import { useLayoutEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { LessonType } from '@/entities/lesson'
-import { lessonApiStore } from '@/entities/lesson'
-import { selectedLessonStore } from '@/entities/lesson/model/store/selectedLessonStore'
+import {
+  lessonApiStore,
+  LessonType,
+  selectedLessonStore
+} from '@/entities/lesson'
 import { englishLevelStore } from '@/features/english-levels'
 import { Button, LoaderPage, P } from '@/shared/ui'
 
@@ -29,7 +31,6 @@ export const LevelInfo = ({
     getLessonInfoRequest,
     getLessonInfoResponse: {
       data: getLessonInfoData,
-      isPending,
     },
   } = lessonApiStore
 
@@ -50,7 +51,7 @@ export const LevelInfo = ({
 
   // DATA FORMATTING
   const data =
-    getLessonInfoData?.data || mockLessonInfo.data
+    getLessonInfoData?.data ?? mockLessonInfo.data
 
   const formattedData = formatLessonInfo(data)
 
@@ -96,6 +97,7 @@ export const LevelInfo = ({
               <img
                 src={`/public/assets/img/${lessonType}.png`}
                 className={s.image}
+                alt={lessonType + ' image'}
               />
             </div>
 

@@ -5,13 +5,11 @@ import { TextParagraphColors } from '@/shared/model/types'
 
 import { P } from '..'
 
-import s from './Timer.module.scss'
-
 export const Timer = ({
   textColor,
   timeToFinish,
 }: TimerProps) => {
-  const [seconds, setSeconds] = useState(timeToFinish || 0)
+  const [seconds, setSeconds] = useState(timeToFinish ?? 0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +25,7 @@ export const Timer = ({
     : 'Time is up!'
 
   return (
-    <div className={s.timer}>
+    <div>
       <P color={isTimeEnd ? textColor : 'red'}>{time}</P>
     </div>
   )
