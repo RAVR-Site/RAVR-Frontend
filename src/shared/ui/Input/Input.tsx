@@ -49,6 +49,7 @@ export const Input = ({
             onClick={() => setShowPassword(prev => !prev)}
           />
         )}
+       
       </div>
       {error && <span className={s.error}>{error}</span>}
     </div>

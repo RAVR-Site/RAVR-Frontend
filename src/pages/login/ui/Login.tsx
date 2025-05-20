@@ -13,12 +13,12 @@ const Login = () => {
         <div className={s.top}>
           <Logo color={'blue'} hasMargin />
           <div className={s.text}>
-            <P className={'bigTitle'} color={'black'}>
+            <P type={'bigTitle'} color={'black'}>
               LOG IN
             </P>
             <div className={s.smallText}>
               <P color={'black'}>New User?</P>
-              <Link to={'/login'}>
+              <Link to={'/register'}>
                 <P color={'blue'}>Create an Account</P>
               </Link>
             </div>

@@ -1,9 +1,23 @@
-$small-laptop-width: 1200px;
+$width-1248: 1248px;
+$width-1100: 1100px;
+$width-1024: 1024px;
 $laptop-height-900: 900px;
 $laptop-height-800: 800px;
 
-@mixin small-laptop {
-  @media (max-width: #{$small-laptop-width}) {
+@mixin width-1248 {
+  @media (max-width: #{$width-1248}) {
+    @content;
+  }
+}
+
+@mixin width-1100 {
+  @media (max-width: #{$width-1100}) {
+    @content;
+  }
+}
+
+@mixin width-1024 {
+  @media (max-width: #{$width-1024}) {
     @content;
   }
 }

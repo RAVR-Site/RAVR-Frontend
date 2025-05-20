@@ -1,8 +1,8 @@
-import { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 
 import { P } from '@/shared/ui'
 import { ArrowIcon, CupIcon } from '@/shared/ui/icons'
+import cn from 'classnames'
 
 import { NavItem } from '../../model/navList'
 
@@ -16,8 +16,7 @@ export const MainNavigationItem = ({
     <Link to={item.link}>
       <li
         key={item.link}
-        className={s.item}
-        style={{ background: item.color } as CSSProperties}
+        className={cn(s.item, s[item.color])}
       >
         {item?.image && (
           <div className={s.cup}>
@@ -28,6 +27,7 @@ export const MainNavigationItem = ({
           fontFamily={'DaysOne'}
           fontSize={32}
           color={color}
+          textAlign={'center'}
         >
           {item.title}
         </P>

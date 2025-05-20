@@ -1,11 +1,18 @@
-export interface LoginRequest {
+import { ApiResponseData } from '@/shared/model/types'
+
+// LOGIN
+interface LoginResponseData {
+  accessToken: string
+  refreshToken: string
+  tokenType: string
+  id: number
+  username: string
   email: string
-  password: string
 }
 
-export interface LoginResponse {
-  status: string
-  message: string 
-  error?: string
-  token?: string
+export type LoginResponse = ApiResponseData<LoginResponseData>
+
+export interface LoginRequestData {
+  username: string
+  password: string
 }

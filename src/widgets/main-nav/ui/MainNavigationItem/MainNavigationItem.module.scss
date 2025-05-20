@@ -1,6 +1,5 @@
-@use '@/shared/styles/variables' as *;
-@use '@/shared/styles/breakpoints' as *;
-
+@use 'variables' as *;
+@use 'breakpoints' as *;
 
 .item {
   cursor: pointer;
@@ -21,12 +20,18 @@
 
   border-radius: 28px;
 
+  transition: scale 0.2s ease-in-out;
+
   @include laptop-height-900 {
     height: 250px;
   }
 
   @include laptop-height-800 {
-    height: 220px;
+    height: 230px;
+  }
+
+  &:hover {
+    scale: 1.03;
   }
 }
 
@@ -36,9 +41,21 @@
   @include laptop-height-800 {
     & svg {
       width: 55px;
+      height: 55px;
+      aspect-ratio: 1/1;
     }
 
     margin-bottom: -5px;
+  }
+
+  @include width-1100 {
+    & svg {
+      width: 44px;
+      height: 44px;
+      aspect-ratio: 1/1;
+    }
+
+    margin-bottom: 0;
   }
 }
 
@@ -48,3 +65,20 @@
   bottom: 1rem;
   right: 2rem;
 }
+
+.pink {
+  background: $pink;
+}
+
+.purple {
+  background: $purple;
+}
+
+.blue {
+  background: $blue;
+}
+
+.white {
+  background: $white;
+}
+

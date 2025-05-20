@@ -1,32 +1,30 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { Button, Input } from '@/shared/ui'
 
-import { registerApi } from '../api/registerApi'
+import { registerStore } from '../model/registerStore'
 import { registerValidation } from '../model/registerValidation'
-import { RegisterRequest } from '../model/types'
+import { RegisterRequestData } from '../model/types'
 
 import s from './RegisterForm.module.scss'
 
-export const RegisterForm = ({}: RegisterFormProps) => {
+export const RegisterForm = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterRequest>()
+  } = useForm<RegisterRequestData>({ mode: 'onChange' })
+
+  const { registerRequest } = registerStore
 
   const handleSubmitRegisterForm: SubmitHandler<
-    RegisterRequest
-  > = async data => {
-    try {
-      const response = await registerApi.register(data)
-
-      reset()
-      console.log(response)
-    } catch (error) {
-      console.error(error)
-    }
+    RegisterRequestData
+  > = data => {
+    registerRequest(data, reset, navigate)
   }
 
   return (
@@ -39,10 +37,10 @@ export const RegisterForm = ({}: RegisterFormProps) => {
           <Input
             label={'Name'}
             placeholder={'Enter your name'}
-            register={register('name', {
-              ...registerValidation.name,
+            register={register('username', {
+              ...registerValidation.username,
             })}
-            error={errors.name?.message}
+            error={errors.username?.message}
             key={'name'}
           />
           <Input
@@ -88,5 +86,3 @@ export const RegisterForm = ({}: RegisterFormProps) => {
     </form>
   )
 }
-
-interface RegisterFormProps {}

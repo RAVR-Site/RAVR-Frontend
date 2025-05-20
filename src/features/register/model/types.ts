@@ -1,12 +1,19 @@
-export interface RegisterRequest {
-  name: string
+
+import { ApiResponseData } from '@/shared/model/types'
+
+// REGISTER
+
+interface RegisterResponseData {
+  id: number
+  username: string
+  email: string
+}
+
+export type RegisterResponse = ApiResponseData<RegisterResponseData>
+
+export interface RegisterRequestData {
+  username: string
   surname?: string
   email: string
   password: string
-}
-
-export interface RegisterResponse {
-  status: string
-  message: string
-  error?: string
 }

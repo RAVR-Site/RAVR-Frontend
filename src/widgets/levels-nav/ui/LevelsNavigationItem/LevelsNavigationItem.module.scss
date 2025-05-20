@@ -1,0 +1,85 @@
+@use 'variables' as *;
+
+.item {
+  position: relative;
+
+  width: 81px;
+  height: 81px;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 100%;
+  background-color: $white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  &.lastElement {
+    &:not(:first-child):before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 16px;
+      transform: rotate(90deg);
+      top: calc(100% + 23px);
+      left: calc(50% - 14px);
+      background-image: url('/public/assets/icons/arrow.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      cursor: default;
+    }
+  }
+}
+
+.reverseElement {
+  &:not(:first-child):before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 16px;
+    transform: rotate(180deg);
+    top: calc(50% - 8px);
+    left: calc(-50% - 5px);
+    background-image: url('/public/assets/icons/arrow.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    cursor: default;
+  }
+}
+
+.notReverseElement {
+  &:not(:last-child):before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 16px;
+    top: calc(50% - 8px);
+    right: calc(-50% - 5px);
+    background-image: url('/public/assets/icons/arrow.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    cursor: default;
+  }
+}
+
+.hardIsDone {
+  position: absolute;
+  top: 68%;
+  left: 68%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 27px;
+  height: 27px;
+
+  background: $white;
+  border: 1px solid $pink;
+  border-radius: 100%;
+}

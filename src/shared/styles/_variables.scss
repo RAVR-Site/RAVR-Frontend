@@ -1,9 +1,29 @@
-$main-bg-color: #1E1E1E;
-$blue: #577CFF;
-$purple: #9A5FFF;
-$pink: #FF5F92;
-$yellow: #FFDD45;
-$white: #FFFFFF;
-$black: #000000;
+@use 'sass:color';
+
+$main-bg-color: #1e1e1e;
+
+$black-border: rgba(0, 0, 0, 0.75);
 $base-border-radius: 6px;
 
+// BASE COLORS
+$light-blue: #577cff;
+$blue: #575affe6;
+$purple: #9a5fff;
+$pink: #ff5f92;
+$yellow: #ffdd45;
+$white: #ffffff;
+$black: #000000;
+$green: #1AD740;
+$red: #FF5F61;
+
+
+// HOVER COLORS
+$light-blue-hover: color.adjust(
+  $light-blue,
+  $lightness: -20%
+);
+$purple-hover: color.adjust($purple, $lightness: -15%);
+$pink-hover: color.adjust($pink, $lightness: -20%);
+$blue-hover: color.adjust($blue, $lightness: -20%);
+$white-hover: color.adjust($white, $lightness: -20%);
+$black-hover: color.adjust($black, $lightness: -20%);

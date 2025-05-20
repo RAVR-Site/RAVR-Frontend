@@ -1,0 +1,57 @@
+@use './variables' as *;
+@use "sass:map";
+
+$color-map: (
+  'yellow': $blue,
+  'purple': $purple,
+  'pink': $pink,
+  'blue': $light-blue,
+  'white': $white,
+  'black': $black,
+);
+
+$hover-color-map: (
+  'blue': $light-blue-hover,
+  'purple': $purple-hover,
+  'pink': $pink-hover,
+  'yellow': $blue-hover,
+  'white': $white-hover,
+  'black': $black-hover,
+);
+
+@mixin generate-background-styles {
+  @each $name, $color in $color-map {
+    &-#{$name} {
+      background: $color;
+
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: map.get($hover-color-map, $name);
+      }
+    }
+  }
+
+  &-none {
+    background: none;
+  }
+}
+
+// Миксин для генерации стилей границы
+@mixin generate-border-styles {
+  @each $name, $color in $color-map {
+    &-#{$name} {
+      outline-color: $color;
+
+      transition: outline-color 0.2s ease;
+
+      &:hover {
+        outline-color: map.get($hover-color-map, $name);
+      }
+    }
+  }
+
+  &-none {
+    outline: none;
+  }
+}

@@ -1,3 +1,4 @@
-import Practice from './ui/Practice'
+
+import Practice from './ui/Main/Practice'
 
 export default Practice

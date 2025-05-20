@@ -1,3 +1,3 @@
-import Rating from "./ui/Rating";
+import Rating from './ui/Rating';
 
 export default Rating

@@ -1,3 +1,4 @@
-import Vocabulary from "./ui/Vocabulary";
+import Vocabulary from './ui/Main/Vocabulary';
+
 
 export default Vocabulary

@@ -2,6 +2,7 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { TUser } from '@/entities/user'
+import { getAccessToken } from '@/shared/lib/utils/token-utils/tokenUtils'
 import { Size } from '@/shared/model/types'
 
 import s from './UserAvatar.module.scss'
@@ -19,20 +20,26 @@ export const UserAvatar = ({
     : '/public/assets/user-placeholder.svg'
 
   const handleAvatarClick = () => {
-    navigate('/user')
+    console.log(getAccessToken())
+    if (getAccessToken()) {
+      navigate('/user')
+    } else {
+      navigate('/login')
+    }
   }
 
   return (
-    <div
+    <button
       onClick={handleAvatarClick}
       className={s.avatar}
       style={
         {
-          width: blockSize?.width,
-          height: blockSize?.height,
+          maxWidth: blockSize?.width,
+          maxHeight: blockSize?.height,
           border: hasBorder ? '6px solid black' : '',
         } as CSSProperties
       }
+      tabIndex={-1}
     >
       <img
         src={userAvatar}
@@ -45,7 +52,7 @@ export const UserAvatar = ({
         }
         alt={'Your avatar'}
       />
-    </div>
+    </button>
   )
 }
 
