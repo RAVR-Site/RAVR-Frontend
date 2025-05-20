@@ -2,8 +2,8 @@ import { useEffect, useLayoutEffect, useRef } from 'react'
 
 import { LessonType } from '@/entities/lesson'
 import { levelsNavStore } from '@/features/levels-nav'
-import { useElementSize } from '@/shared/lib/hooks/useElementSize'
-import { calculateColumns } from '@/shared/lib/utils/calculateColumns'
+import { useElementSize } from '@/shared/lib/hooks/useElementSize/useElementSize'
+import { calculateColumns } from '@/shared/lib/utils/calculate-columns/calculateColumns'
 import { LoaderPage, P } from '@/shared/ui'
 
 import { LevelData } from '../../../../features/levels-nav/model/types'
@@ -23,16 +23,11 @@ export const LevelsNavigation = ({
   lessonType,
 }: LevelsNavigationProps) => {
   const {
-    getLevelsNavResponse: {
-      data: levelsData,
-      isPending,
-      isFulfilled,
-      isRejected,
-    },
+    getLevelsNavResponse: { data: levelsData },
     getLevelsNavRequest,
   } = levelsNavStore
 
-  const data = levels
+  const data = levelsData?.data.levels ?? levels
 
   const levelsNavRef = useRef<HTMLUListElement>(null)
   const { width } = useElementSize(levelsNavRef)

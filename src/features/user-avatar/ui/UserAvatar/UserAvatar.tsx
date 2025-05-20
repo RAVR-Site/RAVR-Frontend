@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { TUser } from '@/entities/user'
-import { getAccessToken } from '@/shared/lib/utils/token-utils'
+import { getAccessToken } from '@/shared/lib/utils/token-utils/tokenUtils'
 import { Size } from '@/shared/model/types'
 
 import s from './UserAvatar.module.scss'

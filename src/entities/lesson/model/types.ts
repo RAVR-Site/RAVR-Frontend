@@ -1,4 +1,4 @@
-import { FormattedTime } from '@/shared/lib/utils/formatTime'
+import { FormattedTime } from '@/shared/lib/utils/format-time/formatTime'
 import { ApiResponseData } from '@/shared/model/types'
 
 export type LessonInfo = {

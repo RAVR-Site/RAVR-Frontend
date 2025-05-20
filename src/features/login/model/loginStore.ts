@@ -3,7 +3,7 @@ import { NavigateFunction } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { showNotification } from '@/features/notifications'
-import { saveTokenToStorage } from '@/shared/lib/utils/token-utils'
+import { saveAccessToken } from '@/shared/lib/utils/token-utils/tokenUtils'
 import { makeAutoObservable } from 'mobx'
 import {
   mobxSaiFetch as mobxQuery,
@@ -37,7 +37,7 @@ class LoginStore {
     mobxQueryHandler(
       this.loginResponse,
       response => {
-        saveTokenToStorage(response.data.accessToken)
+        saveAccessToken(response.data.accessToken)
 
         navigate('/')
 

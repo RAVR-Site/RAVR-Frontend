@@ -1,5 +1,5 @@
 import { FormattedLessonInfo, LessonInfo } from '@/entities/lesson';
-import { formatTime } from '@/shared/lib/utils/formatTime';
+import { formatTime } from '@/shared/lib/utils/format-time/formatTime';
 
 export const formatLessonInfo = (data: LessonInfo): FormattedLessonInfo => {
   return {

@@ -6,14 +6,16 @@ export const getAccessToken = () => {
   return accessToken || null
 }
 
-export const saveTokenToStorage = (accessToken: string) => {
-  Cookies.set('access_token', accessToken, {
+export const saveAccessToken = (accessToken: string) => {
+  const cookie = Cookies.set('access_token', accessToken, {
     domain: 'localhost',
     sameSite: 'strict',
     expires: 360000,
   })
+
+  return cookie
 }
 
 export const removeAccessToken = () => {
-  Cookies.remove('access_token')
+ Cookies.remove('access_token')
 }

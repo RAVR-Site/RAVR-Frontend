@@ -4,8 +4,8 @@ import Cookies from 'js-cookie'
 import {
   getAccessToken,
   removeAccessToken,
-  saveTokenToStorage,
-} from '../lib/utils/token-utils'
+  saveAccessToken,
+} from '../lib/utils/token-utils/tokenUtils'
 import { RefreshResponse } from '../model/types'
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -42,7 +42,7 @@ export const createInstance = () => {
             )
 
           if (result.data && error.config) {
-            saveTokenToStorage(result.data.data.accessToken)
+            saveAccessToken(result.data.data.accessToken)
 
             return instance.request({ ...error.config })
           }
