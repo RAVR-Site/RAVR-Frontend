@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { TUser } from '@/entities/user'
 import { getAccessToken } from '@/shared/lib/utils/token-utils/tokenUtils'

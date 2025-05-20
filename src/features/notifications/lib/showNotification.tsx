@@ -19,7 +19,7 @@ export const showNotification = (
     },
     className: s.toastContainer,
     icon: getNotificationIcon(type),
-    autoClose: autoClose || 5000,
+    autoClose: autoClose ?? 5000,
   }
 
   switch (type) {

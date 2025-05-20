@@ -1,8 +1,8 @@
 import { api } from '@/shared/api/axios-instanse'
 
-import { EnglishLevelApiRequestData, EnglishLevelApiResponse } from '../model/types'
+import { EnglishLevelApiResponse, EnglishLevelVariant } from '../model/types'
 
 export const englishLevelsApi = {
-  changeLevel: async (body: EnglishLevelApiRequestData) => (await
+  changeLevel: async (body: EnglishLevelVariant) => (await
     api.post<EnglishLevelApiResponse>('/levels/change-level', body)).data,
 }

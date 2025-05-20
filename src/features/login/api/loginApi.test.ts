@@ -1,5 +1,4 @@
-import { api } from '@/shared/api/axios-instanse';
-import { describe, expect, it, Mock, Mocked, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import '@testing-library/jest-dom/vitest'
 
@@ -31,7 +30,7 @@ describe('test login api', () => {
     }
 
     try {
-      const result = await login(regData)
+      await login(regData)
     } catch (error: any) {
       expect(error.response.status).toBe(401);
       expect(error.response.data).toEqual(expect.objectContaining({

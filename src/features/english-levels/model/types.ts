@@ -11,5 +11,3 @@ export type EnglishLevelApiResponseData = {
 }
 
 export type EnglishLevelApiResponse = ApiResponseData<EnglishLevelApiResponseData>
-
-export type EnglishLevelApiRequestData = EnglishLevelVariant

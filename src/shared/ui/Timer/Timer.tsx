@@ -11,7 +11,7 @@ export const Timer = ({
   textColor,
   timeToFinish,
 }: TimerProps) => {
-  const [seconds, setSeconds] = useState(timeToFinish || 0)
+  const [seconds, setSeconds] = useState(timeToFinish ?? 0)
 
   useEffect(() => {
     const interval = setInterval(() => {
