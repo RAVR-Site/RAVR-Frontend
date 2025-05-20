@@ -23,7 +23,7 @@ export const Timer = ({
 
   const isTimeEnd = seconds > 0
   const time = isTimeEnd
-    ? formatTime(seconds, 'withoutSeconds')
+    ? formatTime(seconds, 'withSecondsText')
     : 'Time is up!'
 
   return (
