@@ -1,3 +1,5 @@
 export * from './model/types'
 export { lessonApiStore } from './model/store/lessonApiStore'
 export { selectedLessonStore } from './model/store/selectedLessonStore'
+export { useGetLessonColor } from './lib/useGetLessonColor'
+export { useGetLessonData } from './lib/useGetLessonData'

@@ -2,8 +2,10 @@ import { LessonType } from '@/entities/lesson';
 import { ApiResponseData } from '@/shared/model/types';
 
 export type LevelData = {
-  levelNumber: string
+  level: number
   hardIsDone: boolean
+  easy: number
+  hard: number
 }
 
 //  LEVELS NAV API

@@ -14,8 +14,10 @@ import s from './LevelsNavigation.module.scss'
 const levels: LevelData[] = Array.from(
   { length: 36 },
   (_, i) => ({
-    levelNumber: `${i + 1}`,
+    level: i + 1,
     hardIsDone: Math.random() < 0.4,
+    easy: 0,
+    hard: 0,
   })
 )
 
@@ -47,7 +49,7 @@ export const LevelsNavigation = ({
         .reverse()
         .map(level => (
           <LevelsNavigationItem
-            key={level.levelNumber}
+            key={level.level}
             lessonType={lessonType}
             level={level}
             columnsCount={columnsCount}
@@ -57,7 +59,7 @@ export const LevelsNavigation = ({
     } else {
       return rowLevels.map(level => (
         <LevelsNavigationItem
-          key={level.levelNumber}
+          key={level.level}
           lessonType={lessonType}
           level={level}
           columnsCount={columnsCount}

@@ -23,23 +23,21 @@ export const LevelsNavigationItem = ({
   const { getLessonInfoRequest } = lessonApiStore
 
   const positionInRow =
-    (Number(level.levelNumber) - 1) % columnsCount
+    (level.level - 1) % columnsCount
 
   const gridPosition = isReversed
     ? columnsCount - positionInRow
     : positionInRow + 1
 
   const lastElement =
-    Number(level.levelNumber) % columnsCount === 0
+    Number(level.level) % columnsCount === 0
 
   const handleLessonClick = () => {
-    navigate(
-      `/${lessonType}/lesson/${level.levelNumber}/info`
-    )
+    navigate(`/${lessonType}/lesson/${level.level}/info`)
 
     getLessonInfoRequest({
       lessonType,
-      levelNumber: Number(level.levelNumber),
+      levelNumber: level.level,
     })
   }
 
@@ -58,7 +56,7 @@ export const LevelsNavigationItem = ({
         fontSize={32}
         color={'black'}
       >
-        {level.levelNumber}
+        {level.level}
       </P>
 
       {level.hardIsDone && (
