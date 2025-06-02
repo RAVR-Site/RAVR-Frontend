@@ -6,15 +6,22 @@ import cn from 'classnames'
 import s from './GrammarInput.module.scss'
 
 export const GrammarInput = ({
-  words,
+  words: coupleOfWords,
 }: GrammarInputProps) => {
   const [activeLever, setActiveLever] =
     useState<boolean>(false)
-
   const [animationWord, setAnimationWord] =
     useState<boolean>(false)
 
+  const [indexCoupleOfWords, setIndexCoupleOfWords] =
+    useState<number>(0)
+
   const handleLeverClick = () => {
+    setIndexCoupleOfWords(prev => {
+      if (prev < coupleOfWords.length - 1) return prev + 1
+      else return 0
+    })
+
     setActiveLever(true)
     setAnimationWord(true)
 
@@ -35,33 +42,38 @@ export const GrammarInput = ({
       </div>
       <div className={s.bottom}>
         <div className={s.words}>
-          {words.map((word, index) => (
-            <div key={index + word} className={s.word}>
-              <P
-                fontSize={24}
-                fontFamily={'DaysOne'}
-                color={'black'}
-                className={cn(
-                  s.wordText,
-                  animationWord && s.wordAnimation
-                )}
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                }}
-              >
-                {word}
-              </P>
-            </div>
-          ))}
+          {coupleOfWords[indexCoupleOfWords]
+            .split(' ')
+            .map((word, index) => (
+              <div key={index + word} className={s.word}>
+                <P
+                  fontSize={24}
+                  fontFamily={'DaysOne'}
+                  color={'black'}
+                  className={cn(
+                    s.wordText,
+                    animationWord && s.wordAnimation
+                  )}
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                  }}
+                >
+                  {word}
+                </P>
+              </div>
+            ))}
         </div>
-        <Button onClick={handleLeverClick} disabled={activeLever ?? animationWord}>
+        <Button
+          onClick={handleLeverClick}
+          disabled={activeLever || animationWord}
+        >
           <div className={s.lever}>
             <div
               className={cn(
                 s.stick,
                 activeLever && s.stickActive
               )}
-            />
+            ></div>
           </div>
         </Button>
       </div>

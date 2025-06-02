@@ -1,1 +1,1 @@
-export * from './ui/VocabularyLesson/VocabularyLesson'
+// export * from './ui/VocabularyLesson/VocabularyLesson'

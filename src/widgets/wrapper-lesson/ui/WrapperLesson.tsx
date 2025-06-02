@@ -24,7 +24,7 @@ export const WrapperLesson = ({
   }
 
   // FORMATTED DATA
-  const data = selectedLesson.modeData
+  const data = selectedLesson
 
   const lessonMode =
     selectedLesson.lessonMode.charAt(0).toUpperCase() +
@@ -52,7 +52,7 @@ export const WrapperLesson = ({
         </div>
         <Timer
           textColor={'black'}
-          timeToFinish={data.timeToFinish}
+          timeToFinish={data.lessonMode ? 90 : 60}
         />
       </div>
       {children}

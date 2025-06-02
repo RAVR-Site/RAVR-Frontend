@@ -1,2 +1,2 @@
-export { LevelInfo } from './ui/LessonInfo/LessonInfo'
+export { LessonInfo } from './ui/LessonInfo/LessonInfo'
 export { mockLessonInfo } from './model/mockLessonInfoData'

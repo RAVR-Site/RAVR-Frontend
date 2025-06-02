@@ -23,7 +23,7 @@ const Rating = lazy(() => import('@/pages/rating'))
 const Register = lazy(() => import('@/pages/register'))
 const Login = lazy(() => import('@/pages/login'))
 
-import { LevelInfo } from '@/widgets/lesson-info'
+import { LessonInfo } from '@/widgets/lesson-info'
 import { LevelsNavigation } from '@/widgets/levels-nav'
 
 const routes = [
@@ -43,7 +43,7 @@ const routes = [
     path: '/grammar/lesson/:lessonNumber/info',
     element: (
       <Grammar>
-        <LevelInfo lessonType={'grammar'} />
+        <LessonInfo lessonType={'grammar'} />
       </Grammar>
     ),
   },
@@ -63,7 +63,7 @@ const routes = [
       },
       {
         path: '/vocabulary/lesson/:lessonNumber/info',
-        element: <LevelInfo lessonType={'vocabulary'} />,
+        element: <LessonInfo lessonType={'vocabulary'} />,
       },
     ],
   },
@@ -83,7 +83,7 @@ const routes = [
       },
       {
         path: '/practice/lesson/:lessonNumber/info',
-        element: <LevelInfo lessonType={'practice'} />,
+        element: <LessonInfo lessonType={'practice'} />,
       },
     ],
   },

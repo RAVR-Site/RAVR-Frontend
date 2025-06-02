@@ -4,6 +4,6 @@ import { LevelsNavApiRequestData, LevelsNavApiResponse } from '../model/types';
 
 export const levelsNavApi = {
   getLevelsNav: async ({ lessonType }: LevelsNavApiRequestData) =>
-    (await api.get<LevelsNavApiResponse>(`/levels-nav/${lessonType}`)).data,
+    (await api.get<LevelsNavApiResponse>(`lessons?type=${lessonType}`)).data,
 }
 

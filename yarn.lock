@@ -2907,9 +2907,9 @@ mobx-react-lite@^4.1.0:
     use-sync-external-store "^1.4.0"
 
 mobx-toolbox@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/mobx-toolbox/-/mobx-toolbox-1.4.6.tgz#c2496368c88b86b5ca1d57bf72e8c988b0452a57"
-  integrity sha512-OAtEhMMvNeIdwkIwW0gCwnupH3o96UbdSvcg54enuxejeiQS5dyPONJ6NYYl6Y8vb4nf/bnt3qrv8PX/bfR0mQ==
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/mobx-toolbox/-/mobx-toolbox-1.4.8.tgz#13280a28b4cb137f18829601c4154c15de7d6530"
+  integrity sha512-tYkgPjngbekPuOkjDgUspPueKbTUKTtKP9T0liX+m6203tSwhK44MO0dC7enG1wHuhIYnyL33YApYjsFtyeiVQ==
   dependencies:
     mobx "^6.13.3"
 

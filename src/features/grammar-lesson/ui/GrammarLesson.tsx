@@ -1,17 +1,25 @@
+import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
 import { GrammarInput } from '@/entities/grammar-input'
 import {
+  lessonApiStore,
+  LessonInfoApiResponse,
+  LessonInfoApiResponseData,
   LessonResult,
   selectedLessonStore,
   useGetLessonColor,
 } from '@/entities/lesson'
 import { LessonOverview } from '@/entities/lesson-overview'
-import { Button } from '@/shared/ui'
+import { AsyncDataRender, Button } from '@/shared/ui'
 
 import s from './GrammarLesson.module.scss'
 
-export const GrammarLesson = () => {
+export const GrammarLesson = observer(() => {
+  const {
+    getLessonInfoResponse: { data: lessonInfo, status },
+  } = lessonApiStore
+
   const {
     selectedLessonStore: { selectedLesson },
   } = selectedLessonStore
@@ -21,12 +29,6 @@ export const GrammarLesson = () => {
   const [submitted, setSubmitted] = useState(false)
   const [lessonResult, setLessonResult] =
     useState<LessonResult>('bad')
-
-  const wordsArr = [
-    ['Is', 'is', 'is', 'is', 'is', 'is', 'is'],
-    ['Is', 'is', 'is', 'is', 'is', 'is', 'is'],
-    ['Is', 'is', 'is', 'is', 'is', 'is', 'is'],
-  ]
 
   const handleSubmit = () => {
     setSubmitted(true)
@@ -50,41 +52,49 @@ export const GrammarLesson = () => {
     }
   }
 
-  return (
-    <>
-      <div className={s.grammarLesson}>
-        <GrammarInput words={wordsArr[0]} />
-        <GrammarInput words={wordsArr[1]} />
-        <GrammarInput words={wordsArr[2]} />
-      </div>
-      {submitted ? (
-        <LessonOverview
-          lessonMode={selectedLesson?.lessonMode}
-          lessonResult={lessonResult}
-          iconsSize={{ width: 64, height: 64 }}
-        />
-      ) : (
-        <div className={s.buttons}>
-          <Button
-            backgroundColor={color.clear.backgroundColor}
-            borderColor={color.clear.borderColor}
-            textColor={color.clear.textColor}
-            padding={'0.25rem 0'}
-            width={'220px'}
-          >
-            Clear All
-          </Button>
-          <Button
-            backgroundColor={color.submit.backgroundColor}
-            textColor={color.submit.textColor}
-            padding={'0.25rem 0'}
-            width={'220px'}
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
+  const render = (data: LessonInfoApiResponseData) => {
+    return (
+      <>
+        <div className={s.grammarLesson}>
+          <GrammarInput words={data.type === 'grammar' ? data.lesson_data.variants : []} />
         </div>
-      )}
-    </>
+        {submitted ? (
+          <LessonOverview
+            lessonMode={selectedLesson?.lessonMode}
+            lessonResult={lessonResult}
+            iconsSize={{ width: 64, height: 64 }}
+          />
+        ) : (
+          <div className={s.buttons}>
+            <Button
+              backgroundColor={color.clear.backgroundColor}
+              borderColor={color.clear.borderColor}
+              textColor={color.clear.textColor}
+              padding={'0.25rem 0'}
+              width={'220px'}
+            >
+              Clear All
+            </Button>
+            <Button
+              backgroundColor={color.submit.backgroundColor}
+              textColor={color.submit.textColor}
+              padding={'0.25rem 0'}
+              width={'220px'}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </div>
+        )}
+      </>
+    )
+  }
+
+  return (
+    <AsyncDataRender
+      status={status}
+      data={lessonInfo?.data}
+      renderContent={(data) => render(data)}
+    />
   )
-}
+})

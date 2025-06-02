@@ -1,6 +1,7 @@
 import {
   ButtonHTMLAttributes,
   CSSProperties,
+  isValidElement,
   ReactNode,
 } from 'react'
 
@@ -39,14 +40,18 @@ export const Button = ({
       }
       {...props}
     >
-      <P
-        fontFamily={'DaysOne'}
-        fontSize={fontSize}
-        color={textColor}
-        textAlign={textAlign}
-      >
-        {children}
-      </P>
+      {isValidElement(children) ? (
+        children
+      ) : (
+        <P
+          fontFamily={'DaysOne'}
+          fontSize={fontSize}
+          color={textColor}
+          textAlign={textAlign}
+        >
+          {children}
+        </P>
+      )}
     </button>
   )
 }

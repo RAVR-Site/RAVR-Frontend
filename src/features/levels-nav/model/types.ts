@@ -1,19 +1,23 @@
 import { LessonType } from '@/entities/lesson';
 import { ApiResponseData } from '@/shared/model/types';
 
+export type ModeData = {
+  id: number,
+  userRecord?: number,
+  fpsRecord: number,
+}
+
 export type LevelData = {
   level: number
   hardIsDone: boolean
-  easy: number
-  hard: number
+  easy: ModeData
+  hard: ModeData
+  hardId: number
+  easyId: number
 }
 
 //  LEVELS NAV API
-type LevelsNavApiResponseData = {
-  levels: LevelData[]
-}
-
-export type LevelsNavApiResponse = ApiResponseData<LevelsNavApiResponseData>
+export type LevelsNavApiResponse = ApiResponseData<LevelData[]>
 
 export type LevelsNavApiRequestData = {
   lessonType: LessonType

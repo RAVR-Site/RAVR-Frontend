@@ -1,71 +1,90 @@
+import { ModeData } from '@/features/levels-nav'
 import { FormattedTime } from '@/shared/lib/utils/format-time/formatTime'
 import { ApiResponseData } from '@/shared/model/types'
 
 export type LessonInfo = {
+  id: number
   lessonNumber: number
   easy: LessonСomplexity
   hard?: LessonСomplexity
 }
 
 type LessonСomplexity = {
-  timeToFinish: number
   userRecord?: number
   fpsRecord: number
-  xp: number
 }
 
 export type LessonType = 'grammar' | 'vocabulary' | 'practice'
 export type LessonResult = 'good' | 'normal' | 'bad'
 export type LessonMode = 'easy' | 'hard'
 
-// FORMATTED DATA
-export type FormattedLessonInfo = {
-  lessonNumber: number
-  easy: FormattedLessonComplexity;
-  hard?: FormattedLessonComplexity;
+// LESSON DATA
+
+export type GrammarLessonData = {
+  answer_index: number[];
+  condition: null;
+  sentences: string[];
+  variants: string[];
 };
 
-export type FormattedLessonComplexity = {
-  timeToFinish: FormattedTime;
-  fpsRecord: FormattedTime;
-  userRecord?: FormattedTime;
-  xp: number
+export type VocabularyLessonData = {
+  answer_index: [];
+  condition: null;
+  sentences: [];
+  variants: Array<Record<string, string>>;
+};
+
+export type PracticeLessonData = {
+  answer_index: number[];
+  condition: string;
+  sentences: string[];
+  variants: string[];
 };
 
 
 //  LESSON INFO API
-type LessonInfoApiResponseData = LessonInfo & {
-  id: number
-}
+export type LessonInfoApiResponseData = {
+  id: number;
+  level: number;
+  mode: LessonMode
+} & (
+    | {
+      type: 'grammar';
+      lesson_data: GrammarLessonData;
+    }
+    | {
+      type: 'vocabulary';
+      lesson_data: VocabularyLessonData;
+    }
+    | {
+      type: 'practice';
+      lesson_data: PracticeLessonData;
+    }
+  );
 
 export type LessonInfoApiResponse = ApiResponseData<LessonInfoApiResponseData>
 
 export type LessonInfoApiRequestData = {
-  lessonType: LessonType
-  levelNumber: number
+  id: number
 }
+
+// FORMATTED DATA
+export type FormattedLessonComplexity = {
+  fpsRecord: FormattedTime;
+  userRecord?: FormattedTime;
+};
+
+export type FormattedLessonInfo = {
+  level: number
+  easy: FormattedLessonComplexity;
+  hard?: FormattedLessonComplexity;
+};
+
 
 // SELECTED LESSON
 export type SelectedLesson = {
   lessonMode: LessonMode
   lessonNumber: number
   lessonType: LessonType
-  lessonData?: VocabularyLesson | GrammarLesson | PracticeLesson
-  modeData: LessonСomplexity
-}
-
-export type VocabularyLesson = {
-  words: Map<string, string>
-}
-
-export type GrammarLesson = {
-  words: string[][]
-}
-
-export type PracticeLesson = {
-  data: {
-    sentence: string
-    choiceSentences: string[]
-    correctSentenceIndex: number
-  }
+  modeData: ModeData
 }

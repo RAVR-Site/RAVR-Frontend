@@ -1,105 +1,108 @@
-import { useLayoutEffect, useRef } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 
 import { LessonType } from '@/entities/lesson'
-import { levelsNavStore } from '@/features/levels-nav'
+import {
+  LevelData,
+  levelsNavStore,
+} from '@/features/levels-nav'
 import { useElementSize } from '@/shared/lib/hooks/useElementSize/useElementSize'
 import { calculateColumns } from '@/shared/lib/utils/calculate-columns/calculateColumns'
-import { LoaderPage, P } from '@/shared/ui'
+import { AsyncDataRender, LoaderPage, P } from '@/shared/ui'
+import cn from 'classnames'
 
-import { LevelData } from '../../../../features/levels-nav/model/types'
-import { LevelsNavigationItem } from '../LevelsNavigationItem/LevelsNavigationItem'
+import { LevelsNavigationRow } from '../LevelsNavigationRow/LevelsNavigationRow'
 
 import s from './LevelsNavigation.module.scss'
 
-const levels: LevelData[] = Array.from(
-  { length: 36 },
-  (_, i) => ({
-    level: i + 1,
-    hardIsDone: Math.random() < 0.4,
-    easy: 0,
-    hard: 0,
-  })
-)
+export const LevelsNavigation = observer(
+  ({ lessonType }: LevelsNavigationProps) => {
+    const {
+      getLevelsNavResponse: { data: levelsData, status },
+      getLevelsNavRequest,
+    } = levelsNavStore
 
-export const LevelsNavigation = ({
-  lessonType,
-}: LevelsNavigationProps) => {
-  const {
-    getLevelsNavResponse: { data: levelsData },
-    getLevelsNavRequest,
-  } = levelsNavStore
+    const levelsNavRef = useRef<HTMLUListElement>(null)
+    const { width } = useElementSize(levelsNavRef)
 
-  const data = levelsData?.data.levels ?? levels
+    useLayoutEffect(() => {
+      getLevelsNavRequest({ lessonType: lessonType })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lessonType])
 
-  const levelsNavRef = useRef<HTMLUListElement>(null)
-  const { width } = useElementSize(levelsNavRef)
+    const title =
+      lessonType.charAt(0).toUpperCase() +
+      lessonType.slice(1)
 
-  const title =
-    lessonType.charAt(0).toUpperCase() + lessonType.slice(1)
+    const calculateColumnsRes = calculateColumns(width)
 
-  const columnsCount = calculateColumns(width)
-  const rows = Math.ceil(data.length / columnsCount)
+    const { columnsCount, rows } = useMemo(() => {
+      const dataLength = levelsData?.data?.length || 0
 
-  const renderLevels = (
-    isReversed: boolean,
-    rowLevels: LevelData[]
-  ) => {
-    if (isReversed) {
-      return [...rowLevels]
-        .reverse()
-        .map(level => (
-          <LevelsNavigationItem
-            key={level.level}
-            lessonType={lessonType}
-            level={level}
-            columnsCount={columnsCount}
-            isReversed
-          />
-        ))
-    } else {
-      return rowLevels.map(level => (
-        <LevelsNavigationItem
-          key={level.level}
-          lessonType={lessonType}
-          level={level}
-          columnsCount={columnsCount}
-        />
-      ))
-    }
-  }
+      const columns =
+        calculateColumnsRes > dataLength
+          ? dataLength
+          : calculateColumnsRes
 
-  useLayoutEffect(() => {
-    getLevelsNavRequest({ lessonType: lessonType })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lessonType])
+      const rowsCount =
+        dataLength > 0 ? Math.ceil(dataLength / columns) : 0
 
-  return (
-    <div className={s[lessonType]}>
-      <P fontFamily={'DaysOne'} fontSize={32}>
-        {title}
-      </P>
-      {false ? (
-        <LoaderPage
-          colorLoader={'white'}
-          loaderSize={{ width: 220, height: 220 }}
-        />
-      ) : (
-        <ul className={s.list} ref={levelsNavRef}>
+      return { columnsCount: columns, rows: rowsCount }
+    }, [calculateColumnsRes, levelsData?.data])
+
+    
+    const renderLevelsNav = (data: LevelData[]) => {
+      return (
+        <ul
+          className={cn(
+            s.list,
+            calculateColumnsRes > data.length &&
+              s.listColumns
+          )}
+          ref={levelsNavRef}
+        >
           {Array.from({ length: rows }).map(
             (_, rowIndex) => {
               const start = rowIndex * columnsCount
               const end = start + columnsCount
-              const rowLevels = levels.slice(start, end)
+              const rowLevels = data.slice(start, end)
               const isReversed = rowIndex % 2 !== 0
 
-              return renderLevels(isReversed, rowLevels)
+              return (
+                <LevelsNavigationRow
+                  key={`row-${rowIndex}`}
+                  rowLevels={rowLevels}
+                  lessonType={lessonType}
+                  columnsCount={columnsCount}
+                  isReversed={isReversed}
+                />
+              )
             }
           )}
         </ul>
-      )}
-    </div>
-  )
-}
+      )
+    }
+
+    return (
+      <div className={s[lessonType]}>
+        <P fontFamily={'DaysOne'} fontSize={32}>
+          {title}
+        </P>
+        <AsyncDataRender
+          status={status}
+          data={levelsData?.data}
+          renderContent={data => renderLevelsNav(data)}
+          loadingComponent={
+            <LoaderPage
+              colorText={'white'}
+              loaderSize={{ width: 275, height: 275 }}
+            />
+          }
+        />
+      </div>
+    )
+  }
+)
 
 interface LevelsNavigationProps {
   lessonType: LessonType

@@ -1,100 +1,96 @@
+import { observer } from 'mobx-react-lite'
 import { useLayoutEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import {
+  Navigate,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 
 import {
   lessonApiStore,
   LessonType,
-  selectedLessonStore
+  selectedLessonStore,
 } from '@/entities/lesson'
-import { englishLevelStore } from '@/features/english-levels'
-import { Button, LoaderPage, P } from '@/shared/ui'
+import { levelsNavStore } from '@/features/levels-nav'
+import {
+  AsyncDataRender,
+  Button,
+  LoaderPage,
+  P,
+} from '@/shared/ui'
 
 import { formatLessonInfo } from '../../lib/formatLessonInfo'
 import { lessonDescription } from '../../model/lessonDescription'
-import { mockLessonInfo } from '../../model/mockLessonInfoData'
+// import { mockLessonInfo } from '../../model/mockLessonInfoData'
 
 import s from './LessonInfo.module.scss'
 
-export const LevelInfo = ({
-  lessonType,
-}: LevelInfoProps) => {
-  // HOOKS
-  const { lessonNumber } = useParams()
-  const navigate = useNavigate()
+export const LessonInfo = observer(
+  ({ lessonType }: LevelInfoProps) => {
+    // HOOKS
+    const { lessonNumber } = useParams()
+    const navigate = useNavigate()
 
-  // STORES
-  const {
-    currentEnglishLevel: { currentEnglishLevel },
-  } = englishLevelStore
+    // STORES
+    const { getLessonInfoRequest } = lessonApiStore
 
-  const {
-    getLessonInfoRequest,
-    getLessonInfoResponse: {
-      data: getLessonInfoData,
-    },
-  } = lessonApiStore
+    const {
+      selectedLessonStore: { setSelectedLesson },
+    } = selectedLessonStore
 
-  const {
-    selectedLessonStore: { setSelectedLesson },
-  } = selectedLessonStore
+    const {
+      getLevelsNavResponse: { data: levelsData, status },
+    } = levelsNavStore
 
-  // FORMATTING VARIABLES
-  const lessonTypeWithFirstLetterUppercase =
-    lessonType.charAt(0).toUpperCase() + lessonType.slice(1)
+    // FORMATTING VARIABLES
+    const lessonTypeWithFirstLetterUppercase =
+      lessonType.charAt(0).toUpperCase() +
+      lessonType.slice(1)
 
-  const lessonTypeFirstLetterUppercase = lessonType
-    .charAt(0)
-    .toUpperCase()
+    const lessonTypeFirstLetterUppercase = lessonType
+      .charAt(0)
+      .toUpperCase()
 
-  const textType =
-    lessonType === 'practice' ? 'practice' : 'base'
+    // DATA FORMATTING
+    const data = levelsData?.data[Number(lessonNumber) - 1]
 
-  // DATA FORMATTING
-  const data =
-    getLessonInfoData?.data ?? mockLessonInfo.data
+    if (!data) return <Navigate to={'/'} />
 
-  const formattedData = formatLessonInfo(data)
+    const formattedData = {
+      ...data,
+      easy: {
+        ...data.easy,
+        fpsRecord: '90',
+        userRecord: '1:30 sec',
+      },
+      hard: { ...data.hard, fpsRecord: '120' },
+    } // formatLessonInfo(data)
 
-  // HANDLERS
-  const handleEasyClick = () => {
-    setSelectedLesson({
-      lessonType: lessonType,
-      lessonNumber: Number(lessonNumber),
-      lessonMode: 'easy',
-      modeData: data.easy,
-    })
-    navigate(`/${lessonType}/lesson/${lessonNumber}`)
-  }
+    // HANDLERS
+    const handleEasyClick = () => {
+      getLessonInfoRequest({ id: data.easyId })
+      setSelectedLesson({
+        lessonType: lessonType,
+        lessonNumber: Number(lessonNumber),
+        lessonMode: 'easy',
+        modeData: data.easy,
+      })
+      navigate(`/${lessonType}/lesson/${lessonNumber}`)
+    }
 
-  const handleHardClick = () => {
-    if (!data.hard) return
-    
-    setSelectedLesson({
-      lessonType: lessonType,
-      lessonNumber: Number(lessonNumber),
-      lessonMode: 'hard',
-      modeData: data.hard,
-    })
-    navigate(`/${lessonType}/lesson/${lessonNumber}`)
-  }
+    const handleHardClick = () => {
+      getLessonInfoRequest({ id: data.hardId })
+      setSelectedLesson({
+        lessonType: lessonType,
+        lessonNumber: Number(lessonNumber),
+        lessonMode: 'hard',
+        modeData: data.hard,
+      })
+      navigate(`/${lessonType}/lesson/${lessonNumber}`)
+    }
 
-  // EFFECTS
-  useLayoutEffect(() => {
-    getLessonInfoRequest({
-      lessonType: lessonType,
-      levelNumber: Number(lessonNumber),
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lessonType, lessonNumber])
-
-  return (
-    <div className={s[lessonType]}>
-      {false ? (
-        <LoaderPage
-          colorLoader={'white'}
-          loaderSize={{ width: 340, height: 340 }}
-        />
-      ) : (
+    const renderLessonInfo = () => {
+      return (
         <>
           <div className={s.leftBlock}>
             <div className={s.imageContainer}>
@@ -105,7 +101,7 @@ export const LevelInfo = ({
               />
             </div>
 
-            <P fontSize={16} type={textType}>
+            <P fontSize={16}>
               {lessonDescription[lessonType].description}
             </P>
           </div>
@@ -117,54 +113,47 @@ export const LevelInfo = ({
                   {lessonTypeFirstLetterUppercase}
                 </P>
                 <P fontFamily={'DaysOne'} fontSize={24}>
-                  {lessonTypeWithFirstLetterUppercase},{' '}
-                  {currentEnglishLevel}
+                  {lessonTypeWithFirstLetterUppercase}
                 </P>
               </div>
               <div className={s.levelInfo}>
                 <div className={s.levelInfoType}>
                   <div className={s.levelInfoTypeTimers}>
-                    <P type={textType}>Easy:</P>
-                    <P type={textType}>
-                      Time to finish -{' '}
-                      {formattedData.easy.timeToFinish}
-                    </P>
-                    <P type={textType}>
+                    <P>Easy:</P>
+                    <P>Time to finish - {'1:30 sec'}</P>
+                    <P>
                       Your record -{' '}
                       {formattedData.easy.userRecord ??
                         ' --:-- sec'}
                     </P>
-                    <P type={textType}>
+                    <P>
                       FPS Record -{' '}
-                      {formattedData.easy.fpsRecord}
+                      {formattedData.easy.fpsRecord ?? ''}
                     </P>
                   </div>
-                  <P type={textType}>
-                    You will gain {formattedData.easy.xp} Xp
-                    for completing this lesson
+                  <P>
+                    You will gain {100} Xp for completing
+                    this lesson
                   </P>
                 </div>
                 {formattedData.hard && (
                   <div className={s.levelInfoType}>
                     <div className={s.levelInfoTypeTimers}>
-                      <P type={textType}>Hard:</P>
-                      <P type={textType}>
-                        Time to finish -{' '}
-                        {formattedData.hard.timeToFinish}
-                      </P>
-                      <P type={textType}>
+                      <P>Hard:</P>
+                      <P>Time to finish - {'1:00 sec'}</P>
+                      <P>
                         Your record -{' '}
                         {formattedData.hard.userRecord ??
                           ' --:-- sec'}
                       </P>
-                      <P type={textType}>
+                      <P>
                         FPS Record -{' '}
-                        {formattedData.hard.fpsRecord}
+                        {formattedData.hard.fpsRecord ?? ''}
                       </P>
                     </div>
-                    <P type={textType}>
-                      You will gain {formattedData.hard.xp}{' '}
-                      Xp for completing this lesson
+                    <P>
+                      You will gain {200} Xp for completing
+                      this lesson
                     </P>
                   </div>
                 )}
@@ -194,10 +183,26 @@ export const LevelInfo = ({
             </div>
           </div>
         </>
-      )}
-    </div>
-  )
-}
+      )
+    }
+
+    return (
+      <div className={s[lessonType]}>
+        <AsyncDataRender
+          status={status}
+          data={data}
+          renderContent={renderLessonInfo}
+          loadingComponent={
+            <LoaderPage
+              loaderSize={{ width: 340, height: 340 }}
+              colorLoader={'white'}
+            />
+          }
+        />
+      </div>
+    )
+  }
+)
 
 interface LevelInfoProps {
   lessonType: LessonType
