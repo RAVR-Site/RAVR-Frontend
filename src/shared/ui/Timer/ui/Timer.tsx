@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { formatTime } from '@/shared/lib/utils/format-time/formatTime'
 import { TextParagraphColors } from '@/shared/model/types'
@@ -20,11 +20,13 @@ export const Timer = observer(
       setAllSeconds(timeToFinish ?? 0)
     }, [setSeconds, timeToFinish, setAllSeconds])
 
-    const checkIsTimeEnd = seconds <= 0
+    const checkIsTimeEnd = seconds < 0
 
     useEffect(() => {
       if (checkIsTimeEnd) {
         setIsTimeEnd(true)
+
+        console.log('time is end')
 
         return
       }

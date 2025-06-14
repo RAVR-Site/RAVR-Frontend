@@ -1,4 +1,4 @@
-import { computed, makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { mobxState } from 'mobx-toolbox'
 
 class SentencesSwitcherStore {

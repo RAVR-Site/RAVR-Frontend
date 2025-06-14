@@ -1,5 +1,5 @@
 import { showNotification } from '@/features/notifications';
-import { makeAutoObservable, toJS } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import {
   mobxSaiFetch as mobxQuery,
   mobxSaiHandler as mobxQueryHandler,
@@ -7,7 +7,7 @@ import {
 } from 'mobx-toolbox';
 
 import { lessonApi } from '../../api/lessonApi';
-import { LessonInfoApiResponse, LessonInfoApiRequestData, LessonResultApiRequestData, LessonResultApiResponse } from '../types';
+import { LessonInfoApiRequestData, LessonInfoApiResponse, LessonResultApiRequestData, LessonResultApiResponse } from '../types';
 
 class LessonApiStore {
   constructor() {

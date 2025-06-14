@@ -1,4 +1,4 @@
-import { FormattedLessonInfo, LessonInfo } from '@/entities/lesson';
+import { FormattedLessonInfo } from '@/entities/lesson';
 import { LevelData } from '@/features/levels-nav';
 import { formatTime } from '@/shared/lib/utils/format-time/formatTime';
 

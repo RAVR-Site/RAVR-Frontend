@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import {
   lessonApiStore,
   PracticeLessonData,
-  selectedLessonStore,
   useGetLessonData,
 } from '@/entities/lesson'
 import { LessonOverview } from '@/entities/lesson-overview'
+import { showNotification } from '@/features/notifications'
 import { AsyncDataRender, Button, P } from '@/shared/ui'
 import { timerStore } from '@/shared/ui/Timer'
 import cn from 'classnames'
@@ -26,7 +26,10 @@ export const PracticeLesson = observer(({}) => {
     getResultsLesson,
   } = practiceLessonStore
 
-  const { getSpentTime, isTimeEndStore: { isTimeEnd } } = timerStore
+  const {
+    getSpentTime,
+    isTimeEndStore: { isTimeEnd },
+  } = timerStore
 
   const {
     getLessonInfoResponse: { data: lessonInfo, status },
@@ -57,7 +60,12 @@ export const PracticeLesson = observer(({}) => {
   }
 
   const handlePickedVariant = (index: number) => {
-    
+    if (isTimeEnd) {
+      showNotification('error', 'Время закончилось')
+
+      return
+    }
+
     setPickedVariants(index)
   }
 
@@ -123,7 +131,12 @@ export const PracticeLesson = observer(({}) => {
               ))}
           </div>
         </div>
-        <div className={cn(s.buttons, isSubmit && s.buttonsSubmit)}>
+        <div
+          className={cn(
+            s.buttons,
+            isSubmit && s.buttonsSubmit
+          )}
+        >
           {data.variants
             .slice(...sentencesSlice())
             .map((variant, index) => (

@@ -1,6 +1,5 @@
 // VocabularyLessonStore.ts
 import { lessonApiStore, LessonMode, selectedLessonStore, VocabularyLessonData } from '@/entities/lesson';
-import { lessonApi } from '@/entities/lesson/api/lessonApi';
 import { timerStore } from '@/shared/ui/Timer/model/timerStore';
 import { makeAutoObservable } from 'mobx';
 

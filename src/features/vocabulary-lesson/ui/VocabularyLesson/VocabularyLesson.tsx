@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import {
   lessonApiStore,
@@ -9,19 +8,15 @@ import {
   useGetLessonData,
 } from '@/entities/lesson'
 import { LessonOverview } from '@/entities/lesson-overview'
-import { Button, P } from '@/shared/ui'
-import cn from 'classnames'
+import { Button } from '@/shared/ui'
 
 import { vocabularyLessonStore } from '../../model/vocabularyLessonStore'
 import { WordGroup } from '../WordGroup/WordGroup'
-import { WordTile } from '../WordTile/WordTile'
 
 import s from './VocabularyLesson.module.scss'
 
 export const VocabularyLesson = observer(
   ({}: VocabularyLessonProps) => {
-    const navigate = useNavigate()
-
     // STORES
     const {
       setVocabularyWords,

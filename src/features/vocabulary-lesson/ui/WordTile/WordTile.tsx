@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite'
 
+import { showNotification } from '@/features/notifications'
 import { P } from '@/shared/ui'
+import { timerStore } from '@/shared/ui/Timer'
 import cn from 'classnames'
 
 import { vocabularyLessonStore } from '../../model/vocabularyLessonStore'
@@ -15,13 +17,26 @@ export const WordTile = observer(
     isCorrect,
     isWrong,
   }: WordTileProps) => {
-    const { setPickEnglishWord, setPickRussianWord, lessonIsCompleted } =
-      vocabularyLessonStore
+    const {
+      setPickEnglishWord,
+      setPickRussianWord,
+      lessonIsCompleted,
+    } = vocabularyLessonStore
+
+    const {
+      isTimeEndStore: { isTimeEnd },
+    } = timerStore
 
     const isPick = isSelected || isCorrect || isWrong
 
     const handlePick = () => {
       if (isPick || lessonIsCompleted) return
+
+      if (isTimeEnd) {
+        showNotification('error', 'Время закончилось')
+
+        return
+      }
 
       if (type === 'english') {
         setPickEnglishWord(word)

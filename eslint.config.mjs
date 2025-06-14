@@ -8,6 +8,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import perfectionist from 'eslint-plugin-perfectionist';
 import react from 'eslint-plugin-react';
+import unusedImports from 'eslint-plugin-unused-imports';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,6 +31,7 @@ const eslintConfig = [
       'react-refresh': reactRefresh,
       'perfectionist': perfectionist,
       'react': react,
+      'unused-imports': unusedImports,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -74,6 +76,11 @@ const eslintConfig = [
         },
       ],
       'max-lines': ['error', 300],
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+      ]
     },
   },
 ];

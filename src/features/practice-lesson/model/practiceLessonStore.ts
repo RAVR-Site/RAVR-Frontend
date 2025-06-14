@@ -1,4 +1,4 @@
-import { lessonApiStore, LessonMode } from '@/entities/lesson'
+import { lessonApiStore } from '@/entities/lesson'
 import { sentencesSwitcherStore } from '@/features/practice-lesson/ui/sentences-switcher'
 import { makeAutoObservable, toJS } from 'mobx'
 import { mobxState } from 'mobx-toolbox'

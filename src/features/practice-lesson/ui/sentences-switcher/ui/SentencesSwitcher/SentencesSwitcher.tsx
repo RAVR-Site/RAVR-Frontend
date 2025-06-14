@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 
 import { practiceLessonStore } from '@/features/practice-lesson'
 import { P } from '@/shared/ui'

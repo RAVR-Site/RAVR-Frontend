@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { LessonMode } from '@/entities/lesson'
 import { showNotification } from '@/features/notifications'
 import { Button, P } from '@/shared/ui'
+import { timerStore } from '@/shared/ui/Timer'
 import cn from 'classnames'
 
 import { grammarLessonStore } from '../model/grammarLessonInputStore'
@@ -17,6 +18,10 @@ export const GrammarInput = observer(
     type,
   }: GrammarInputProps) => {
     const {
+      isTimeEndStore: { isTimeEnd },
+    } = timerStore
+
+    const {
       indexCoupleOfWordsState: {
         setIndexCoupleOfWords,
         indexCoupleOfWords,
@@ -29,6 +34,12 @@ export const GrammarInput = observer(
       useState<boolean>(false)
 
     const handleLeverClick = () => {
+      if (isTimeEnd) {
+        showNotification('error', 'Время закончилось')
+
+        return
+      }
+
       setIndexCoupleOfWords(prev => {
         if (prev < coupleOfWords.length - 1) return prev + 1
         else {

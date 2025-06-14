@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite'
 
-import { toJS } from 'mobx'
-
 import { vocabularyLessonStore } from '../../model/vocabularyLessonStore'
 import { WordTile } from '../WordTile/WordTile'
 

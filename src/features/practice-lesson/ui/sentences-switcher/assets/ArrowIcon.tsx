@@ -1,5 +1,3 @@
-import s from './ArrowIcon.module.scss'
-
 export const ArrowIcon = ({
   clickable = false,
   rotate = false,
@@ -12,7 +10,10 @@ export const ArrowIcon = ({
       viewBox={'0 0 16 11'}
       fill={'none'}
       xmlns={'http://www.w3.org/2000/svg'}
-      style={{ rotate: rotate ? '180deg' : '0deg' }}
+      style={{
+        rotate: rotate ? '180deg' : '0deg',
+        cursor: clickable ? 'pointer' : 'default',
+      }}
     >
       <path
         d={

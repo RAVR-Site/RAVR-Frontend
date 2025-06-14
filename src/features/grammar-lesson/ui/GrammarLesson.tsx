@@ -7,7 +7,6 @@ import {
 } from '@/entities/grammar-input'
 import {
   lessonApiStore,
-  LessonInfoApiResponse,
   LessonInfoApiResponseData,
   LessonResult,
   selectedLessonStore,

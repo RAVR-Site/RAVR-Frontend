@@ -1,7 +1,6 @@
 import {
   ButtonHTMLAttributes,
   CSSProperties,
-  isValidElement,
   ReactNode,
 } from 'react'
 
