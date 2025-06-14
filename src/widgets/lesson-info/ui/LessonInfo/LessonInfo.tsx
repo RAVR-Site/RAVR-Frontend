@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { useLayoutEffect } from 'react'
 import {
   Navigate,
   useNavigate,
@@ -19,7 +18,6 @@ import {
   P,
 } from '@/shared/ui'
 
-import { formatLessonInfo } from '../../lib/formatLessonInfo'
 import { lessonDescription } from '../../model/lessonDescription'
 // import { mockLessonInfo } from '../../model/mockLessonInfoData'
 
@@ -35,7 +33,7 @@ export const LessonInfo = observer(
     const { getLessonInfoRequest } = lessonApiStore
 
     const {
-      selectedLessonStore: { setSelectedLesson },
+      selectedLessonState: { setSelectedLesson },
     } = selectedLessonStore
 
     const {

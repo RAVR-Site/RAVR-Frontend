@@ -1,8 +1,6 @@
 import axios, { CreateAxiosDefaults } from 'axios';
-import Cookies from 'js-cookie';
 
-import { getAccessToken, saveAccessToken } from '../lib/utils/token-utils/tokenUtils';
-import { RefreshResponse } from '../model/types';
+import { getAccessToken, removeAccessToken } from '../lib/utils/token-utils/tokenUtils';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -28,14 +26,12 @@ export const createInstance = () => {
       ) {
         try {
           originalRequest._isRetry = true
-        } catch (refreshError) {
-          // const errorCode = errorHandler(refreshError)
-          // if (
-          //   errorCode === 'TOKEN_EXPIRED' ||
-          //   errorCode === 'INVALID_TOKEN'
-          // ) {
-          //   removeAccessToken()
-          // }
+        } catch (refreshError: any) {
+          if (
+            refreshError.message === 'invalid token'
+          ) {
+            removeAccessToken()
+          }
         }
       }
 

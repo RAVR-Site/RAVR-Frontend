@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
-import { GrammarInput } from '@/entities/grammar-input'
+import {
+  GrammarInput,
+  grammarLessonStore,
+} from '@/entities/grammar-input'
 import {
   lessonApiStore,
-  LessonInfoApiResponse,
   LessonInfoApiResponseData,
   LessonResult,
   selectedLessonStore,
@@ -12,16 +14,24 @@ import {
 } from '@/entities/lesson'
 import { LessonOverview } from '@/entities/lesson-overview'
 import { AsyncDataRender, Button } from '@/shared/ui'
+import { timerStore } from '@/shared/ui/Timer'
 
 import s from './GrammarLesson.module.scss'
 
 export const GrammarLesson = observer(() => {
   const {
     getLessonInfoResponse: { data: lessonInfo, status },
+    setLessonResultRequest,
   } = lessonApiStore
 
+  const { getSpentTime } = timerStore
+
   const {
-    selectedLessonStore: { selectedLesson },
+    indexCoupleOfWordsState: { indexCoupleOfWords },
+  } = grammarLessonStore
+
+  const {
+    selectedLessonState: { selectedLesson },
   } = selectedLessonStore
 
   const color = useGetLessonColor('grammar')
@@ -33,34 +43,35 @@ export const GrammarLesson = observer(() => {
   const handleSubmit = () => {
     setSubmitted(true)
 
-    const random = Math.random()
+    const isCorrect =
+      lessonInfo?.data?.lesson_data.answer_index[0] ===
+      indexCoupleOfWords
 
-    if (selectedLesson?.lessonMode === 'easy') {
-      if (random > 0.6) {
-        setLessonResult('good')
-      } else if (random > 0.3) {
-        setLessonResult('normal')
-      } else {
-        setLessonResult('bad')
-      }
-    } else {
-      if (random > 0.5) {
-        setLessonResult('good')
-      } else {
-        setLessonResult('bad')
-      }
-    }
+    setLessonResult(isCorrect ? 'good' : 'bad')
+
+    setLessonResultRequest({
+      lesson_id: selectedLesson?.lessonNumber ?? 0,
+      time_taken: getSpentTime(),
+    })
   }
 
   const render = (data: LessonInfoApiResponseData) => {
     return (
       <>
         <div className={s.grammarLesson}>
-          <GrammarInput words={data.type === 'grammar' ? data.lesson_data.variants : []} />
+          <GrammarInput
+            sentence={data.lesson_data.sentences[0]}
+            words={
+              data.type === 'grammar'
+                ? data.lesson_data.variants
+                : []
+            }
+            type={selectedLesson?.lessonMode}
+          />
         </div>
         {submitted ? (
           <LessonOverview
-            lessonMode={selectedLesson?.lessonMode}
+            lessonMode={'hard'}
             lessonResult={lessonResult}
             iconsSize={{ width: 64, height: 64 }}
           />
@@ -94,7 +105,7 @@ export const GrammarLesson = observer(() => {
     <AsyncDataRender
       status={status}
       data={lessonInfo?.data}
-      renderContent={(data) => render(data)}
+      renderContent={data => render(data)}
     />
   )
 })

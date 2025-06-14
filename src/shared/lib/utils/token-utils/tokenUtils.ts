@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 export const getAccessToken = () => {
   const accessToken = Cookies.get('access_token')
 
-  return accessToken ?? null
+  return accessToken
 }
 
 export const saveAccessToken = (accessToken: string) => {

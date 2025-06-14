@@ -1,0 +1,108 @@
+@use 'variables' as *;
+
+.practiceLessonWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  height: 100%;
+}
+
+.practiceLesson {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  flex-grow: 1;
+  padding-top: 4rem;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.condition {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+      
+  width: 100%;
+  max-width: 450px;
+
+  background-color: $blue;
+  border-radius: 20px;
+
+  padding: 0.75rem 0 ;
+}
+
+.sentences {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sentence {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  justify-self: flex-start;
+  align-self: flex-start;
+
+  border: 2px solid $black;
+  border-radius: 0 20px 20px 20px;
+
+  padding: 1rem 1.5rem 1rem 3rem;
+}
+
+.pickedVariant {
+  width: 100%;
+  max-width: 464px;
+
+  position: relative;
+
+  border: 2px solid $black;
+  border-radius: 20px 0 20px 20px;
+
+  padding: 2rem 3rem 2rem 1.5rem;
+  
+  justify-self: flex-end;
+  align-self: flex-end;
+  
+  white-space: pre-wrap;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  &Submit {
+    display: none;
+  }
+}
+
+.buttonVariant {
+  position: relative;
+}
+
+.nextButtons {
+  width: 100%;
+  max-width: 50%;
+
+  align-self: center;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+
+  &.nextButtonsSubmit {
+    justify-content: center;
+  }
+}

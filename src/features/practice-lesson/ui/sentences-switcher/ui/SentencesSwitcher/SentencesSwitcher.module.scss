@@ -1,0 +1,40 @@
+.switcher {
+  user-select: none;
+  -webkit-user-select: none; /* Для Safari и старых версий Chrome */
+  -moz-user-select: none;    /* Для Firefox */
+  -ms-user-select: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  
+  position: absolute;
+  content: '';
+  
+  width: 20px;
+
+  top: 10.5px;
+  left: 22.5px;
+}
+
+.arrow {
+  height: 16px;
+}
+
+.arrowClickable {
+  cursor: pointer;
+}
+
+.clickable {
+  gap: 0;
+  top: 0;
+  left: 0;
+  position: relative;
+}
+
+.noSpace {
+  gap: 0;
+  top: 4.5px;
+  left: 32px;
+}

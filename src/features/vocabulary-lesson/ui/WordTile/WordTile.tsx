@@ -1,57 +1,72 @@
-// import { observer } from 'mobx-react-lite'
-// import { useState } from 'react'
+import { observer } from 'mobx-react-lite'
 
-// import { P } from '@/shared/ui'
-// import cn from 'classnames'
+import { showNotification } from '@/features/notifications'
+import { Button, P } from '@/shared/ui'
+import { timerStore } from '@/shared/ui/Timer'
+import cn from 'classnames'
 
-// import { vocabularyLessonStore } from '../../model/vocabularyLessonStore'
+import { vocabularyLessonStore } from '../../model/vocabularyLessonStore'
 
-// import s from './WordTile.module.scss'
+import s from './WordTile.module.scss'
 
-// export const WordTile = observer(
-//   ({
-//     word,
-//     type,
-//     isSelected,
-//     isCorrect,
-//     isWrong,
-//   }: WordTileProps) => {
-//     const { setPickEnglishWord, setPickRussianWord } =
-//       vocabularyLessonStore
+export const WordTile = observer(
+  ({
+    word,
+    type,
+    isSelected,
+    isCorrect,
+    isWrong,
+  }: WordTileProps) => {
+    const {
+      setPickEnglishWord,
+      setPickRussianWord,
+      lessonIsCompleted,
+    } = vocabularyLessonStore
 
-//     const isPick = isSelected || isCorrect || isWrong
+    const {
+      isTimeEndStore: { isTimeEnd },
+    } = timerStore
 
-//     const handlePick = () => {
-//       if (isPick) return
+    const isPick = isSelected || isCorrect || isWrong
 
-//       if (type === 'english') {
-//         setPickEnglishWord(word)
-//       } else {
-//         setPickRussianWord(word)
-//       }
-//     }
+    const handlePick = () => {
+      if (isPick || lessonIsCompleted) return
 
-//     return (
-//       <div
-//         className={cn(s.word, {
-//           [s.wordSelected]: isSelected,
-//           [s.wordRight]: isCorrect,
-//           [s.wordWrong]: isWrong,
-//         })}
-//         onClick={handlePick}
-//       >
-//         <P color={isPick ? 'white' : 'black'} fontSize={24}>
-//           {word}
-//         </P>
-//       </div>
-//     )
-//   }
-// )
+      if (isTimeEnd) {
+        showNotification('error', 'Время закончилось')
 
-// interface WordTileProps {
-//   word: string
-//   type: 'english' | 'russian'
-//   isSelected?: boolean
-//   isCorrect?: boolean
-//   isWrong?: boolean
-// }
+        return
+      }
+
+      if (type === 'english') {
+        setPickEnglishWord(word)
+      } else {
+        setPickRussianWord(word)
+      }
+    }
+
+    return (
+      <Button
+        className={cn(s.word, {
+          [s.wordSelected]: isSelected,
+          [s.wordRight]: isCorrect,
+          [s.wordWrong]: isWrong,
+        })}
+        onClick={handlePick}
+        withText={false}
+      >
+        <P color={isPick ? 'white' : 'black'} fontSize={24}>
+          {word}
+        </P>
+      </Button>
+    )
+  }
+)
+
+interface WordTileProps {
+  word: string
+  type: 'english' | 'russian'
+  isSelected?: boolean
+  isCorrect?: boolean
+  isWrong?: boolean
+}

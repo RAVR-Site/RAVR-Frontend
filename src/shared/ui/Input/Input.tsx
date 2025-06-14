@@ -15,7 +15,6 @@ export const Input = ({
   labelClass = '',
   inputClass,
   withEyeIcon = false,
-  type,
   ...props
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -23,7 +22,7 @@ export const Input = ({
   return (
     <div className={s.allInput}>
       {label && (
-        <label className={s.label}>
+        <label className={cn(s.label, labelClass)}>
           <P color={'black'} fontSize={20}>
             {label}
           </P>

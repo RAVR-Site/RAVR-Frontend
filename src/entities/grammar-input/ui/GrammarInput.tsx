@@ -1,86 +1,131 @@
+import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
+import { LessonMode } from '@/entities/lesson'
+import { showNotification } from '@/features/notifications'
 import { Button, P } from '@/shared/ui'
+import { timerStore } from '@/shared/ui/Timer'
 import cn from 'classnames'
+
+import { grammarLessonStore } from '../model/grammarLessonInputStore'
 
 import s from './GrammarInput.module.scss'
 
-export const GrammarInput = ({
-  words: coupleOfWords,
-}: GrammarInputProps) => {
-  const [activeLever, setActiveLever] =
-    useState<boolean>(false)
-  const [animationWord, setAnimationWord] =
-    useState<boolean>(false)
+export const GrammarInput = observer(
+  ({
+    words: coupleOfWords,
+    sentence,
+    type,
+  }: GrammarInputProps) => {
+    const {
+      isTimeEndStore: { isTimeEnd },
+    } = timerStore
 
-  const [indexCoupleOfWords, setIndexCoupleOfWords] =
-    useState<number>(0)
+    const {
+      indexCoupleOfWordsState: {
+        setIndexCoupleOfWords,
+        indexCoupleOfWords,
+      },
+    } = grammarLessonStore
 
-  const handleLeverClick = () => {
-    setIndexCoupleOfWords(prev => {
-      if (prev < coupleOfWords.length - 1) return prev + 1
-      else return 0
-    })
+    const [activeLever, setActiveLever] =
+      useState<boolean>(false)
+    const [animationWord, setAnimationWord] =
+      useState<boolean>(false)
 
-    setActiveLever(true)
-    setAnimationWord(true)
+    const handleLeverClick = () => {
+      if (isTimeEnd) {
+        showNotification('error', 'Время закончилось')
 
-    setTimeout(() => setActiveLever(false), 300)
-    setTimeout(() => setAnimationWord(false), 2000)
-  }
+        return
+      }
 
-  return (
-    <div className={s.grammarInput}>
-      <div className={s.top}>
-        <P
-          fontSize={32}
-          fontFamily={'DaysOne'}
-          color={'black'}
-        >
-          Предложение которое надо подобрать
-        </P>
-      </div>
-      <div className={s.bottom}>
-        <div className={s.words}>
-          {coupleOfWords[indexCoupleOfWords]
-            .split(' ')
-            .map((word, index) => (
-              <div key={index + word} className={s.word}>
-                <P
-                  fontSize={24}
-                  fontFamily={'DaysOne'}
-                  color={'black'}
-                  className={cn(
-                    s.wordText,
-                    animationWord && s.wordAnimation
-                  )}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  {word}
-                </P>
-              </div>
-            ))}
+      setIndexCoupleOfWords(prev => {
+        if (prev < coupleOfWords.length - 1) return prev + 1
+        else {
+          if (type === 'easy') return 0
+
+          showNotification(
+            'error',
+            'Вы больше не можете выбрать предложение, это правила режима hard',
+            2000
+          )
+
+          return coupleOfWords.length - 1
+        }
+      })
+
+      if (type === 'easy' && indexCoupleOfWords !== 4) {
+        setActiveLever(true)
+        setAnimationWord(true)
+
+        const wordCount = coupleOfWords[0].split(' ').length
+
+        setTimeout(() => setActiveLever(false), 300)
+        setTimeout(
+          () => setAnimationWord(false),
+          wordCount * 230
+        )
+      }
+    }
+
+    return (
+      <div className={s.grammarInput}>
+        <div className={s.top}>
+          <P
+            fontSize={24}
+            fontFamily={'DaysOne'}
+            color={'black'}
+            textAlign={'center'}
+          >
+            {sentence}
+          </P>
         </div>
-        <Button
-          onClick={handleLeverClick}
-          disabled={activeLever || animationWord}
-        >
-          <div className={s.lever}>
-            <div
-              className={cn(
-                s.stick,
-                activeLever && s.stickActive
-              )}
-            ></div>
+        <div className={s.bottom}>
+          <div className={s.words}>
+            {coupleOfWords[indexCoupleOfWords]
+              .split(' ')
+              .map((word, index) => (
+                <div key={index + word} className={s.word}>
+                  <P
+                    fontSize={24}
+                    fontFamily={'DaysOne'}
+                    color={'black'}
+                    className={cn(
+                      s.wordText,
+                      animationWord && s.wordAnimation
+                    )}
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                    }}
+                  >
+                    {word}
+                  </P>
+                </div>
+              ))}
           </div>
-        </Button>
+          <Button
+            onClick={handleLeverClick}
+            disabled={activeLever || animationWord}
+            withText={false}
+          >
+            <div className={s.lever}>
+              <div
+                className={cn(
+                  s.stick,
+                  activeLever && s.stickActive
+                )}
+              ></div>
+            </div>
+          </Button>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
 
 interface GrammarInputProps {
+  sentence: string
   words: string[]
+  type?: LessonMode
 }

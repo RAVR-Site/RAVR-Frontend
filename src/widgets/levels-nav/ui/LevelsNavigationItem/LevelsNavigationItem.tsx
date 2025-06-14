@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
 import {
-  lessonApiStore,
   LessonType,
 } from '@/entities/lesson'
 import { LevelData } from '@/features/levels-nav'

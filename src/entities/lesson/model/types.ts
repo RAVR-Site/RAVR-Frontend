@@ -27,12 +27,21 @@ export type GrammarLessonData = {
   variants: string[];
 };
 
-export type VocabularyLessonData = {
+export type VocabularyLessonDataBase = {
   answer_index: [];
   condition: null;
   sentences: [];
-  variants: Array<Record<string, string>>;
 };
+
+export type VocabularyLessonDataEasy = VocabularyLessonDataBase & {
+  variants: Record<string, string>;
+};
+
+export type VocabularyLessonDataHard = VocabularyLessonDataBase & {
+  variants: Record<string, [string, string]>;
+};
+
+export type VocabularyLessonData = VocabularyLessonDataEasy | VocabularyLessonDataHard
 
 export type PracticeLessonData = {
   answer_index: number[];
@@ -46,18 +55,25 @@ export type PracticeLessonData = {
 export type LessonInfoApiResponseData = {
   id: number;
   level: number;
-  mode: LessonMode
 } & (
     | {
       type: 'grammar';
+      mode: LessonMode;
       lesson_data: GrammarLessonData;
     }
     | {
       type: 'vocabulary';
-      lesson_data: VocabularyLessonData;
+      mode: 'easy';
+      lesson_data: VocabularyLessonDataEasy;
+    }
+    | {
+      type: 'vocabulary';
+      mode: 'hard';
+      lesson_data: VocabularyLessonDataHard;
     }
     | {
       type: 'practice';
+      mode: LessonMode;
       lesson_data: PracticeLessonData;
     }
   );
@@ -67,6 +83,26 @@ export type LessonInfoApiResponse = ApiResponseData<LessonInfoApiResponseData>
 export type LessonInfoApiRequestData = {
   id: number
 }
+
+// LESSON RESULT API
+
+export type LessonResultApiResponseData = {
+  results: {
+    position: number
+    timeTaken: number
+    username: string
+    xp: number
+  }[]
+  userPosition: number
+}
+
+export type LessonResultApiResponse = ApiResponseData<LessonResultApiResponseData>
+
+export type LessonResultApiRequestData = {
+  lesson_id: number
+  time_taken: number
+}
+
 
 // FORMATTED DATA
 export type FormattedLessonComplexity = {

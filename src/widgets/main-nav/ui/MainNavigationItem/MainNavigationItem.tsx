@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 
-import { levelsNavStore } from '@/features/levels-nav'
 import { P } from '@/shared/ui'
 import { ArrowIcon, CupIcon } from '@/shared/ui/icons'
 import cn from 'classnames'
@@ -12,16 +11,8 @@ import s from './MainNavigationItem.module.scss'
 
 export const MainNavigationItem = observer(
   ({ item, color }: MainNavigationItemProps) => {
-    const { getLevelsNavRequest } = levelsNavStore
-
-    const handleClick = () => {
-      if (!item.lessonType) return
-
-      getLevelsNavRequest({ lessonType: item.lessonType })
-    }
-
     return (
-      <Link to={item.link} onClick={handleClick}>
+      <Link to={item.link}>
         <li
           key={item.link}
           className={cn(s.item, s[item.color])}

@@ -22,6 +22,7 @@ class LevelsNavStore {
       {
         id: `getLevelsNav-${body.lessonType}`,
         fetchIfHaveData: false,
+        fetchIfPending: false,
       }
     )
 

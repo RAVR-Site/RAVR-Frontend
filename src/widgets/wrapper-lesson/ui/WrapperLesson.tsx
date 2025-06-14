@@ -5,9 +5,9 @@ import {
   LessonType,
   selectedLessonStore,
 } from '@/entities/lesson'
-import { Button, P } from '@/shared/ui'
+import { P } from '@/shared/ui'
 import { TipsIcon } from '@/shared/ui/icons'
-import { Timer } from '@/shared/ui/Timer/Timer'
+import { Timer } from '@/shared/ui/Timer/ui/Timer'
 
 import s from './WrapperLesson.module.scss'
 
@@ -16,7 +16,7 @@ export const WrapperLesson = ({
   lessonType,
 }: WrapperLessonProps) => {
   const {
-    selectedLessonStore: { selectedLesson },
+    selectedLessonState: { selectedLesson },
   } = selectedLessonStore
 
   if (!selectedLesson) {
