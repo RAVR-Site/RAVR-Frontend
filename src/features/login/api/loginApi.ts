@@ -6,4 +6,4 @@ import {
 } from '../model/types'
 
 export const login = async (data: LoginRequestData) =>
-  (await authApi.post<LoginResponse>('/auth/login', data)).data
+  (await authApi.post<LoginResponse>('/login', data)).data

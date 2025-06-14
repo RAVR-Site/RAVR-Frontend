@@ -58,6 +58,7 @@ export const LevelInfo = ({
   // HANDLERS
   const handleEasyClick = () => {
     setSelectedLesson({
+      lessonType: lessonType,
       lessonNumber: Number(lessonNumber),
       lessonMode: 'easy',
       modeData: data.easy,
@@ -66,10 +67,13 @@ export const LevelInfo = ({
   }
 
   const handleHardClick = () => {
+    if (!data.hard) return
+    
     setSelectedLesson({
+      lessonType: lessonType,
       lessonNumber: Number(lessonNumber),
       lessonMode: 'hard',
-      modeData: data.easy,
+      modeData: data.hard,
     })
     navigate(`/${lessonType}/lesson/${lessonNumber}`)
   }

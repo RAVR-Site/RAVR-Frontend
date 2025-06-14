@@ -7,7 +7,7 @@ import { RefreshResponse } from '../model/types';
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const options: CreateAxiosDefaults = {
-  baseURL: `${BASE_URL}/api`,
+  baseURL: `${BASE_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -28,20 +28,6 @@ export const createInstance = () => {
       ) {
         try {
           originalRequest._isRetry = true
-
-          const result =
-            await instance.post<RefreshResponse>(
-              '/auth/refresh',
-              {
-                refreshToken: Cookies.get('refresh_token'),
-              }
-            )
-
-          if (result.data && error.config) {
-            saveAccessToken(result.data.data.accessToken)
-
-            return instance.request({ ...error.config })
-          }
         } catch (refreshError) {
           // const errorCode = errorHandler(refreshError)
           // if (

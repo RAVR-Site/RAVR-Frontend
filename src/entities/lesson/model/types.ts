@@ -15,6 +15,8 @@ type LessonСomplexity = {
 }
 
 export type LessonType = 'grammar' | 'vocabulary' | 'practice'
+export type LessonResult = 'good' | 'normal' | 'bad'
+export type LessonMode = 'easy' | 'hard'
 
 // FORMATTED DATA
 export type FormattedLessonInfo = {
@@ -45,7 +47,25 @@ export type LessonInfoApiRequestData = {
 
 // SELECTED LESSON
 export type SelectedLesson = {
-  lessonMode: 'easy' | 'hard'
+  lessonMode: LessonMode
   lessonNumber: number
+  lessonType: LessonType
+  lessonData?: VocabularyLesson | GrammarLesson | PracticeLesson
   modeData: LessonСomplexity
+}
+
+export type VocabularyLesson = {
+  words: Map<string, string>
+}
+
+export type GrammarLesson = {
+  words: string[][]
+}
+
+export type PracticeLesson = {
+  data: {
+    sentence: string
+    choiceSentences: string[]
+    correctSentenceIndex: number
+  }
 }

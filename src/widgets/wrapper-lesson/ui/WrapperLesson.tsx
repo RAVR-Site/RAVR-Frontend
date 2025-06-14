@@ -9,8 +9,6 @@ import { Button, P } from '@/shared/ui'
 import { TipsIcon } from '@/shared/ui/icons'
 import { Timer } from '@/shared/ui/Timer/Timer'
 
-import { useGetLessonColor } from '../lib/useGetLessonColor'
-
 import s from './WrapperLesson.module.scss'
 
 export const WrapperLesson = ({
@@ -20,8 +18,6 @@ export const WrapperLesson = ({
   const {
     selectedLessonStore: { selectedLesson },
   } = selectedLessonStore
-
-  const color = useGetLessonColor(lessonType)
 
   if (!selectedLesson) {
     return <Navigate to={'/'} />
@@ -60,25 +56,6 @@ export const WrapperLesson = ({
         />
       </div>
       {children}
-      <div className={s.buttons}>
-        <Button
-          backgroundColor={color.clear.backgroundColor}
-          borderColor={color.clear.borderColor}
-          textColor={color.clear.textColor}
-          padding={'0.25rem 0'}
-          width={'220px'}
-        >
-          Clear All
-        </Button>
-        <Button
-          backgroundColor={color.submit.backgroundColor}
-          textColor={color.submit.textColor}
-          padding={'0.25rem 0'}
-          width={'220px'}
-        >
-          Submit
-        </Button>
-      </div>
       <div className={s.tips}>
         <TipsIcon size={{ width: 40, height: 40 }} />
       </div>

@@ -5,3 +5,12 @@
   gap: 2rem;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 2rem;
+
+  padding: calc((1rem + 10px) / 2) 0 ;
+}
