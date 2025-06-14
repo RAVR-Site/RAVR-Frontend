@@ -1,19 +1,20 @@
 import { FormattedLessonInfo, LessonInfo } from '@/entities/lesson';
+import { LevelData } from '@/features/levels-nav';
 import { formatTime } from '@/shared/lib/utils/format-time/formatTime';
 
-export const formatLessonInfo = (data: LessonInfo): FormattedLessonInfo => {
+export const formatLessonInfo = (data: LevelData): FormattedLessonInfo  => {
+  console.log(data.easy, data.hard)
+
   return {
     ...data,
     easy: {
       ...data.easy,
-      timeToFinish: formatTime(data.easy.timeToFinish),
-      fpsRecord: formatTime(data.easy.fpsRecord),
+      fpsRecord: formatTime(data.easy.fpsRecord ?? 30),
       userRecord: data.easy.userRecord ? formatTime(data.easy.userRecord) : undefined,
     },
     hard: data.hard ? {
       ...data.hard,
-      timeToFinish: formatTime(data.hard.timeToFinish),
-      fpsRecord: formatTime(data.hard.fpsRecord),
+      fpsRecord: formatTime(data.hard.fpsRecord ?? 45),
       userRecord: data.hard.userRecord ? formatTime(data.hard.userRecord) : undefined,
     } : undefined,
   };

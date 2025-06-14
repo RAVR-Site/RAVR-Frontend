@@ -1,5 +1,7 @@
+import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 
+import { levelsNavStore } from '@/features/levels-nav'
 import { P } from '@/shared/ui'
 import { ArrowIcon, CupIcon } from '@/shared/ui/icons'
 import cn from 'classnames'
@@ -8,40 +10,47 @@ import { NavItem } from '../../model/navList'
 
 import s from './MainNavigationItem.module.scss'
 
-export const MainNavigationItem = ({
-  item,
-  color,
-}: MainNavigationItemProps) => {
-  return (
-    <Link to={item.link}>
-      <li
-        key={item.link}
-        className={cn(s.item, s[item.color])}
-      >
-        {item?.image && (
-          <div className={s.cup}>
-            <CupIcon />
-          </div>
-        )}
-        <P
-          fontFamily={'DaysOne'}
-          fontSize={32}
-          color={color}
-          textAlign={'center'}
-        >
-          {item.title}
-        </P>
-        <P textAlign={'center'} color={color}>
-          {item.description}
-        </P>
+export const MainNavigationItem = observer(
+  ({ item, color }: MainNavigationItemProps) => {
+    const { getLevelsNavRequest } = levelsNavStore
 
-        <div className={s.arrow}>
-          <ArrowIcon color={color} />
-        </div>
-      </li>
-    </Link>
-  )
-}
+    const handleClick = () => {
+      if (!item.lessonType) return
+
+      getLevelsNavRequest({ lessonType: item.lessonType })
+    }
+
+    return (
+      <Link to={item.link} onClick={handleClick}>
+        <li
+          key={item.link}
+          className={cn(s.item, s[item.color])}
+        >
+          {item?.image && (
+            <div className={s.cup}>
+              <CupIcon />
+            </div>
+          )}
+          <P
+            fontFamily={'DaysOne'}
+            fontSize={32}
+            color={color}
+            textAlign={'center'}
+          >
+            {item.title}
+          </P>
+          <P textAlign={'center'} color={color}>
+            {item.description}
+          </P>
+
+          <div className={s.arrow}>
+            <ArrowIcon color={color} />
+          </div>
+        </li>
+      </Link>
+    )
+  }
+)
 
 interface MainNavigationItemProps {
   item: NavItem

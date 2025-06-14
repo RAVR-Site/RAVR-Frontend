@@ -20,8 +20,6 @@ export const LevelsNavigationItem = ({
 }: LevelsNavigationItemProps) => {
   const navigate = useNavigate()
 
-  const { getLessonInfoRequest } = lessonApiStore
-
   const positionInRow =
     (level.level - 1) % columnsCount
 
@@ -34,11 +32,6 @@ export const LevelsNavigationItem = ({
 
   const handleLessonClick = () => {
     navigate(`/${lessonType}/lesson/${level.level}/info`)
-
-    getLessonInfoRequest({
-      lessonType,
-      levelNumber: level.level,
-    })
   }
 
   return (

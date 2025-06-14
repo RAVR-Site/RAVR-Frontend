@@ -6,4 +6,5 @@ import {
 } from '../model/types'
 
 export const registerApi = async (data: RegisterRequestData) =>
-  (await authApi.post<RegisterResponse>('/register', data)).data
+  (await authApi.post<RegisterResponse>('/auth/register', data)).data
+// 

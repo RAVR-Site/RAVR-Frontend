@@ -20,9 +20,12 @@ class LessonApiStore {
   getLessonInfoRequest = async (body: LessonInfoApiRequestData) => {
     this.getLessonInfoResponse = mobxQuery(lessonApi.getLessonInfo(body),
       {
-        id: `${body.lessonType}-${body.levelNumber}`,
+        id: `${body.id}`,
         fetchIfHaveData: false,
-        fetchIfPending: false
+        fetchIfPending: false,
+        cacheSystem: {
+          setCache: () => { }
+        }
       }
     )
 
