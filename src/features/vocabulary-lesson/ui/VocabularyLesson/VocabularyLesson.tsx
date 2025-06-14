@@ -16,7 +16,7 @@ import { WordGroup } from '../WordGroup/WordGroup'
 import s from './VocabularyLesson.module.scss'
 
 export const VocabularyLesson = observer(
-  ({}: VocabularyLessonProps) => {
+  () => {
     // STORES
     const {
       setVocabularyWords,
@@ -154,5 +154,3 @@ export const VocabularyLesson = observer(
     )
   }
 )
-
-interface VocabularyLessonProps {}

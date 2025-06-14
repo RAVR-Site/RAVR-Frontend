@@ -1,6 +1,5 @@
-
 import { practiceLessonStore } from '@/features/practice-lesson'
-import { P } from '@/shared/ui'
+import { Button, P } from '@/shared/ui'
 import cn from 'classnames'
 
 import { ArrowIcon } from '../../assets/ArrowIcon'
@@ -54,15 +53,16 @@ export const SentencesSwitcher = ({
         noSpace && s.noSpace
       )}
     >
-      <div
+      <Button
         onClick={handlePrevClick}
         className={cn(
           s.arrow,
           clickable && s.arrowClickable
         )}
+        withText={false}
       >
         <ArrowIcon clickable={clickable} color={color} />
-      </div>
+      </Button>
       {withText && (
         <P
           fontFamily={'DaysOne'}
@@ -72,19 +72,20 @@ export const SentencesSwitcher = ({
           {answerIndex}
         </P>
       )}
-      <div
+      <Button
         onClick={handleNextClick}
         className={cn(
           s.arrow,
           clickable && s.arrowClickable
         )}
+        withText={false}
       >
         <ArrowIcon
           clickable={clickable}
           color={color}
           rotate
         />
-      </div>
+      </Button>
     </div>
   )
 }

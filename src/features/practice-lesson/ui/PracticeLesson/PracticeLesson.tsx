@@ -17,7 +17,7 @@ import { SentencesSwitcher } from '../sentences-switcher'
 
 import s from './PracticeLesson.module.scss'
 
-export const PracticeLesson = observer(({}) => {
+export const PracticeLesson = observer(() => {
   const {
     sentencesCountStore: { setSentencesCount },
     pickedVariants,
@@ -141,7 +141,7 @@ export const PracticeLesson = observer(({}) => {
             .slice(...sentencesSlice())
             .map((variant, index) => (
               <Button
-                key={index}
+                key={`${variant}-${index}`}
                 className={s.buttonVariant}
                 onClick={() => handlePickedVariant(index)}
                 backgroundColor={

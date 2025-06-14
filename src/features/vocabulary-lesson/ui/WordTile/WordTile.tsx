@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
 import { showNotification } from '@/features/notifications'
-import { P } from '@/shared/ui'
+import { Button, P } from '@/shared/ui'
 import { timerStore } from '@/shared/ui/Timer'
 import cn from 'classnames'
 
@@ -46,18 +46,19 @@ export const WordTile = observer(
     }
 
     return (
-      <div
+      <Button
         className={cn(s.word, {
           [s.wordSelected]: isSelected,
           [s.wordRight]: isCorrect,
           [s.wordWrong]: isWrong,
         })}
         onClick={handlePick}
+        withText={false}
       >
         <P color={isPick ? 'white' : 'black'} fontSize={24}>
           {word}
         </P>
-      </div>
+      </Button>
     )
   }
 )

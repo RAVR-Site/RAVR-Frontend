@@ -1,13 +1,12 @@
 import { lessonApiStore } from '@/entities/lesson'
 import { sentencesSwitcherStore } from '@/features/practice-lesson/ui/sentences-switcher'
-import { makeAutoObservable, toJS } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { mobxState } from 'mobx-toolbox'
 
 class PracticeLessonStore {
   constructor() {
     makeAutoObservable(this)
   }
-
 
   pickedVariants: number[] = [0, 0]
 
@@ -50,10 +49,7 @@ class PracticeLessonStore {
 
     const comparisonVariants = [this.pickedVariants[0], this.pickedVariants[1] + this.sentencesCountStore.sentencesCount]
 
-    console.log(toJS(comparisonVariants))
-    console.log(toJS(lessonInfo?.data.lesson_data.answer_index))
-
-    if (lessonInfo?.data.lesson_data.answer_index.toString() === comparisonVariants.toString()) {
+    if (lessonInfo?.data.lesson_data.answer_index === comparisonVariants) {
       return 'good'
     } else {
       return 'bad'
