@@ -8,7 +8,7 @@ class SelectLessonStore {
     makeAutoObservable(this)
   }
 
-  selectedLessonStore = mobxState<SelectedLesson | null>(null)('selectedLesson')
+  selectedLessonState = mobxState<SelectedLesson | null>(null)('selectedLesson')
 }
 
 export const selectedLessonStore = new SelectLessonStore()

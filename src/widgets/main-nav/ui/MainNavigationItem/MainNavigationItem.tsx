@@ -12,16 +12,8 @@ import s from './MainNavigationItem.module.scss'
 
 export const MainNavigationItem = observer(
   ({ item, color }: MainNavigationItemProps) => {
-    const { getLevelsNavRequest } = levelsNavStore
-
-    const handleClick = () => {
-      if (!item.lessonType) return
-
-      getLevelsNavRequest({ lessonType: item.lessonType })
-    }
-
     return (
-      <Link to={item.link} onClick={handleClick}>
+      <Link to={item.link}>
         <li
           key={item.link}
           className={cn(s.item, s[item.color])}

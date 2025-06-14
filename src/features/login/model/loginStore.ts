@@ -37,7 +37,8 @@ class LoginStore {
     mobxQueryHandler(
       this.loginResponse,
       response => {
-        saveAccessToken(response.data.accessToken)
+        console.log(response.data)
+        saveAccessToken(response.data.token)
 
         navigate('/')
 
@@ -49,7 +50,7 @@ class LoginStore {
         reset()
 
         toast.dismiss(toastLoadingId)
-        showNotification('error', 'Login failed: ' + error.response.data.message)
+        showNotification('error', 'Login failed: ' + error.response.data.error.message)
       }
     )
   }

@@ -35,7 +35,7 @@ export const LessonInfo = observer(
     const { getLessonInfoRequest } = lessonApiStore
 
     const {
-      selectedLessonStore: { setSelectedLesson },
+      selectedLessonState: { setSelectedLesson },
     } = selectedLessonStore
 
     const {

@@ -13,6 +13,7 @@ import { P } from '../P/P'
 import s from './Button.module.scss'
 
 export const Button = ({
+  withText = true,
   onClick,
   borderColor = 'none',
   backgroundColor = 'none',
@@ -22,6 +23,7 @@ export const Button = ({
   width,
   padding,
   textAlign,
+  className,
   ...props
 }: ButtonProps) => {
   return (
@@ -29,7 +31,8 @@ export const Button = ({
       className={cn(
         s.button,
         s[`backgroundColor-${backgroundColor}`],
-        s[`borderColor-${borderColor}`]
+        s[`borderColor-${borderColor}`],
+        className
       )}
       onClick={onClick}
       style={
@@ -40,9 +43,7 @@ export const Button = ({
       }
       {...props}
     >
-      {isValidElement(children) ? (
-        children
-      ) : (
+      {withText ? (
         <P
           fontFamily={'DaysOne'}
           fontSize={fontSize}
@@ -51,6 +52,8 @@ export const Button = ({
         >
           {children}
         </P>
+      ) : (
+        children
       )}
     </button>
   )
@@ -58,6 +61,8 @@ export const Button = ({
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string
+  withText?: boolean
   onClick?: () => void
   children: ReactNode
   backgroundColor?:
