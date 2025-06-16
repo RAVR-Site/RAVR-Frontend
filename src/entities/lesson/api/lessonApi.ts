@@ -7,5 +7,5 @@ export const lessonApi = {
     (await api.get<LessonInfoApiResponse>(`/lessons/${id}`)).data,
 
   setLessonResult: async (body: LessonResultApiRequestData) =>
-    (await api.post<LessonResultApiResponse>('/results/save', body)).data
+    (await api.post<LessonResultApiResponse>('/lessons/complete', body)).data
 }

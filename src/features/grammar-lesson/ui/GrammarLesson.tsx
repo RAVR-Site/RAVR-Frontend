@@ -24,7 +24,10 @@ export const GrammarLesson = observer(() => {
     setLessonResultRequest,
   } = lessonApiStore
 
-  const { getSpentTime } = timerStore
+  const {
+    getSpentTime,
+    isTimeEndStore: { isTimeEnd },
+  } = timerStore
 
   const {
     indexCoupleOfWordsState: { indexCoupleOfWords },
@@ -50,8 +53,13 @@ export const GrammarLesson = observer(() => {
     setLessonResult(isCorrect ? 'good' : 'bad')
 
     setLessonResultRequest({
-      lesson_id: selectedLesson?.lessonNumber ?? 0,
-      time_taken: getSpentTime(),
+      lessonId: selectedLesson?.lessonNumber ?? 0,
+      earnedExperience: isCorrect
+        ? selectedLesson?.lessonMode === 'hard'
+          ? 200
+          : 100
+        : 0,
+      completionTime: getSpentTime(),
     })
   }
 

@@ -17,9 +17,9 @@ import {
   LoaderPage,
   P,
 } from '@/shared/ui'
+// import { mockLessonInfo } from '../../model/mockLessonInfoData'
 
 import { lessonDescription } from '../../model/lessonDescription'
-// import { mockLessonInfo } from '../../model/mockLessonInfoData'
 
 import s from './LessonInfo.module.scss'
 
@@ -86,6 +86,12 @@ export const LessonInfo = observer(
       })
       navigate(`/${lessonType}/lesson/${lessonNumber}`)
     }
+
+    // useEffect(() => {
+    //   getLevelsNavRequest({
+    //     lessonType: lessonType,
+    //   })
+    // }, [])
 
     const renderLessonInfo = () => {
       return (

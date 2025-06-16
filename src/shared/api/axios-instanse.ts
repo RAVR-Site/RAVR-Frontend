@@ -1,5 +1,6 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 
+import { navigateTo } from '../lib/utils/navigate-to/navigateTo';
 import { getAccessToken, removeAccessToken } from '../lib/utils/token-utils/tokenUtils';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -30,6 +31,7 @@ export const createInstance = () => {
           if (
             refreshError.message === 'invalid token'
           ) {
+            navigateTo('/login')
             removeAccessToken()
           }
         }

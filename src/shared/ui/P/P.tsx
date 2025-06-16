@@ -41,7 +41,7 @@ export const P = ({
 interface ParagraphProps {
   color?: TextParagraphColors
   fontFamily?: 'Anton' | 'DaysOne' | 'Assistant'
-  fontSize?: 10 | 12 | 14 | 15 | 16 | 20 | 24 | 32 | 40 | 48
+  fontSize?: 10 | 12 | 14 | 15 | 16 | 20 | 24 | 32 | 40 | 48 | 64
   fontWeight?: 300 | 400 | 500 | 600 | 700 | 800
   type?: 'base' | 'title' | 'bigTitle' | 'practice'
   textAlign?: 'left' | 'center'

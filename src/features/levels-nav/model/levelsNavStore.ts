@@ -14,11 +14,10 @@ class LevelsNavStore {
   }
 
   // LEVELS NAV API
-
   getLevelsNavResponse: MobxQueryInstance<LevelsNavApiResponse> = {}
 
   getLevelsNavRequest = (body: LevelsNavApiRequestData) => {
-    this.getLevelsNavResponse = mobxQuery(levelsNavApi.getLevelsNav(body),
+    this.getLevelsNavResponse = mobxQuery(() => levelsNavApi.getLevelsNav(body),
       {
         id: `getLevelsNav-${body.lessonType}`,
         fetchIfHaveData: false,
