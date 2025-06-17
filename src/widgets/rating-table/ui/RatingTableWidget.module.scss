@@ -1,0 +1,83 @@
+@use 'sass:color';
+
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+
+  overflow: auto;
+
+  width: calc(100% + 19px);
+  padding-right: 6px;
+
+  &::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 50px;
+    height: 100vh;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-main);
+    border-radius: 50px;
+    transition: opacity 0.3s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    opacity: 0.5;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 2px solid black;
+}
+
+.rowBeforeYou {
+  border-bottom: none;
+}
+
+.rowActive {
+  border: 2px solid var(--color-main);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  flex: 1;
+}
+
+.name {
+  font-size: 1rem;
+  color: #333;
+}
+
+.number {
+  font-size: 1.1rem;
+  color: #7c4dff;
+  font-weight: 700;
+}
+
+.timeAndXp {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

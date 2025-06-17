@@ -1,0 +1,11 @@
+@use 'variables' as *;
+
+.user {
+  width: 100%;
+  height: 90%;
+
+  padding: 3rem;
+
+  border-radius: 28px;
+  background-color: $white;
+}

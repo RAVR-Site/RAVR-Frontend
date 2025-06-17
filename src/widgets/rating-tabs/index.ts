@@ -1,0 +1,1 @@
+export { RatingTabsWidget } from './ui/RatingTabsWidget'

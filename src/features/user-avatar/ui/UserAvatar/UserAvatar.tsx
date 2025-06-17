@@ -12,6 +12,7 @@ export const UserAvatar = ({
   blockSize,
   avatarSize,
   hasBorder = false,
+  notLink = false,
 }: UserAvatarProps) => {
   const navigate = useNavigate()
 
@@ -20,7 +21,8 @@ export const UserAvatar = ({
     : '/public/assets/user-placeholder.svg'
 
   const handleAvatarClick = () => {
-    console.log(getAccessToken())
+    if (notLink) return
+
     if (getAccessToken()) {
       navigate('/user')
     } else {
@@ -61,4 +63,5 @@ interface UserAvatarProps {
   blockSize?: Size
   avatarSize?: Size
   hasBorder?: boolean
+  notLink?: boolean
 }
