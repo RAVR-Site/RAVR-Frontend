@@ -26,6 +26,7 @@ export const AsyncDataRender = observer(
     emptyComponent,
     noDataText = 'No data',
     needPending = true,
+    
     isEmpty = (data: any) =>
       !data ||
       (Array.isArray(data) ? data.length === 0 : false),

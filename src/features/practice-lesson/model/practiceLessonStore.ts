@@ -49,7 +49,7 @@ class PracticeLessonStore {
 
     const comparisonVariants = [this.pickedVariants[0], this.pickedVariants[1] + this.sentencesCountStore.sentencesCount]
 
-    if (lessonInfo?.data.lesson_data.answer_index === comparisonVariants) {
+    if (lessonInfo?.data.lesson_data.answer_index.toString() === comparisonVariants.toString()) {
       return 'good'
     } else {
       return 'bad'

@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { LessonMode } from '@/entities/lesson'
 import { showNotification } from '@/features/notifications'
@@ -55,7 +55,9 @@ export const GrammarInput = observer(
         }
       })
 
-      if (type === 'easy' && indexCoupleOfWords !== 4) {
+      const lastCoupleOfWords = type === 'easy' ? 4 : 3
+
+      if (indexCoupleOfWords !== lastCoupleOfWords) {
         setActiveLever(true)
         setAnimationWord(true)
 
@@ -68,6 +70,12 @@ export const GrammarInput = observer(
         )
       }
     }
+
+    useEffect(() => {
+      return () => {
+        setIndexCoupleOfWords(0)
+      }
+    }, [])
 
     return (
       <div className={s.grammarInput}>

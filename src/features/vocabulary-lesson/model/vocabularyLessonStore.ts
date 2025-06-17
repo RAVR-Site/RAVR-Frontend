@@ -171,13 +171,30 @@ class VocabularyLessonStore {
 
   sendCompletedData = () => {
     const { setLessonResultRequest } = lessonApiStore;
-    const { getSpentTime } = timerStore;
+    const { getSpentTime, isTimeEndStore: { isTimeEnd } } = timerStore;
     const { selectedLessonState: { selectedLesson } } = selectedLessonStore;
+
+    let earnedExperience;
+
+    const resultsLesson = this.getResultsLesson(selectedLesson?.lessonMode)
+
+    if (resultsLesson === 'good') {
+      earnedExperience = selectedLesson?.lessonMode === 'hard'
+        ? 200
+        : 100;
+    } else if (resultsLesson === 'normal') {
+      earnedExperience = selectedLesson?.lessonMode === 'hard'
+        ? 200 / 2
+        : 100 / 2
+    } else {
+      earnedExperience = 0;
+    }
 
     // Отправляем результаты на сервер
     setLessonResultRequest({
-      lesson_id: selectedLesson?.lessonNumber ?? 0,
-      time_taken: getSpentTime(),
+      lessonId: selectedLesson?.lessonNumber ?? 0,
+      completionTime: getSpentTime(),
+      earnedExperience: earnedExperience
     });
 
     this.lessonIsCompleted = true;
@@ -218,6 +235,7 @@ class VocabularyLessonStore {
       }
     }
   }
+
 }
 
 export const vocabularyLessonStore = new VocabularyLessonStore();

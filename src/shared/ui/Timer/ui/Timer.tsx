@@ -18,7 +18,13 @@ export const Timer = observer(
     useEffect(() => {
       setSeconds(timeToFinish ?? 0)
       setAllSeconds(timeToFinish ?? 0)
-    }, [setSeconds, timeToFinish, setAllSeconds])
+
+      return () => {
+        setSeconds(0)
+        setAllSeconds(0)
+        setIsTimeEnd(false)
+      }
+    }, [setSeconds, timeToFinish, setAllSeconds, setIsTimeEnd])
 
     const checkIsTimeEnd = seconds < 0
 

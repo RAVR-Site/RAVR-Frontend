@@ -46,17 +46,27 @@ export const PracticeLesson = observer(() => {
   const pickedVariantSentenceIndex =
     pickedVariants[sentencesSlice()[0] / 2] ?? 0
 
+  const mode = lessonInfo?.data.mode || 'easy'
+
   useEffect(() => {
     setSentencesCount(
-      Math.floor(
-        (data?.variants.length ?? 0) /
-          (data?.sentences.length ?? 0)
-      )
+      mode === 'hard'
+        ? 2
+        : Math.floor(
+            (data?.variants.length ?? 0) /
+              (data?.sentences.length ?? 0)
+          )
     )
-  }, [setSentencesCount, data])
+  }, [setSentencesCount, data, mode])
+
+  const formatIndex = (index: number, minus: boolean = true) => {
+    return mode === 'hard' && sentencesSlice()[0] !== 0
+      ? index + (minus ? -2 : 2)
+      : index
+  }
 
   const isPickedVariant = (index: number) => {
-    return pickedVariantSentenceIndex === index
+    return pickedVariantSentenceIndex === formatIndex(index)
   }
 
   const handlePickedVariant = (index: number) => {
@@ -66,7 +76,7 @@ export const PracticeLesson = observer(() => {
       return
     }
 
-    setPickedVariants(index)
+    setPickedVariants(formatIndex(index))
   }
 
   const handleClearAll = () => setPickedVariants('clearAll')
@@ -75,8 +85,14 @@ export const PracticeLesson = observer(() => {
     setIsSubmit(true)
 
     setLessonResultRequest({
-      lesson_id: lessonInfo?.data.id ?? 0,
-      time_taken: getSpentTime(),
+      lessonId: lessonInfo?.data.id ?? 0,
+      earnedExperience:
+        getResultsLesson() === 'good'
+          ? lessonInfo?.data?.mode === 'hard'
+            ? 200
+            : 100
+          : 0,
+      completionTime: getSpentTime(),
     })
   }
 
@@ -98,8 +114,15 @@ export const PracticeLesson = observer(() => {
           <div className={s.sentences}>
             {data.sentences
               .slice(
-                sentencesSlice()[0] / 2,
-                sentencesSlice()[1] / 2
+                ...(mode === 'hard'
+                  ? [
+                      sentencesSlice()[0] / 2,
+                      sentencesSlice()[1] / 2,
+                    ]
+                  : [
+                      sentencesSlice()[0] / 2,
+                      sentencesSlice()[1] / 2,
+                    ])
               )
               .map(sentence => (
                 <>
@@ -124,7 +147,7 @@ export const PracticeLesson = observer(() => {
                       fontFamily={'DaysOne'}
                       fontSize={20}
                     >
-                      {`${String.fromCharCode(65 + pickedVariantSentenceIndex).toLowerCase()}.   ${data.variants[pickedVariantSentenceIndex + sentencesSlice()[0]]}`}
+                      {`${String.fromCharCode(65 + formatIndex(pickedVariantSentenceIndex, false)).toLowerCase()}.   ${data.variants[pickedVariantSentenceIndex + sentencesSlice()[0]]}`}
                     </P>
                   </div>
                 </>
@@ -138,7 +161,11 @@ export const PracticeLesson = observer(() => {
           )}
         >
           {data.variants
-            .slice(...sentencesSlice())
+            .slice(
+              ...(mode === 'hard'
+                ? [0, data.variants.length]
+                : sentencesSlice())
+            )
             .map((variant, index) => (
               <Button
                 key={`${variant}-${index}`}

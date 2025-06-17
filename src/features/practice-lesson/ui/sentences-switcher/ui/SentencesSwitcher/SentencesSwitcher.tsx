@@ -78,7 +78,7 @@ export const SentencesSwitcher = ({
           s.arrow,
           clickable && s.arrowClickable
         )}
-        withText={false}
+      withText={false}
       >
         <ArrowIcon
           clickable={clickable}

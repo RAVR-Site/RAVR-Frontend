@@ -86,21 +86,36 @@ export type LessonInfoApiRequestData = {
 
 // LESSON RESULT API
 
+interface LeaderboardEntry {
+  user_id: number;
+  username: string;
+  position: number;
+  completion_time: number;
+  score: number;
+  experience: number;
+  trend: 'stable' | 'up' | 'down'; // или string, если возможны другие значения
+}
+
+interface Leaderboard {
+  entries: LeaderboardEntry[];
+  userPosition: number;
+  totalUsers: number;
+}
+
 export type LessonResultApiResponseData = {
-  results: {
-    position: number
-    timeTaken: number
-    username: string
-    xp: number
-  }[]
-  userPosition: number
+  success: boolean;
+  experience: number;
+  earnedXP: number;
+  completedTime: number;
+  leaderboard: Leaderboard;
 }
 
 export type LessonResultApiResponse = ApiResponseData<LessonResultApiResponseData>
 
 export type LessonResultApiRequestData = {
-  lesson_id: number
-  time_taken: number
+  lessonId: string | number
+  completionTime: string | number
+  earnedExperience: string | number
 }
 
 

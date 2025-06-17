@@ -15,90 +15,60 @@ import { WordGroup } from '../WordGroup/WordGroup'
 
 import s from './VocabularyLesson.module.scss'
 
-export const VocabularyLesson = observer(
-  () => {
-    // STORES
-    const {
-      setVocabularyWords,
-      resetSelection,
-      lessonIsCompleted,
-      getResultsLesson,
-    } = vocabularyLessonStore
+export const VocabularyLesson = observer(() => {
+  // STORES
+  const {
+    setVocabularyWords,
+    resetSelection,
+    lessonIsCompleted,
+    getResultsLesson,
+    sendCompletedData,
+  } = vocabularyLessonStore
 
-    const {
-      getLessonInfoResponse: { data: lessonData },
-    } = lessonApiStore
+  const {
+    getLessonInfoResponse: { data: lessonData },
+  } = lessonApiStore
 
-    const {
-      selectedLessonState: { selectedLesson },
-    } = selectedLessonStore
+  const {
+    selectedLessonState: { selectedLesson },
+  } = selectedLessonStore
 
-    // HOOKS
-    const color = useGetLessonColor('vocabulary')
-    const data = useGetLessonData(
-      lessonData?.data,
-      'vocabulary'
-    )
+  // HOOKS
+  const color = useGetLessonColor('vocabulary')
+  const data = useGetLessonData(
+    lessonData?.data,
+    'vocabulary'
+  )
 
-    useEffect(() => {
-      if (!data) return
+  useEffect(() => {
+    if (!data) return
 
-      setVocabularyWords(data.variants)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data])
+    setVocabularyWords(data.variants)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
-    if (!data) return null
+  if (!data) return null
 
-    const renderRussianWords = () => {
-      const russianWords = Object.values(data.variants)
-      const isHardMode =
-        selectedLesson?.lessonMode === 'hard'
+  const renderRussianWords = () => {
+    const russianWords = Object.values(data.variants)
 
-      if (isHardMode) {
-        return (
-          <>
-            <WordGroup
-              words={russianWords.slice(0, 3)}
-              type={'russian'}
-            />
-            <WordGroup
-              words={russianWords.slice(3, 7)}
-              type={'russian'}
-            />
-            <WordGroup
-              words={russianWords.slice(7)}
-              type={'russian'}
-            />
-          </>
-        )
-      }
+    console.log(russianWords.slice(0, 3))
+    const isHardMode = selectedLesson?.lessonMode === 'hard'
 
+    if (isHardMode) {
       return (
         <>
           <WordGroup
-            words={russianWords.slice(0, 2)}
+            words={russianWords.slice(0, 1)}
             type={'russian'}
           />
           <WordGroup
-            words={russianWords.slice(2)}
+            words={russianWords.slice(1, 3)}
             type={'russian'}
           />
-        </>
-      )
-    }
-
-    const renderEnglishWords = () => {
-      const englishWords = Object.keys(data.variants)
-
-      return (
-        <>
           <WordGroup
-            words={englishWords.slice(0, 4)}
-            type={'english'}
-          />
-          <WordGroup
-            words={englishWords.slice(4)}
-            type={'english'}
+            words={russianWords.slice(3)}
+            type={'russian'}
           />
         </>
       )
@@ -106,51 +76,78 @@ export const VocabularyLesson = observer(
 
     return (
       <>
-        <div className={s.vocabularyLesson}>
-          <div className={s.russianWords}>
-            {renderRussianWords()}
-          </div>
-          <div className={s.line} />
-          <div className={s.englishWords}>
-            {renderEnglishWords()}
-          </div>
-        </div>
-        <div className={s.buttons}>
-          {lessonIsCompleted ? (
-            <LessonOverview
-              lessonResult={getResultsLesson(
-                selectedLesson?.lessonMode
-              )}
-              lessonMode={selectedLesson?.lessonMode}
-            />
-          ) : (
-            <>
-              <Button
-                backgroundColor={
-                  color.clear.backgroundColor
-                }
-                borderColor={color.clear.borderColor}
-                textColor={color.clear.textColor}
-                padding={'0.25rem 0'}
-                width={'220px'}
-                onClick={() => resetSelection('all')}
-              >
-                Clear All
-              </Button>
-              <Button
-                backgroundColor={
-                  color.submit.backgroundColor
-                }
-                textColor={color.submit.textColor}
-                padding={'0.25rem 0'}
-                width={'220px'}
-              >
-                Submit
-              </Button>
-            </>
-          )}
-        </div>
+        <WordGroup
+          words={russianWords.slice(0, 2)}
+          type={'russian'}
+        />
+        <WordGroup
+          words={russianWords.slice(2)}
+          type={'russian'}
+        />
       </>
     )
   }
-)
+
+  const renderEnglishWords = () => {
+    const englishWords = Object.keys(data.variants)
+
+    return (
+      <>
+        <WordGroup
+          words={englishWords.slice(0, 4)}
+          type={'english'}
+        />
+        <WordGroup
+          words={englishWords.slice(4)}
+          type={'english'}
+        />
+      </>
+    )
+  }
+
+  return (
+    <>
+      <div className={s.vocabularyLesson}>
+        <div className={s.russianWords}>
+          {renderRussianWords()}
+        </div>
+        <div className={s.line} />
+        <div className={s.englishWords}>
+          {renderEnglishWords()}
+        </div>
+      </div>
+      <div className={s.buttons}>
+        {lessonIsCompleted ? (
+          <LessonOverview
+            lessonResult={getResultsLesson(
+              selectedLesson?.lessonMode
+            )}
+            lessonMode={selectedLesson?.lessonMode}
+          />
+        ) : (
+          <>
+            <Button
+              backgroundColor={color.clear.backgroundColor}
+              borderColor={color.clear.borderColor}
+              textColor={color.clear.textColor}
+              padding={'0.25rem 0'}
+              width={'220px'}
+              onClick={() => resetSelection('all')}
+            >
+              Clear All
+            </Button>
+            <Button
+              backgroundColor={color.submit.backgroundColor}
+              textColor={color.submit.textColor}
+              padding={'0.25rem 0'}
+              width={'220px'}
+              onClick={() => sendCompletedData()}
+            >
+              Submit
+            </Button>
+          </>
+        )}
+      </div>
+    </>
+  )
+})

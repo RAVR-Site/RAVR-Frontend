@@ -51,7 +51,6 @@ export const WordGroup = observer(
       word: string,
       wordType: 'english' | 'russian'
     ) => {
-
       return {
         isSelected: isWordSelected(word, wordType),
         isCorrect: isWordInCorrectPair(word, wordType),
@@ -61,20 +60,43 @@ export const WordGroup = observer(
 
     return (
       <div className={s.wordGroup}>
-        {words.map((word, index) => (
-          <WordTile
-            key={`${word}-${index}`}
-            type={type}
-            word={word}
-            {...isWordCheckOptions(word, type)}
-          />
-        ))}
+        {words.map((word, index) => {
+          const isArray = Array.isArray(word)
+
+          if (isArray) {
+            return (
+              <>
+                <WordTile
+                  key={`${word[0]}-${index}`}
+                  type={type}
+                  word={word[0]}
+                  {...isWordCheckOptions(word[0], type)}
+                />
+                <WordTile
+                  key={`${word[1]}-${index}`}
+                  type={type}
+                  word={word[1]}
+                  {...isWordCheckOptions(word[1], type)}
+                />
+              </>
+            )
+          }
+
+          return (
+            <WordTile
+              key={`${word}-${index}`}
+              type={type}
+              word={word}
+              {...isWordCheckOptions(word, type)}
+            />
+          )
+        })}
       </div>
     )
   }
 )
 
 interface WordGroupProps {
-  words: string[]
+  words: string[] | [string, string][]
   type: 'english' | 'russian'
 }

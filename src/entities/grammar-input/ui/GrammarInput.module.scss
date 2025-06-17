@@ -4,8 +4,11 @@
 .grammarInput {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  height: 100%;
 }
 
 .bottom {
