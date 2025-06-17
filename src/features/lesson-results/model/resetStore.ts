@@ -10,7 +10,7 @@ class ResetStore {
   }
 
   reset = () => {
-    const { saveLessonResultState: { setSaveLessonResult } } = lessonApiStore
+    const { saveLessonResultState: { setSaveLessonResult }, setLessonResultResponse: { reset: resetLessonResult } } = lessonApiStore
     const { resetSelection } = vocabularyLessonStore
     const { setPickedVariants } = practiceLessonStore
     const { indexCoupleOfWordsState: { setIndexCoupleOfWords } } = grammarLessonStore
@@ -19,7 +19,8 @@ class ResetStore {
     setPickedVariants('clearAll')
     setIndexCoupleOfWords(0)
     setSaveLessonResult(null)
+    resetLessonResult?.()
   }
-}
+} 
 
 export const resetStore = new ResetStore()
