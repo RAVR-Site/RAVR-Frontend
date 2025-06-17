@@ -1,0 +1,54 @@
+.tabsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+
+  padding-bottom: 32px;
+
+  border-bottom: 3px solid black
+}
+
+.mainTabs {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.activeTab {
+  width: 300px;
+}
+
+.notActive {
+  width: 300px;
+  opacity: 0.2;
+}
+
+.activeSubTab {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-main);
+  }
+}
+
+.notActiveSubTab {
+  opacity: 0.2;
+}
+
+.subTabs {
+  display: flex;
+  gap: 24px;
+}
+
+.icon {
+  margin-right: 8px;
+  vertical-align: middle;
+}

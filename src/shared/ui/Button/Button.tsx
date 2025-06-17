@@ -38,6 +38,7 @@ export const Button = ({
         {
           width,
           padding,
+          ...props.style,
         } as CSSProperties
       }
       {...props}
@@ -84,5 +85,5 @@ interface ButtonProps
   textAlign?: 'left' | 'center'
   width?: string
   padding?: string
-  fontSize?: 20 | 24
+  fontSize?: 20 | 24 | 32 | 48
 }
