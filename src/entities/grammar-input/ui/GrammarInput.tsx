@@ -75,7 +75,7 @@ export const GrammarInput = observer(
       return () => {
         setIndexCoupleOfWords(0)
       }
-    }, [])
+    }, [setIndexCoupleOfWords])
 
     return (
       <div className={s.grammarInput}>

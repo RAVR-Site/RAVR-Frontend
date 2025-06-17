@@ -1,4 +1,3 @@
-import { LessonMode, LessonType } from '@/entities/lesson'
 import { makeAutoObservable } from 'mobx'
 import {
   mobxSaiFetch as mobxQuery,
@@ -17,12 +16,12 @@ class RatingStore {
   getRatingApiResponse: MobxQueryInstance<RatingGetResponse> = {}
 
   getRatingApiRequest = async ({
-    type,
-    mode,
+    // type,
+    // mode,
   }: {
-    type?: LessonType
-    mode?: LessonMode
-  }) => {
+      // type?: LessonType
+      // mode?: LessonMode
+    }) => {
     this.getRatingApiResponse = mobxQuery(() => ratingApi.getRating({}))
 
     mobxQueryHandler(this.getRatingApiResponse,

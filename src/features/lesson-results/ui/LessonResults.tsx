@@ -32,7 +32,7 @@ export const LessonResults = observer(() => {
     return () => {
       reset()
     }
-  }, [])
+  }, [reset])
 
   const completedTime =
     'completedTime' in data

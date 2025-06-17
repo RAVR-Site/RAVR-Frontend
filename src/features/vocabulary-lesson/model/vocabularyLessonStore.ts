@@ -190,6 +190,10 @@ class VocabularyLessonStore {
       earnedExperience = 0;
     }
 
+    if (isTimeEnd) {
+      earnedExperience = 0;
+    }
+
     // Отправляем результаты на сервер
     setLessonResultRequest({
       lessonId: selectedLesson?.lessonNumber ?? 0,

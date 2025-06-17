@@ -11,7 +11,7 @@ const User = observer(() => {
 
   useLayoutEffect(() => {
     getUserApiRequest()
-  }, [])
+  }, [getUserApiRequest])
 
   return (
     <Layout height={'100vh'}>

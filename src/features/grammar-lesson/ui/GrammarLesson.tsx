@@ -24,10 +24,7 @@ export const GrammarLesson = observer(() => {
     setLessonResultRequest,
   } = lessonApiStore
 
-  const {
-    getSpentTime,
-    isTimeEndStore: { isTimeEnd },
-  } = timerStore
+  const { getSpentTime } = timerStore
 
   const {
     indexCoupleOfWordsState: { indexCoupleOfWords },

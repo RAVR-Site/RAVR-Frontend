@@ -9,61 +9,6 @@ import { RatingGetApiResponse } from '../model/types'
 
 import s from './RatingTableWidget.module.scss'
 
-const mockRows = [
-  {
-    id: 1,
-    name: 'Lily flower 76',
-    number: 33,
-    time: '01:39',
-    xp: 854,
-    isYou: false,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-  {
-    id: 2,
-    name: 'You',
-    number: 34,
-    time: '01:40',
-    xp: 754,
-    isYou: true,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-  {
-    id: 3,
-    name: 'User 8584',
-    number: 35,
-    time: '01:38',
-    xp: 954,
-    isYou: false,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-  {
-    id: 4,
-    name: 'Lily flower 76',
-    number: 36,
-    time: '01:39',
-    xp: 854,
-    isYou: false,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-  {
-    id: 5,
-    name: 'You',
-    number: 37,
-    time: '01:40',
-    xp: 754,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-  {
-    id: 6,
-    name: 'User 8584',
-    number: 38,
-    time: '01:38',
-    xp: 954,
-    isYou: false,
-    avatar: '/public/assets/user-placeholder.svg',
-  },
-]
 
 export const RatingTableWidget = observer(() => {
   const {
